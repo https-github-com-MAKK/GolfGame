@@ -25,6 +25,8 @@ void APlatformGravityTriggerBox::OnOverlapBegin(class AActor* OverlappedActor, c
         {
             GEngine->AddOnScreenDebugMessage(-1, 1.5, FColor::Green, TEXT("Overlap Begin"));
             GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Magenta, FString::Printf(TEXT("Overlapping Actor = %s"), *OverlappedActor->GetName()));
+
+			
         }
     }
 }
