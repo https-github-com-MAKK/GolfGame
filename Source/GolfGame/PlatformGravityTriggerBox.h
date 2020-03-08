@@ -34,5 +34,11 @@ public:
 	// specific actor for overlap
 	UPROPERTY(EditAnywhere)
 		class AActor* SpecificActor;
-	
+
+	//function to be overridden in blueprints
+	UFUNCTION(BlueprintImplementableEvent, category = "output")
+		void DecreaseGravity();
+
+	UFUNCTION(BlueprintImplementableEvent)
+		void BlueprintTest();
 };

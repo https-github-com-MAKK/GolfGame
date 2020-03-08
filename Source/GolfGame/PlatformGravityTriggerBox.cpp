@@ -3,6 +3,7 @@
 #include "PlatformGravityTriggerBox.h"
 #include "DrawDebugHelpers.h"
 #include "Engine/Engine.h"
+#include "PhysicsEngine/BodyInstance.h"
 
 APlatformGravityTriggerBox::APlatformGravityTriggerBox()
 {
@@ -15,6 +16,7 @@ void APlatformGravityTriggerBox::BeginPlay()
 {
 	Super::BeginPlay();
 	DrawDebugBox(GetWorld(), GetActorLocation(), GetComponentsBoundingBox().GetExtent(), FColor::Green, true, -1, 0, 5);
+    this->BlueprintTest();
 }
 
 void APlatformGravityTriggerBox::OnOverlapBegin(class AActor* OverlappedActor, class AActor* OtherActor)
@@ -26,7 +28,10 @@ void APlatformGravityTriggerBox::OnOverlapBegin(class AActor* OverlappedActor, c
             GEngine->AddOnScreenDebugMessage(-1, 1.5, FColor::Green, TEXT("Overlap Begin"));
             GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Magenta, FString::Printf(TEXT("Overlapping Actor = %s"), *OverlappedActor->GetName()));
 
-			
+            //this->DecreaseGravity();
+
+            
+        	
         }
     }
 }

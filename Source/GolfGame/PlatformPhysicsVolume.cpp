@@ -4,6 +4,7 @@
 #include "PlatformPhysicsVolume.h"
 #include "DrawDebugHelpers.h"
 #include "Engine/Engine.h"
+#include "Misc/App.h"
 
 APlatformPhysicsVolume::APlatformPhysicsVolume()
 {
@@ -27,10 +28,8 @@ void APlatformPhysicsVolume::OnOverlapBegin(class AActor* OverlappedActor, class
         {
             GEngine->AddOnScreenDebugMessage(-1, 1.5, FColor::Green, TEXT("Overlap Begin"));
             GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Magenta, FString::Printf(TEXT("Overlapping Actor = %s"), *OverlappedActor->GetName()));
-          
-            TerminalVelocity *= Gravity;
 
-            GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Magenta, FString::Printf(TEXT("Overlapping Actor = %f"), TerminalVelocity));
+            this->BlueprintOverlapBegin(OtherActor);
         }
     }
 }
@@ -43,9 +42,6 @@ void APlatformPhysicsVolume::OnOverlapEnd(class AActor* OverlappedActor, class A
         {
             GEngine->AddOnScreenDebugMessage(-1, 1.5, FColor::Green, TEXT("Overlap Ended"));
             GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Magenta, FString::Printf(TEXT("%s has left the Trigger Box"), *OtherActor->GetName()));
-
-            TerminalVelocity = OriginalTerminalVelocity;
-            GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Magenta, FString::Printf(TEXT("Overlapping Actor = %f"), TerminalVelocity));
         }
     }
 }

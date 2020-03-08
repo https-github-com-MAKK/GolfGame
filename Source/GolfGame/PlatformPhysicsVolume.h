@@ -42,4 +42,11 @@ public:
 	//alter terminal velocity for ball actor while inside the volume
 	UPROPERTY(EditAnywhere)
 		float Gravity;
+
+	//function to be overridden in blueprints
+	UFUNCTION(BlueprintImplementableEvent, category = "output")
+		void BlueprintOverlapBegin(class AActor* OtherActor);
+
+	UFUNCTION(BlueprintImplementableEvent)
+		void BlueprintTest();
 };
