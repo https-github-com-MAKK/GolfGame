@@ -41,4 +41,9 @@ public:
 
 	UFUNCTION(BlueprintImplementableEvent)
 		void BlueprintTest();
+
+private:
+
+	float WorldGravity;
+	
 };
