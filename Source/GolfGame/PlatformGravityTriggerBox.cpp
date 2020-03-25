@@ -3,7 +3,7 @@
 #include "PlatformGravityTriggerBox.h"
 #include "DrawDebugHelpers.h"
 #include "Engine/Engine.h"
-#include <TestBall.h>
+#include <Ball.h>
 #include "GameFramework/WorldSettings.h"
 
 APlatformGravityTriggerBox::APlatformGravityTriggerBox()
