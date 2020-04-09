@@ -23,9 +23,11 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	//UPROPERTY(EditAnywhere)
-		//UStaticMeshComponent* VisualMesh;
+	UPROPERTY(VisibleAnywhere)
+		UStaticMeshComponent* VisualMesh;
 
+	UPROPERTY(VisibleAnywhere)
+		class UMaterial* BallMaterial;
 	
 
 };
