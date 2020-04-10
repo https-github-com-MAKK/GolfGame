@@ -13,19 +13,15 @@ ABall::ABall()
 	/*VisualMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Ball Mesh"));
 	UStaticMeshComponent* SphereVisual = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("VisualRepresentation"));
 	VisualMesh->SetupAttachment(SphereVisual);*/
-	
-    USphereComponent* SphereComponent = CreateDefaultSubobject<USphereComponent>(TEXT("RootComponent"));
-    RootComponent = SphereComponent;
-    //SphereComponent->InitSphereRadius(40.0f);
-    SphereComponent->SetCollisionProfileName(TEXT("Pawn"));
 
-    // Create and position a mesh component so we can see where our sphere is
-    UStaticMeshComponent* SphereVisual = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("VisualRepresentation"));
-    SphereVisual->SetupAttachment(RootComponent);
-    static ConstructorHelpers::FObjectFinder<UStaticMesh> SphereVisualAsset(TEXT("/Game/StarterContent/Shapes/Shape_Sphere.Shape_Sphere"));
+	VisualMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Visual Mesh"));
+	RootComponent = VisualMesh;
 
-    BallMaterial = CreateDefaultSubobject<UMaterial>(TEXT("Ball Material"));
-    
+	SphereComponent = CreateDefaultSubobject<USphereComponent>(TEXT("Sphere Component"));
+	SphereComponent->InitSphereRadius(40.0f);
+	SphereComponent->SetupAttachment(RootComponent);
+
+	BallMaterial = CreateDefaultSubobject<UMaterial>(TEXT("Ball Material"));
 }
 
 // Called when the game starts or when spawned

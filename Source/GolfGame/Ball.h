@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "Components/SphereComponent.h"
 #include "Ball.generated.h"
 
 UCLASS()
@@ -23,10 +24,13 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	UPROPERTY()
+		USphereComponent* SphereComponent;
+	
 	UPROPERTY(VisibleAnywhere)
 		UStaticMeshComponent* VisualMesh;
 
-	UPROPERTY(VisibleAnywhere)
+	UPROPERTY(EditAnywhere)
 		class UMaterial* BallMaterial;
 	
 
