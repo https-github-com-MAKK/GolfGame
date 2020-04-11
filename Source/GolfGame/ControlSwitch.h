@@ -22,6 +22,8 @@ public:
 	UPROPERTY(EditAnywhere)
 		AActor* OverheadLight;
 
+	void SwitchMesh();
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -29,5 +31,13 @@ protected:
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+
+	UPROPERTY(EditAnywhere)
+		class UMaterial* OnMaterial;
+
+	UPROPERTY(EditAnywhere)
+		class UMaterial* OffMaterial;
+
+	
 
 };

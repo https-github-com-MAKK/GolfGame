@@ -11,6 +11,9 @@ AControlSwitch::AControlSwitch()
 	PrimaryActorTick.bCanEverTick = true;
 
 	VisualMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("MeshOn"));
+
+	OnMaterial = CreateDefaultSubobject<UMaterial>(TEXT("OnMaterial"));
+	OffMaterial = CreateDefaultSubobject<UMaterial>(TEXT("OffMaterial"));
 }
 
 // Called when the game starts or when spawned
@@ -25,5 +28,10 @@ void AControlSwitch::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+}
+
+void AControlSwitch()
+{
+	
 }
 
