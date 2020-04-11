@@ -32,7 +32,7 @@ void APlatform_Moving::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	if(testAction)
+	if(IsPlatFormMoving)
 	{
 		FVector NewLocation = GetActorLocation();
 		float RunningTime = GetGameTimeSinceCreation();

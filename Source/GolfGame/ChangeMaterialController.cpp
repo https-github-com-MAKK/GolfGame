@@ -4,6 +4,7 @@
 #include "ChangeMaterialController.h"
 #include "DrawDebugHelpers.h"
 #include "Components/BoxComponent.h"
+#include "Engine/Engine.h"
 
 // Sets default values
 AChangeMaterialController::AChangeMaterialController()
@@ -15,14 +16,13 @@ AChangeMaterialController::AChangeMaterialController()
 	RootComponent = MyMesh;
 
 	MyBoxComponent = CreateDefaultSubobject<UBoxComponent>(TEXT("MyBoxComponent"));
-	MyBoxComponent->InitBoxExtent(FVector(100, 100, 100));
-	MyBoxComponent->SetCollisionProfileName("Trigger");
+	//MyBoxComponent->SetCollisionProfileName("Trigger");
 	MyBoxComponent->SetupAttachment(RootComponent);
 
 	OnMaterial = CreateDefaultSubobject<UMaterial>(TEXT("OnMaterial"));
 	OffMaterial = CreateDefaultSubobject<UMaterial>(TEXT("OffMaterial"));
 
-	MyBoxComponent->OnComponentBeginOverlap.AddDynamic(this, &AChangeMaterialController::OnOverlapBegin);
+	//MyBoxComponent->OnComponentBeginOverlap.AddDynamic(this, &AChangeMaterialController::OnOverlapBegin);
 	
 }
 
@@ -46,29 +46,24 @@ void AChangeMaterialController::Tick(float DeltaTime)
 
 void AChangeMaterialController::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweetResult)
 {
-	if((CurrentState == 0))
+	if((OtherActor != nullptr) && (OtherActor != this) && (OtherComp != nullptr) && (CurrentSwitchState == Off))
 	{
 		MyMesh->SetMaterial(0, OnMaterial);
-		
+		CurrentSwitchState = On;
+		GEngine->AddOnScreenDebugMessage(-1, 1.5, FColor::Green, TEXT("Switch On"));
 	}
-	if((CurrentState == 1))
+	else if((OtherActor != nullptr) && (OtherActor != this) && (OtherComp != nullptr) && (CurrentSwitchState == On))
 	{
 		MyMesh->SetMaterial(0, OffMaterial);
-		
+		CurrentSwitchState = Off;
+		GEngine->AddOnScreenDebugMessage(-1, 1.5, FColor::Green, TEXT("Switch Off"));
 	}
 			
 }
 
 void AChangeMaterialController::OnOverlapEnd(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweetResult)
 {
-	if(CurrentState == 1)
-	{
-		CurrentState = 0;
-	}
-	else
-	{
-		CurrentState = 1;
-	}
+	
 }
 
 

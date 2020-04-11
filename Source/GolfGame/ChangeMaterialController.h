@@ -11,8 +11,8 @@ UCLASS()
 class GOLFGAME_API AChangeMaterialController : public AActor
 {
 	GENERATED_BODY()
-	
-public:	
+
+public:
 	// Sets default values for this actor's properties
 	AChangeMaterialController();
 
@@ -20,7 +20,7 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-public:	
+public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
@@ -42,8 +42,7 @@ public:
 	UFUNCTION()
 		void OnOverlapEnd(class UPrimitiveComponent* OverlappedComp, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
 
-	//off = 0, on = 1
-	int CurrentState = 0;
-	
+	enum SwitchState {On, Off};
+	SwitchState CurrentSwitchState = Off;
 	
 };

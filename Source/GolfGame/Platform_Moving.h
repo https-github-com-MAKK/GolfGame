@@ -26,6 +26,8 @@ public:
 	//factor for which the platform will move up and down
 	UPROPERTY(EditAnywhere)
 		float ScaleFactor = 50.0;
+
+	bool IsPlatFormMoving = false;
 	
 protected:
 	// Called when the game starts or when spawned
