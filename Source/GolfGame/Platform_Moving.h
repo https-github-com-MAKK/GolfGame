@@ -15,10 +15,6 @@ public:
 	// Sets default values for this actor's properties
 	APlatform_Moving();
 
-	//must specify controller for platform to decide whether it in motion
-	UPROPERTY(EditAnywhere)
-		class AActor* ControllerSwitch;
-
 	//skinny or wide platform mesh
 	UPROPERTY(EditAnywhere)
 		UStaticMeshComponent* VisualMesh;

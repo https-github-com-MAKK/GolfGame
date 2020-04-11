@@ -22,7 +22,7 @@ AChangeMaterialController::AChangeMaterialController()
 	OnMaterial = CreateDefaultSubobject<UMaterial>(TEXT("OnMaterial"));
 	OffMaterial = CreateDefaultSubobject<UMaterial>(TEXT("OffMaterial"));
 
-	//MyBoxComponent->OnComponentBeginOverlap.AddDynamic(this, &AChangeMaterialController::OnOverlapBegin);
+	MyBoxComponent->OnComponentBeginOverlap.AddDynamic(this, &AChangeMaterialController::OnOverlapBegin);
 	
 }
 
@@ -34,6 +34,11 @@ void AChangeMaterialController::BeginPlay()
 	DrawDebugBox(GetWorld(), GetActorLocation(), FVector(100, 100, 100), FColor::Green, true, -1, 0, 10);
 
 	MyMesh->SetMaterial(0, OffMaterial);
+
+	if(AssociatedPlatform == nullptr)
+	{
+		GEngine->AddOnScreenDebugMessage(-1, 1.5, FColor::Green, TEXT("Platform/wind switch not setup"));
+	}
 	
 }
 
@@ -51,19 +56,38 @@ void AChangeMaterialController::OnOverlapBegin(UPrimitiveComponent* OverlappedCo
 		MyMesh->SetMaterial(0, OnMaterial);
 		CurrentSwitchState = On;
 		GEngine->AddOnScreenDebugMessage(-1, 1.5, FColor::Green, TEXT("Switch On"));
+		TogglePlatformMovement();
 	}
 	else if((OtherActor != nullptr) && (OtherActor != this) && (OtherComp != nullptr) && (CurrentSwitchState == On))
 	{
 		MyMesh->SetMaterial(0, OffMaterial);
 		CurrentSwitchState = Off;
 		GEngine->AddOnScreenDebugMessage(-1, 1.5, FColor::Green, TEXT("Switch Off"));
+		TogglePlatformMovement();
 	}
 			
 }
 
-void AChangeMaterialController::OnOverlapEnd(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweetResult)
+void AChangeMaterialController::OnOverlapEnd(class UPrimitiveComponent* OverlappedComp, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
 	
 }
+
+void AChangeMaterialController::TogglePlatformMovement()
+{
+	if(AssociatedPlatform != nullptr)
+	{
+		if(AssociatedPlatform->IsPlatFormMoving)
+		{
+			AssociatedPlatform->IsPlatFormMoving = false;
+		}
+		else
+		{
+			AssociatedPlatform->IsPlatFormMoving = true;
+		}
+	}
+}
+
+
 
 

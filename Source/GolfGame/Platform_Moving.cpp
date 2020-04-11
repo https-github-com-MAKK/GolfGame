@@ -19,11 +19,6 @@ APlatform_Moving::APlatform_Moving()
 void APlatform_Moving::BeginPlay()
 {
 	Super::BeginPlay();
-
-	if(!ControllerSwitch)
-	{
-		GEngine->AddOnScreenDebugMessage(-1, 1.5, FColor::Red, TEXT("Controller not assigned"));
-	}
 	
 }
 
