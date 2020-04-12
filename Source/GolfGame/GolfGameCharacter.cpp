@@ -4,6 +4,7 @@
 #include "Components/CapsuleComponent.h"
 #include "Components/InputComponent.h"
 #include "GameFramework/InputSettings.h"
+#include "TestBall.h"
 
 // Sets default values
 AGolfGameCharacter::AGolfGameCharacter()
@@ -58,6 +59,10 @@ void AGolfGameCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputC
 	PlayerInputComponent->BindAction("MouseDown", IE_Released, this, &AGolfGameCharacter::MouseDown);
 	PlayerInputComponent->BindAction("MouseUp", IE_Released, this, &AGolfGameCharacter::MouseUp);
 
+	PlayerInputComponent->BindAction("Teleport", IE_Pressed, this, &AGolfGameCharacter::Teleport);
+	PlayerInputComponent->BindAction("SummonBall", IE_Released, this, &AGolfGameCharacter::SummonBall);
+
+	
 	// Bind movement events
 	PlayerInputComponent->BindAxis("MoveForward", this, &AGolfGameCharacter::MoveForward);
 	PlayerInputComponent->BindAxis("MoveRight", this, &AGolfGameCharacter::MoveRight);
@@ -168,3 +173,16 @@ void AGolfGameCharacter::LookUpAtRate(const float Rate)
 	AddControllerPitchInput(Rate * BaseLookUpRate * GetWorld()->GetDeltaSeconds());
 }
 
+void AGolfGameCharacter::Teleport()
+{
+	FVector ballLocation = Ball->GetActorLocation();
+	SetActorLocation(ballLocation, false);
+
+}
+
+void AGolfGameCharacter::SummonBall()
+{
+	FVector charLocation = GetActorLocation();
+	Ball->SetActorLocation(charLocation, false);
+
+}

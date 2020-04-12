@@ -1,9 +1,11 @@
 #pragma once
 #include "CoreMinimal.h"
+#include "TestBall.h"
 #include "GameFramework/Character.h"
 #include "GrabThrowComponent.h"
 #include "PhysicsEngine/PhysicsHandleComponent.h"
 #include "GolfGameCharacter.generated.h"
+
 
 class UInputComponent;
 UCLASS(config=Game)
@@ -83,9 +85,14 @@ protected:
 	//static void TouchUpdate(const ETouchIndex::Type FingerIndex, const FVector Location);
 	FTouchData	TouchItem;
 
+	ATestBall* Ball;
+
 	// APawn interface
 	void Tick(float DeltaTime) override;
 	void SetupPlayerInputComponent(UInputComponent* PlayerInputComponent) override;
+
+	void Teleport();
+	void SummonBall();
 
 public:
 	//Returns FirstPersonCameraComponent subobject
