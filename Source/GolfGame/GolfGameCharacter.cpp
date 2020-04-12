@@ -175,14 +175,17 @@ void AGolfGameCharacter::LookUpAtRate(const float Rate)
 
 void AGolfGameCharacter::Teleport()
 {
-	FVector ballLocation = Ball->GetActorLocation();
-	SetActorLocation(ballLocation, false);
+	if (Ball != NULL) {
+		FVector ballLocation = Ball->GetActorLocation();
+		SetActorLocation(ballLocation, false);
+	}
 
 }
 
 void AGolfGameCharacter::SummonBall()
 {
-	FVector charLocation = GetActorLocation();
-	Ball->SetActorLocation(charLocation, false);
-
+	if (Ball != NULL) {
+		FVector charLocation = GetActorLocation();
+		Ball->SetActorLocation(charLocation, false);
+	}
 }
