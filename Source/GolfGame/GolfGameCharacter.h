@@ -30,7 +30,8 @@ class AGolfGameCharacter final : public ACharacter
 
 	UPROPERTY(EditAnywhere, Category = "Custom")
 		uint32 bMouseUp : 1;
-	
+	UPROPERTY(EditAnywhere, Category = Projectile)
+		ATestBall* Ball;
 public:
 	// Sets default values for this character's properties
 	AGolfGameCharacter();
@@ -47,6 +48,7 @@ public:
 	/** Base look up/down rate, in deg/sec. Other scaling may affect final rate. */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera)
 		float BaseLookUpRate;
+
 
 protected:
 	/** Handles moving forward/backward */
@@ -85,7 +87,7 @@ protected:
 	//static void TouchUpdate(const ETouchIndex::Type FingerIndex, const FVector Location);
 	FTouchData	TouchItem;
 
-	ATestBall* Ball;
+	
 
 	// APawn interface
 	void Tick(float DeltaTime) override;
