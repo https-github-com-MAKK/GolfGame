@@ -6,6 +6,8 @@
 #include "GameFramework/Actor.h"
 #include <string>
 #include "Platform_Moving.h"
+#include "Ball.h"
+#include "Engine/SpotLight.h"
 #include "ChangeMaterialController.generated.h"
 
 
@@ -43,18 +45,27 @@ public:
 
 	UFUNCTION()
 		void OnOverlapBegin(class UPrimitiveComponent* OverlappedComp, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
-
-	UFUNCTION()
-		void OnOverlapEnd(class UPrimitiveComponent* OverlappedComp, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
 	
 	UPROPERTY(EditAnywhere)
 		class APlatform_Moving* AssociatedPlatform;
+
+	UPROPERTY(EditAnywhere)
+		class ABall* Ball;
+
+	UPROPERTY(EditAnywhere)
+		class USpotLightComponent* AssociatedSpotlight;
 
 	
 private:
 
 	void TogglePlatformMovement();
 
+	void ToggleSpotlight();
+
 	enum SwitchState { On, Off };
 	SwitchState CurrentSwitchState = Off;
+	SwitchState CurrentSpotlightState = Off;
+	const float SpotlightOffIntensity = 0;
+	const float SpotlightOnIntensity = 1000;
+	
 };

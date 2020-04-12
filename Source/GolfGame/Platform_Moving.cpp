@@ -19,6 +19,8 @@ APlatform_Moving::APlatform_Moving()
 void APlatform_Moving::BeginPlay()
 {
 	Super::BeginPlay();
+
+	Random = rand() % 100000;
 	
 }
 
@@ -30,7 +32,7 @@ void APlatform_Moving::Tick(float DeltaTime)
 	if(IsPlatFormMoving)
 	{
 		FVector NewLocation = GetActorLocation();
-		float RunningTime = GetGameTimeSinceCreation();
+		float RunningTime = GetGameTimeSinceCreation() + Random;
 		float DeltaHeight = (FMath::Sin(RunningTime + DeltaTime) - FMath::Sin(RunningTime));
 		NewLocation.Z += DeltaHeight * ScaleFactor;       
 		SetActorLocation(NewLocation);

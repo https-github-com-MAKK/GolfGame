@@ -37,5 +37,8 @@ private:
 
 	//to test platform movement without connecting a controller
 	const bool testAction = true;
+
+	//random number for platform motion, takes place of time since creation
+	int Random;
 	
 };

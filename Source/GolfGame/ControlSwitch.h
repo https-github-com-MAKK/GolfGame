@@ -38,6 +38,4 @@ public:
 	UPROPERTY(EditAnywhere)
 		class UMaterial* OffMaterial;
 
-	
-
 };

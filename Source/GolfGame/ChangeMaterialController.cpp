@@ -31,7 +31,7 @@ void AChangeMaterialController::BeginPlay()
 {
 	Super::BeginPlay();
 
-	DrawDebugBox(GetWorld(), GetActorLocation(), FVector(100, 100, 100), FColor::Green, true, -1, 0, 10);
+	//DrawDebugBox(GetWorld(), GetActorLocation(), FVector(100, 100, 100), FColor::Green, true, -1, 0, 10);
 
 	MyMesh->SetMaterial(0, OffMaterial);
 
@@ -51,14 +51,14 @@ void AChangeMaterialController::Tick(float DeltaTime)
 
 void AChangeMaterialController::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweetResult)
 {
-	if((OtherActor != nullptr) && (OtherActor != this) && (OtherComp != nullptr) && (CurrentSwitchState == Off))
+	if((OtherActor != nullptr) && (OtherActor != this) && (OtherComp != nullptr) && (CurrentSwitchState == Off) && (OtherActor == Ball))
 	{
 		MyMesh->SetMaterial(0, OnMaterial);
 		CurrentSwitchState = On;
 		GEngine->AddOnScreenDebugMessage(-1, 1.5, FColor::Green, TEXT("Switch On"));
 		TogglePlatformMovement();
 	}
-	else if((OtherActor != nullptr) && (OtherActor != this) && (OtherComp != nullptr) && (CurrentSwitchState == On))
+	else if((OtherActor != nullptr) && (OtherActor != this) && (OtherComp != nullptr) && (CurrentSwitchState == On) && (OtherActor == Ball))
 	{
 		MyMesh->SetMaterial(0, OffMaterial);
 		CurrentSwitchState = Off;
@@ -66,11 +66,6 @@ void AChangeMaterialController::OnOverlapBegin(UPrimitiveComponent* OverlappedCo
 		TogglePlatformMovement();
 	}
 			
-}
-
-void AChangeMaterialController::OnOverlapEnd(class UPrimitiveComponent* OverlappedComp, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
-{
-	
 }
 
 void AChangeMaterialController::TogglePlatformMovement()
@@ -84,6 +79,21 @@ void AChangeMaterialController::TogglePlatformMovement()
 		else
 		{
 			AssociatedPlatform->IsPlatFormMoving = true;
+		}
+	}
+}
+
+void AChangeMaterialController::ToggleSpotlight()
+{
+	if(AssociatedSpotlight != nullptr)
+	{
+		if(CurrentSpotlightState == Off)
+		{
+			AssociatedSpotlight->Intensity = SpotlightOnIntensity;
+		}
+		else
+		{
+			//AssociatedSpotlight->Intensity = SpotlightOffIntensity;
 		}
 	}
 }
