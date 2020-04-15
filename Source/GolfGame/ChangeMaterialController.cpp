@@ -4,6 +4,7 @@
 #include "ChangeMaterialController.h"
 #include "DrawDebugHelpers.h"
 #include "Components/BoxComponent.h"
+#include "TimerManager.h"
 #include "Engine/Engine.h"
 
 // Sets default values
@@ -39,6 +40,9 @@ void AChangeMaterialController::BeginPlay()
 	{
 		GEngine->AddOnScreenDebugMessage(-1, 1.5, FColor::Green, TEXT("Platform/wind switch not setup"));
 	}
+
+	CanBeHit = true;
+	GetWorldTimerManager().SetTimer(MemberTimerHandle, this, &AChangeMaterialController::SetCanBeHit, 1.0f, true, 5.0f);
 	
 }
 
@@ -51,19 +55,26 @@ void AChangeMaterialController::Tick(float DeltaTime)
 
 void AChangeMaterialController::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweetResult)
 {
-	if((OtherActor != nullptr) && (OtherActor != this) && (OtherComp != nullptr) && (CurrentSwitchState == Off) && (OtherActor == Ball))
+	if(CanBeHit)
 	{
-		MyMesh->SetMaterial(0, OnMaterial);
-		CurrentSwitchState = On;
-		GEngine->AddOnScreenDebugMessage(-1, 1.5, FColor::Green, TEXT("Switch On"));
+		if ((OtherActor != nullptr) && (OtherActor != this) && (OtherComp != nullptr) && (CurrentSwitchState == Off) && (OtherActor == Ball))
+		{
+			MyMesh->SetMaterial(0, OnMaterial);
+			CurrentSwitchState = On;
+			GEngine->AddOnScreenDebugMessage(-1, 1.5, FColor::Green, TEXT("Switch On"));
+			
+		}
+		else if ((OtherActor != nullptr) && (OtherActor != this) && (OtherComp != nullptr) && (CurrentSwitchState == On) && (OtherActor == Ball))
+		{
+			MyMesh->SetMaterial(0, OffMaterial);
+			CurrentSwitchState = Off;
+			GEngine->AddOnScreenDebugMessage(-1, 1.5, FColor::Green, TEXT("Switch Off"));
+			
+		}
 		TogglePlatformMovement();
-	}
-	else if((OtherActor != nullptr) && (OtherActor != this) && (OtherComp != nullptr) && (CurrentSwitchState == On) && (OtherActor == Ball))
-	{
-		MyMesh->SetMaterial(0, OffMaterial);
-		CurrentSwitchState = Off;
-		GEngine->AddOnScreenDebugMessage(-1, 1.5, FColor::Green, TEXT("Switch Off"));
-		TogglePlatformMovement();
+		ToggleSpotlight();
+		CanBeHit = false;
+		GEngine->AddOnScreenDebugMessage(-1, 1.5, FColor::Orange, TEXT("Must wait"));
 	}
 			
 }
@@ -89,13 +100,22 @@ void AChangeMaterialController::ToggleSpotlight()
 	{
 		if(CurrentSpotlightState == Off)
 		{
-			AssociatedSpotlight->Intensity = SpotlightOnIntensity;
+			AssociatedSpotlight->SpotLightComponent->SetOuterConeAngle(OnConeAngle);
+			GEngine->AddOnScreenDebugMessage(-1, 1.5, FColor::White, TEXT("SpotLight On"));
+			CurrentSpotlightState = On;
 		}
 		else
 		{
-			//AssociatedSpotlight->Intensity = SpotlightOffIntensity;
+			AssociatedSpotlight->SpotLightComponent->SetOuterConeAngle(OffConeAngle);
+			GEngine->AddOnScreenDebugMessage(-1, 1.5, FColor::White, TEXT("SpotLight Off"));
+			CurrentSpotlightState = Off;
 		}
 	}
+}
+
+void AChangeMaterialController::SetCanBeHit()
+{
+	CanBeHit = true;
 }
 
 

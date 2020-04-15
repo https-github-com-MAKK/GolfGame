@@ -8,6 +8,7 @@
 #include "Platform_Moving.h"
 #include "Ball.h"
 #include "Engine/SpotLight.h"
+#include "Components/SpotLightComponent.h"
 #include "ChangeMaterialController.generated.h"
 
 
@@ -53,8 +54,11 @@ public:
 		class ABall* Ball;
 
 	UPROPERTY(EditAnywhere)
-		class USpotLightComponent* AssociatedSpotlight;
+		class ASpotLight* AssociatedSpotlight;
 
+	void SetCanBeHit();
+
+	FTimerHandle MemberTimerHandle;
 	
 private:
 
@@ -67,5 +71,9 @@ private:
 	SwitchState CurrentSpotlightState = Off;
 	const float SpotlightOffIntensity = 0;
 	const float SpotlightOnIntensity = 1000;
+	const float OnConeAngle = 20.0;
+	const float OffConeAngle = 0.0;
+
+	bool CanBeHit;
 	
 };
