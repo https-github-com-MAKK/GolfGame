@@ -3,7 +3,7 @@
 #include "PlatformGravityTriggerBox.h"
 #include "DrawDebugHelpers.h"
 #include "Engine/Engine.h"
-#include <TestBall.h>
+#include <Ball.h>
 #include "GameFramework/WorldSettings.h"
 
 APlatformGravityTriggerBox::APlatformGravityTriggerBox()
@@ -16,13 +16,13 @@ APlatformGravityTriggerBox::APlatformGravityTriggerBox()
 void APlatformGravityTriggerBox::BeginPlay()
 {
 	Super::BeginPlay();
-	DrawDebugBox(GetWorld(), GetActorLocation(), GetComponentsBoundingBox().GetExtent(), FColor::Green, true, -1, 0, 5);
+	//DrawDebugBox(GetWorld(), GetActorLocation(), GetComponentsBoundingBox().GetExtent(), FColor::Green, true, -1, 0, 5);
     OriginalWorldGravity = GetWorldSettings()->GetGravityZ();
 }
 
 void APlatformGravityTriggerBox::OnOverlapBegin(class AActor* OverlappedActor, class AActor* OtherActor)
 {
-    if (OtherActor && OtherActor != this && OtherActor == SpecificActor)
+    if (OtherActor && OtherActor != this && OtherActor == Ball)
     {
         if (GEngine)
         {
@@ -39,7 +39,7 @@ void APlatformGravityTriggerBox::OnOverlapBegin(class AActor* OverlappedActor, c
 
 void APlatformGravityTriggerBox::OnOverlapEnd(class AActor* OverlappedActor, class AActor* OtherActor)
 {
-    if (OtherActor && OtherActor != this && OtherActor == SpecificActor)
+    if (OtherActor && OtherActor != this && OtherActor == Ball)
     {
         if (GEngine)
         {
