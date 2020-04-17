@@ -56,8 +56,6 @@ public:
 	UPROPERTY(EditAnywhere)
 		class ASpotLight* AssociatedSpotlight;
 
-	void SetCanBeHit();
-
 	FTimerHandle MemberTimerHandle;
 	
 private:
@@ -65,6 +63,8 @@ private:
 	void TogglePlatformMovement();
 
 	void ToggleSpotlight();
+
+	void SetCanBeHit();
 
 	enum SwitchState { On, Off };
 	SwitchState CurrentSwitchState = Off;
