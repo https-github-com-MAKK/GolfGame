@@ -16,17 +16,17 @@ class AGolfGameCharacter final : public ACharacter
 		class UCameraComponent* FirstPersonCameraComponent;
 
 	//Grabber class
-	UPROPERTY(EditAnywhere, Category = "Custom")
+	UPROPERTY(EditAnywhere)
 		UGrabThrowComponent* GrabberClass;
 
 	//PhysicsHandle class
-	UPROPERTY(EditAnywhere, Category = "Custom")
+	UPROPERTY(EditAnywhere)
 		UPhysicsHandleComponent* PhysicsHandle;
 
-	UPROPERTY(EditAnywhere, Category = "Custom")
+	UPROPERTY(EditAnywhere)
 		uint32 bMouseDown : 1;
 
-	UPROPERTY(EditAnywhere, Category = "Custom")
+	UPROPERTY(EditAnywhere)
 		uint32 bMouseUp : 1;
 	
 public:
@@ -53,6 +53,7 @@ protected:
 	/** Handles movement, left and right */
 	void MoveRight(float Value);
 
+	void Recall();
 	void GrabOrRelease();
 
 	void MouseDown();
@@ -78,8 +79,6 @@ protected:
 		FVector Location;
 		bool bMoved;
 	};
-	void BeginTouch(const ETouchIndex::Type FingerIndex, const FVector Location);
-	void EndTouch(const ETouchIndex::Type FingerIndex, const FVector Location);
 	//static void TouchUpdate(const ETouchIndex::Type FingerIndex, const FVector Location);
 	FTouchData	TouchItem;
 

@@ -1,7 +1,7 @@
+#include "GrabThrowComponent.h"
 #include "PhysicsEngine/PhysicsHandleComponent.h"
 #include "Camera/CameraComponent.h"
 #include "GameFramework/Actor.h"
-#include "GrabThrowComponent.h"
 #include "Components/PrimitiveComponent.h"
 #include "Kismet/KismetSystemLibrary.h"
 #include "Kismet/GameplayStatics.h"
@@ -37,7 +37,7 @@ bool UGrabThrowComponent::Grab(UObject* WorldContextObject, UPhysicsHandleCompon
 	const auto ForwardVector = FPCameraComponent->GetForwardVector();
 	const auto EndTrace = StartTrace + (ForwardVector * MaxGrabDist);
 	const auto MyLocation = GetOwner()->GetActorLocation();
-	if (UKismetSystemLibrary::LineTraceSingleForObjects(WorldContextObject, StartTrace, EndTrace, PhysicsObjectType, false, ActorsToIgnore, EDrawDebugTrace::None, Hit, true, FColor::Blue, FColor::Green))
+	if (UKismetSystemLibrary::LineTraceSingleForObjects(WorldContextObject, StartTrace, EndTrace, PhysicsObjectType, false, ActorsToIgnore, EDrawDebugTrace::None, Hit, true, FColor::Blue, FColor::Blue))
 	{
 		HitComponent = Hit.GetComponent();
 		const auto Distance = MyLocation - HitComponent->GetComponentLocation();
