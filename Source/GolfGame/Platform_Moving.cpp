@@ -34,8 +34,22 @@ void APlatform_Moving::Tick(float DeltaTime)
 		FVector NewLocation = GetActorLocation();
 		float RunningTime = GetGameTimeSinceCreation() + Random;
 		float DeltaHeight = (FMath::Sin(RunningTime + DeltaTime) - FMath::Sin(RunningTime));
-		NewLocation.Z += DeltaHeight * ScaleFactor;       
+		
+		if(Movement == EMovementType::UpDown)
+		{
+			NewLocation.Z += DeltaHeight * ScaleFactor;
+		}
+		else if(Movement == EMovementType::LeftRight)
+		{
+			NewLocation.Y += DeltaHeight * ScaleFactor;
+		}
+		else if (Movement == EMovementType::ForwardBack)
+		{
+			NewLocation.X += DeltaHeight * ScaleFactor;
+		}
+
 		SetActorLocation(NewLocation);
+		
 	}
 	
 }
