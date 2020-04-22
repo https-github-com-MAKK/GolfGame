@@ -53,10 +53,9 @@ void AGolfGameCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputC
 	// Bind jump events
 	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
 	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
-
 	PlayerInputComponent->BindAction("Grab", IE_Released, this, &AGolfGameCharacter::GrabOrRelease);
 	PlayerInputComponent->BindAction("MouseDown", IE_Released, this, &AGolfGameCharacter::MouseDown);
-	PlayerInputComponent->BindAction("MouseUp", IE_Released, this, &AGolfGameCharacter::MouseUp);
+	//PlayerInputComponent->BindAction("MouseUp", IE_Released, this, &AGolfGameCharacter::MouseUp);
 
 	// Bind movement events
 	PlayerInputComponent->BindAxis("MoveForward", this, &AGolfGameCharacter::MoveForward);
@@ -98,19 +97,11 @@ void AGolfGameCharacter::GrabOrRelease()
 
 void AGolfGameCharacter::MouseDown()
 {
-	bMouseUp = false;
-	bMouseDown = true;
-	if (GrabberClass != nullptr && PhysicsHandle != nullptr && FirstPersonCameraComponent != nullptr && GrabberClass->GetIsObjectHeld() && GrabberClass->Throw(PhysicsHandle, FirstPersonCameraComponent, bMouseDown))
+	if (GrabberClass != nullptr && PhysicsHandle != nullptr && FirstPersonCameraComponent != nullptr && GrabberClass->GetIsObjectHeld() && GrabberClass->Throw(PhysicsHandle, FirstPersonCameraComponent))
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Throw succeeded."));
 	}
 	else UE_LOG(LogTemp, Warning, TEXT("Throw failed."));
-}
-
-void AGolfGameCharacter::MouseUp()
-{
-	bMouseUp = true;
-	bMouseDown = false;
 }
 
 void AGolfGameCharacter::MoveForward(const float Value)

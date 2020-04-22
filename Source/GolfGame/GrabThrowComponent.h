@@ -54,11 +54,11 @@ private:
 private:
 	// Min distance to allow pickup
 	UPROPERTY(EditAnywhere)
-		float MinGrabDist = 500.0f;
+		float MinGrabDist = 300.0f;
 
 	// Max distance to allow pickup
 	UPROPERTY(EditAnywhere)
-		float MaxGrabDist = 1000.0f;
+		float MaxGrabDist = 1500.0f;
 
 	// Distance between player and pickup > Visible
 	UPROPERTY(EditAnywhere)
@@ -66,7 +66,7 @@ private:
 
 	// Throwing force
 	UPROPERTY(EditAnywhere)
-		float ThrowingForce = 1000.0f;
+		float ThrowingForce = 1500.0f;
 
 	// Snap distance
 	UPROPERTY(EditAnywhere)
@@ -84,7 +84,7 @@ public:
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
 	bool Grab(UObject* WorldContextObject, class UPhysicsHandleComponent* Ph, UCameraComponent* FPCameraComponent);
-	bool Throw(class UPhysicsHandleComponent* Ph, UCameraComponent* FPCameraComponent, bool MouseDown);
+	bool Throw(class UPhysicsHandleComponent* Ph, UCameraComponent* FPCameraComponent);
 	bool Release(class UPhysicsHandleComponent* Ph, bool bThrow);
 
 	void TraceHandleLocation(class UPhysicsHandleComponent* Ph, UCameraComponent* FPCameraComponent);

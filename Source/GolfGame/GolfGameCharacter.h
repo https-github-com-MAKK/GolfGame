@@ -22,12 +22,6 @@ class AGolfGameCharacter final : public ACharacter
 	//PhysicsHandle class
 	UPROPERTY(EditAnywhere)
 		UPhysicsHandleComponent* PhysicsHandle;
-
-	UPROPERTY(EditAnywhere)
-		uint32 bMouseDown : 1;
-
-	UPROPERTY(EditAnywhere)
-		uint32 bMouseUp : 1;
 	
 public:
 	// Sets default values for this character's properties
@@ -49,15 +43,12 @@ public:
 protected:
 	/** Handles moving forward/backward */
 	void MoveForward(float Value);
-
 	/** Handles movement, left and right */
 	void MoveRight(float Value);
 
-	void Recall();
 	void GrabOrRelease();
 
 	void MouseDown();
-	void MouseUp();
 
 	/**
 	 * Called via input to turn at a given rate.

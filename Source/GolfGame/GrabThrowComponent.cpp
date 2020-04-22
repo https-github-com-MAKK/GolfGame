@@ -61,9 +61,9 @@ bool UGrabThrowComponent::Grab(UObject* WorldContextObject, UPhysicsHandleCompon
 	return false;
 }
 
-bool UGrabThrowComponent::Throw(UPhysicsHandleComponent* Ph, UCameraComponent* FPCameraComponent, const bool MouseDown)
+bool UGrabThrowComponent::Throw(UPhysicsHandleComponent* Ph, UCameraComponent* FPCameraComponent)
 {
-	if (Ph != nullptr && FPCameraComponent != nullptr && HitComponent != nullptr && Release(Ph, true) && MouseDown && HitComponent->IsSimulatingPhysics())
+	if (Ph != nullptr && FPCameraComponent != nullptr && HitComponent != nullptr && Release(Ph, true) && HitComponent->IsSimulatingPhysics())
 	{
 		const auto ForwardVector = FPCameraComponent->GetForwardVector();
 		const auto ImpulseVector = ForwardVector * ThrowingForce;

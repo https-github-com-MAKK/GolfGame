@@ -32,7 +32,9 @@ public:
 	UPROPERTY(EditAnywhere)
 		float Speed = 0.5f; //speed of platform
 
-	int Direction; //indicates whether the platform is moving up or down;
+	UPROPERTY(EditAnywhere)
+		int Direction = 1; //indicates whether the platform is moving up or down;
+
 	bool Paused; //the state of the platform is paused
 	int CurTime; //how much time has elapsed since the pause began
 	float MaxZ; //the calculated max Z value of the platform in the game

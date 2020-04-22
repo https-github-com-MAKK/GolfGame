@@ -6,7 +6,6 @@ AOscellatingPlatform::AOscellatingPlatform()
 	PrimaryActorTick.bCanEverTick = true;
 	
 	Mesh = CreateDefaultSubobject<UStaticMeshComponent>("Mesh");
-	Direction = 1; //initially going up
 	CurTime = PauseTime;
 
 }
