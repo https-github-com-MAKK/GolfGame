@@ -6,6 +6,14 @@
 #include "GameFramework/Actor.h"
 #include "Platform_Moving.generated.h"
 
+UENUM()
+enum class EMovementType
+{
+	UpDown UMETA(DisplayName = "Up and Down"),
+	LeftRight UMETA(DisplayName = "Left and Right"),
+	ForwardBack UMETA(DisplayName = "Forward and Backwards")
+};
+
 UCLASS()
 class GOLFGAME_API APlatform_Moving : public AActor
 {
@@ -24,18 +32,21 @@ public:
 		float ScaleFactor = 50.0;
 
 	bool IsPlatFormMoving = false;
+
+	// Called every frame
+	virtual void Tick(float DeltaTime) override;
+
+	UPROPERTY(EditAnywhere)
+		EMovementType Movement = EMovementType::UpDown;
+	
 	
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
-
 private:
-
+	
 	//random number for platform motion, takes place of time since creation
 	int Random;
-	
+
 };
