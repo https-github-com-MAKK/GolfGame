@@ -43,20 +43,26 @@ void AWindTriggerBox::AddForce( class AActor* OverlappedActor, class AActor* Oth
 	
 
 	WindOn = true;
-	MeshRootComp = Cast<UStaticMeshComponent>(OtherActor->GetRootComponent());
-	GEngine->AddOnScreenDebugMessage(-1, 1.5, FColor::White, TEXT("SpotLight On"));
+	meshRootComp = Cast<UStaticMeshComponent>(OtherActor->GetRootComponent());
+	GEngine->AddOnScreenDebugMessage(-1, 1.5, FColor::White, TEXT("ForceAdded"));
+
 	GetWorld()->GetTimerManager().SetTimer(InputADelayManager, this, &AWindTriggerBox::Tick, .1F, true);
 
 }
 
 void AWindTriggerBox::Tick()
 {
-	MeshRootComp->AddForce(cameraForward * 50000 * MeshRootComp->GetMass());
-	//GEngine->AddOnScreenDebugMessage(-1, 1.5, FColor::White, TEXT("ForceAdded"));
+
+	meshRootComp->AddForce(cameraForward * force * meshRootComp->GetMass());
 	
 }
 
 void AWindTriggerBox::OnOverlapEnd(AActor* OverlappedActor, AActor* OtherActor)
 {
-	
+	if (GetWorld()->GetTimerManager().IsTimerActive(InputADelayManager)) 
+	{
+		GetWorld()->GetTimerManager().ClearTimer(InputADelayManager);
+		GEngine->AddOnScreenDebugMessage(-1, 1.5, FColor::White, TEXT("ForceStopped"));
+
+	}
 }

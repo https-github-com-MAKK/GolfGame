@@ -42,6 +42,9 @@ public:
 
 	UPROPERTY(EditAnywhere)
 		class ABall* Ball;
+
+	UPROPERTY(EditAnywhere)
+		int force = 1000;
 private:
 		bool WindOn;
 
@@ -49,5 +52,5 @@ private:
 
 		FTimerHandle loopHandle;
 
-		UStaticMeshComponent* MeshRootComp;
+		UStaticMeshComponent* meshRootComp;
 };
