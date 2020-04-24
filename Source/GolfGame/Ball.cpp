@@ -24,6 +24,11 @@ ABall::ABall()
 	BallMaterial = CreateDefaultSubobject<UMaterial>(TEXT("Ball Material"));
 }
 
+void ABall::AddForce()
+{
+	
+}
+
 // Called when the game starts or when spawned
 void ABall::BeginPlay()
 {
