@@ -37,7 +37,7 @@ public:
 		class ABall* Ball;
 
 	UPROPERTY(EditAnywhere)
-		float GravityInsideTriggerBox = -100;
+		float GravityInsideTriggerBox = -100.0;
 
 private:
 

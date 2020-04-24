@@ -96,20 +96,19 @@ void AChangeMaterialController::TogglePlatformMovement()
 
 void AChangeMaterialController::ToggleSpotlight()
 {
-	if(AssociatedSpotlight != nullptr)
+	if(AssociatedRectlight != nullptr)
 	{
 		if(CurrentSpotlightState == Off)
 		{
-			AssociatedSpotlight->SpotLightComponent->SetOuterConeAngle(OnConeAngle);
-			GEngine->AddOnScreenDebugMessage(-1, 1.5, FColor::White, TEXT("SpotLight On"));
+			GEngine->AddOnScreenDebugMessage(-1, 1.5, FColor::White, TEXT("Light On"));
 			CurrentSpotlightState = On;
 		}
 		else
-		{
-			AssociatedSpotlight->SpotLightComponent->SetOuterConeAngle(OffConeAngle);
-			GEngine->AddOnScreenDebugMessage(-1, 1.5, FColor::White, TEXT("SpotLight Off"));
+		{	
+			GEngine->AddOnScreenDebugMessage(-1, 1.5, FColor::White, TEXT("Light Off"));
 			CurrentSpotlightState = Off;
 		}
+		AssociatedRectlight->RectLightComponent->ToggleVisibility();
 	}
 }
 

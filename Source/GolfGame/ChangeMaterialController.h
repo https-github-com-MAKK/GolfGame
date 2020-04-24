@@ -7,8 +7,8 @@
 #include <string>
 #include "Platform_Moving.h"
 #include "Ball.h"
-#include "Engine/SpotLight.h"
-#include "Components/SpotLightComponent.h"
+#include "Engine/RectLight.h"
+#include "Components/RectLightComponent.h"
 #include "ChangeMaterialController.generated.h"
 
 
@@ -54,9 +54,7 @@ public:
 		class ABall* Ball;
 
 	UPROPERTY(EditAnywhere)
-		class ASpotLight* AssociatedSpotlight;
-
-	void SetCanBeHit();
+		class ARectLight* AssociatedRectlight;
 
 	FTimerHandle MemberTimerHandle;
 	
@@ -66,13 +64,11 @@ private:
 
 	void ToggleSpotlight();
 
+	void SetCanBeHit();
+
 	enum SwitchState { On, Off };
 	SwitchState CurrentSwitchState = Off;
 	SwitchState CurrentSpotlightState = Off;
-	const float SpotlightOffIntensity = 0;
-	const float SpotlightOnIntensity = 1000;
-	const float OnConeAngle = 20.0;
-	const float OffConeAngle = 0.0;
 
 	bool CanBeHit;
 	
