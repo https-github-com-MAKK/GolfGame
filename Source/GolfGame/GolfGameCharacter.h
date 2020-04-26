@@ -1,9 +1,11 @@
 #pragma once
 #include "CoreMinimal.h"
+#include "Ball.h"
 #include "GameFramework/Character.h"
 #include "GrabThrowComponent.h"
 #include "PhysicsEngine/PhysicsHandleComponent.h"
 #include "GolfGameCharacter.generated.h"
+
 
 class UInputComponent;
 UCLASS(config=Game)
@@ -28,7 +30,8 @@ class AGolfGameCharacter final : public ACharacter
 
 	UPROPERTY(EditAnywhere, Category = "Custom")
 		uint32 bMouseUp : 1;
-	
+	UPROPERTY(EditAnywhere, Category = Projectile)
+		ABall* Ball;
 public:
 	// Sets default values for this character's properties
 	AGolfGameCharacter();
@@ -45,6 +48,7 @@ public:
 	/** Base look up/down rate, in deg/sec. Other scaling may affect final rate. */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera)
 		float BaseLookUpRate;
+
 
 protected:
 	/** Handles moving forward/backward */
@@ -83,9 +87,14 @@ protected:
 	//static void TouchUpdate(const ETouchIndex::Type FingerIndex, const FVector Location);
 	FTouchData	TouchItem;
 
+	
+
 	// APawn interface
 	void Tick(float DeltaTime) override;
 	void SetupPlayerInputComponent(UInputComponent* PlayerInputComponent) override;
+
+	void Teleport();
+	void SummonBall();
 
 public:
 	//Returns FirstPersonCameraComponent subobject
