@@ -1,6 +1,6 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "TestBall.h"
+#include "Ball.h"
 #include "GameFramework/Character.h"
 #include "GrabThrowComponent.h"
 #include "PhysicsEngine/PhysicsHandleComponent.h"
@@ -31,7 +31,7 @@ class AGolfGameCharacter final : public ACharacter
 	UPROPERTY(EditAnywhere, Category = "Custom")
 		uint32 bMouseUp : 1;
 	UPROPERTY(EditAnywhere, Category = Projectile)
-		ATestBall* Ball;
+		ABall* Ball;
 public:
 	// Sets default values for this character's properties
 	AGolfGameCharacter();
