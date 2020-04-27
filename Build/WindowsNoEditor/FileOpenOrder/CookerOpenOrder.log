@@ -265,103 +265,152 @@
 "../../../Engine/Content/EngineMaterials/Widget3DPassThrough_Translucent.uasset" 264
 "../../../Engine/Content/EngineMaterials/Widget3DPassThrough_Translucent_OneSided.uasset" 265
 "../../../Engine/Content/EngineMaterials/DefaultMaterial.uasset" 266
-"../../../Engine/Content/EngineMeshes/Cylinder.uasset" 267
-"../../../Engine/Content/EngineMeshes/Sphere.uasset" 268
-"../../../Engine/Content/EngineResources/Black.uasset" 269
-"../../../Engine/Content/EngineResources/DefaultTexture.uasset" 270
-"../../../Engine/Content/EngineResources/DefaultTextureCube.uasset" 271
-"../../../Engine/Content/EngineResources/DefaultVolumeTexture2D.uasset" 272
-"../../../Engine/Content/EngineResources/DefaultVolumeTexture.uasset" 273
-"../../../Engine/Content/EngineResources/GradientTexture0.uasset" 274
-"../../../Engine/Content/EngineResources/StreamingPauseIcon.uasset" 275
-"../../../Engine/Content/EngineResources/M_StreamingPause.uasset" 276
-"../../../Engine/Content/EngineSounds/Master.uasset" 277
-"../../../Engine/Content/Functions/Engine_MaterialFunctions01/Shading/PowerToRoughness.uasset" 278
-"../../../Engine/Content/Maps/Templates/Thumbnails/Default.uasset" 279
-"../../../Engine/Content/Maps/Templates/Thumbnails/TimeOfDay.uasset" 280
-"../../../Engine/Content/Maps/Templates/Thumbnails/VR-Basic.uasset" 281
-"../../../Engine/Content/MapTemplates/Sky/DaylightAmbientCubemap.uasset" 282
-"../../../Engine/Content/MobileResources/T_MobileControls_texture.uasset" 283
-"../../../Engine/Content/MobileResources/T_MobileMenu2.uasset" 284
-"../../../Engine/Content/MobileResources/HUD/AnalogHat.uasset" 285
-"../../../Engine/Content/MobileResources/HUD/VirtualJoystick_Background.uasset" 286
-"../../../Engine/Content/MobileResources/HUD/VirtualJoystick_Thumb.uasset" 287
-"../../../Engine/Content/MobileResources/HUD/DefaultVirtualJoysticks.uasset" 288
-"../../../Engine/Content/MobileResources/HUD/LeftVirtualJoystickOnly.uasset" 289
-"../../../Engine/Content/MobileResources/HUD/MobileHUDButton1_off.uasset" 290
-"../../../Engine/Content/MobileResources/HUD/MobileHUDButton1_on.uasset" 291
-"../../../Engine/Content/MobileResources/HUD/MobileHUDButton2_off.uasset" 292
-"../../../Engine/Content/MobileResources/HUD/MobileHUDButton2_on.uasset" 293
-"../../../Engine/Content/MobileResources/HUD/MobileHUDButton3.uasset" 294
-"../../../Engine/Content/MobileResources/HUD/MobileHUDButtonFire.uasset" 295
-"../../../Engine/Content/MobileResources/HUD/MobileHUDDirectionPad.uasset" 296
-"../../../Engine/Content/MobileResources/HUD/MobileHUDDirectionPad2.uasset" 297
-"../../../Engine/Content/MobileResources/HUD/MobileHUDDirectionPad3.uasset" 298
-"../../../Engine/Content/MobileResources/HUD/MobileHUDDirectionStick.uasset" 299
-"../../../Engine/Content/MobileResources/HUD/T_Castle_ThumbstickInner.uasset" 300
-"../../../Engine/Content/MobileResources/HUD/T_Castle_ThumbstickOutter.uasset" 301
-"../../../Engine/Content/Tutorial/ContentIntroCurve.uasset" 302
-"../../../Engine/Content/Tutorial/Basics/LevelEditorAttract.uasset" 303
-"../../../Engine/Content/Tutorial/Basics/TutorialAssets/icon_tab_Levels_40x.uasset" 304
-"../../../Engine/Content/Tutorial/Basics/LevelEditorOverview.uasset" 305
-"../../../Engine/Content/Tutorial/Foliage/TutorialAssets/Foliage.uasset" 306
-"../../../Engine/Content/Tutorial/Foliage/Foliage_Intro_Tutorial.uasset" 307
-"../../../Engine/Content/Tutorial/Foliage/Foliage_Settings_Tutorial.uasset" 308
-"../../../Engine/Content/Tutorial/Foliage/Foliage_Using_The_Tool_Tutorial.uasset" 309
-"../../../Engine/Content/Tutorial/Landscape/TutorialAssets/Landscape.uasset" 310
-"../../../Engine/Content/Tutorial/Landscape/LandscapeWalkThrough.uasset" 311
-"../../../Engine/Content/Tutorial/Landscape/Landscape_Manage_Mode.uasset" 312
-"../../../Engine/Content/EditorBlueprintResources/StandardMacros.uasset" 313
-"../../../Engine/Content/Tutorial/Landscape/Landscape_Painting_Mode.uasset" 314
-"../../../Engine/Content/Tutorial/Landscape/Landscape_Sculpt_Mode.uasset" 315
-"../../../Engine/Content/VREditor/LaserPointer/VR_LaserPower_01.uasset" 316
-"../../../Engine/Content/VREditor/TransformGizmo/TransformGizmoMaterial.uasset" 317
-"../../../Engine/Content/VREditor/TransformGizmo/TranslucentTransformGizmoMaterial.uasset" 318
-"../../../Engine/Content/VREditor/TransformGizmo/BoundingBoxCorner.uasset" 319
-"../../../Engine/Content/VREditor/TransformGizmo/BoundingBoxEdge.uasset" 320
-"../../../Engine/Content/VREditor/TransformGizmo/PlaneTranslationHandle.uasset" 321
-"../../../Engine/Content/VREditor/TransformGizmo/Main.uasset" 322
-"../../../Engine/Content/VREditor/TransformGizmo/Xray.uasset" 323
-"../../../Engine/Content/VREditor/TransformGizmo/SM_Sequencer_Key.uasset" 324
-"../../../Engine/Content/VREditor/TransformGizmo/SM_Sequencer_Node.uasset" 325
-"../../Plugins/2D/Paper2D/Content/PlaceholderTextures/DummySpriteTexture.uasset" 326
-"../../Plugins/2D/Paper2D/Content/DummySprite.uasset" 327
-"../../Plugins/2D/Paper2D/Content/DefaultPaperTerrainMaterial.uasset" 328
-"../../Plugins/2D/Paper2D/Content/DefaultSpriteMaterial.uasset" 329
-"../../Plugins/2D/Paper2D/Content/MaskedUnlitSpriteMaterial.uasset" 330
-"../../Plugins/2D/Paper2D/Content/OpaqueUnlitSpriteMaterial.uasset" 331
-"../../../Engine/Content/Functions/Engine_MaterialFunctions02/Utility/BreakOutFloat4Components.uasset" 332
-"../../Plugins/Runtime/Oculus/OculusVR/Content/Materials/OculusMR_ChromaKey.uasset" 333
-"../../Plugins/Runtime/Oculus/OculusVR/Content/Materials/OculusMR_ChromaKey_Lit.uasset" 334
-"../../Plugins/Runtime/Oculus/OculusVR/Content/Materials/OculusMR_OpaqueColoredMaterial.uasset" 335
-"../../Plugins/Runtime/Oculus/OculusVR/Content/Materials/OculusMR_WhiteMaterial.uasset" 336
-"../../../Engine/Content/Maps/Entry_BuiltData.uasset" 337
-"../../../Engine/Content/Maps/Entry.umap" 338
-"../../../Engine/Content/EngineSky/C_Sky_Cloud_Color.uasset" 339
-"../../../Engine/Content/EngineSky/C_Sky_Horizon_Color.uasset" 340
-"../../../Engine/Content/EngineSky/C_Sky_Zenith_Color.uasset" 341
-"../../../Engine/Content/EngineSky/T_Sky_Blue.uasset" 342
-"../../../Engine/Content/EngineSky/T_Sky_Clouds_M.uasset" 343
-"../../../Engine/Content/EngineSky/T_Sky_Stars.uasset" 344
-"../../../Engine/Content/EngineSky/M_Sky_Panning_Clouds2.uasset" 345
-"../../../Engine/Content/EngineSky/SM_SkySphere.uasset" 346
-"../../../Engine/Content/EngineSky/BP_Sky_Sphere.uasset" 347
-"../../../../../../Users/andrew.000/Documents/Unreal Projects/GolfGame/Content/GolfGame_Level1_BuiltData.uasset" 348
-"../../../../../../Users/andrew.000/Documents/Unreal Projects/GolfGame/Content/StarterContent/Textures/T_MacroVariation.uasset" 349
-"../../../../../../Users/andrew.000/Documents/Unreal Projects/GolfGame/Content/StarterContent/Materials/M_Metal_Brushed_Nickel.uasset" 350
-"../../../../../../Users/andrew.000/Documents/Unreal Projects/GolfGame/Content/StarterContent/Materials/M_Metal_Chrome.uasset" 351
-"../../../../../../Users/andrew.000/Documents/Unreal Projects/GolfGame/Content/StarterContent/Textures/T_Tech_Hex_Tile_M.uasset" 352
-"../../../../../../Users/andrew.000/Documents/Unreal Projects/GolfGame/Content/StarterContent/Textures/T_Tech_Hex_Tile_N.uasset" 353
-"../../../../../../Users/andrew.000/Documents/Unreal Projects/GolfGame/Content/StarterContent/Materials/M_Tech_Hex_Tile_Pulse.uasset" 354
-"../../../Engine/Content/Functions/Engine_MaterialFunctions02/Utility/BlendAngleCorrectedNormals.uasset" 355
-"../../../../../../Users/andrew.000/Documents/Unreal Projects/GolfGame/Content/StarterContent/Textures/T_Perlin_Noise_M.uasset" 356
-"../../../../../../Users/andrew.000/Documents/Unreal Projects/GolfGame/Content/StarterContent/Textures/T_Water_M.uasset" 357
-"../../../../../../Users/andrew.000/Documents/Unreal Projects/GolfGame/Content/StarterContent/Textures/T_Water_N.uasset" 358
-"../../../../../../Users/andrew.000/Documents/Unreal Projects/GolfGame/Content/StarterContent/Materials/M_Water_Ocean.uasset" 359
-"../../../Engine/Content/BasicShapes/Cone.uasset" 360
-"../../../Engine/Content/BasicShapes/Cube.uasset" 361
-"../../../Engine/Content/BasicShapes/Cylinder.uasset" 362
-"../../../Engine/Content/BasicShapes/Plane.uasset" 363
-"../../../Engine/Content/BasicShapes/Sphere.uasset" 364
-"../../../../../../Users/andrew.000/Documents/Unreal Projects/GolfGame/Content/StarterContent/Blueprints/Assets/Skybox.uasset" 365
-"../../../../../../Users/andrew.000/Documents/Unreal Projects/GolfGame/Content/GolfGame_Level1.umap" 366
+"../../../Engine/Content/EngineMeshes/Cube.uasset" 267
+"../../../Engine/Content/EngineMeshes/Cylinder.uasset" 268
+"../../../Engine/Content/EngineMeshes/Sphere.uasset" 269
+"../../../Engine/Content/EngineResources/Black.uasset" 270
+"../../../Engine/Content/EngineResources/DefaultTexture.uasset" 271
+"../../../Engine/Content/EngineResources/DefaultTextureCube.uasset" 272
+"../../../Engine/Content/EngineResources/DefaultVolumeTexture2D.uasset" 273
+"../../../Engine/Content/EngineResources/DefaultVolumeTexture.uasset" 274
+"../../../Engine/Content/EngineResources/GradientTexture0.uasset" 275
+"../../../Engine/Content/EngineResources/StreamingPauseIcon.uasset" 276
+"../../../Engine/Content/EngineResources/M_StreamingPause.uasset" 277
+"../../../Engine/Content/EngineSounds/Master.uasset" 278
+"../../../Engine/Content/Functions/Engine_MaterialFunctions01/Shading/PowerToRoughness.uasset" 279
+"../../../Engine/Content/Maps/Templates/Thumbnails/Default.uasset" 280
+"../../../Engine/Content/Maps/Templates/Thumbnails/TimeOfDay.uasset" 281
+"../../../Engine/Content/Maps/Templates/Thumbnails/VR-Basic.uasset" 282
+"../../../Engine/Content/MapTemplates/Sky/DaylightAmbientCubemap.uasset" 283
+"../../../Engine/Content/MobileResources/T_MobileControls_texture.uasset" 284
+"../../../Engine/Content/MobileResources/T_MobileMenu2.uasset" 285
+"../../../Engine/Content/MobileResources/HUD/AnalogHat.uasset" 286
+"../../../Engine/Content/MobileResources/HUD/VirtualJoystick_Background.uasset" 287
+"../../../Engine/Content/MobileResources/HUD/VirtualJoystick_Thumb.uasset" 288
+"../../../Engine/Content/MobileResources/HUD/DefaultVirtualJoysticks.uasset" 289
+"../../../Engine/Content/MobileResources/HUD/LeftVirtualJoystickOnly.uasset" 290
+"../../../Engine/Content/MobileResources/HUD/MobileHUDButton1_off.uasset" 291
+"../../../Engine/Content/MobileResources/HUD/MobileHUDButton1_on.uasset" 292
+"../../../Engine/Content/MobileResources/HUD/MobileHUDButton2_off.uasset" 293
+"../../../Engine/Content/MobileResources/HUD/MobileHUDButton2_on.uasset" 294
+"../../../Engine/Content/MobileResources/HUD/MobileHUDButton3.uasset" 295
+"../../../Engine/Content/MobileResources/HUD/MobileHUDButtonFire.uasset" 296
+"../../../Engine/Content/MobileResources/HUD/MobileHUDDirectionPad.uasset" 297
+"../../../Engine/Content/MobileResources/HUD/MobileHUDDirectionPad2.uasset" 298
+"../../../Engine/Content/MobileResources/HUD/MobileHUDDirectionPad3.uasset" 299
+"../../../Engine/Content/MobileResources/HUD/MobileHUDDirectionStick.uasset" 300
+"../../../Engine/Content/MobileResources/HUD/T_Castle_ThumbstickInner.uasset" 301
+"../../../Engine/Content/MobileResources/HUD/T_Castle_ThumbstickOutter.uasset" 302
+"../../../Engine/Content/Tutorial/ContentIntroCurve.uasset" 303
+"../../../Engine/Content/Tutorial/Basics/LevelEditorAttract.uasset" 304
+"../../../Engine/Content/Tutorial/Basics/TutorialAssets/icon_tab_Levels_40x.uasset" 305
+"../../../Engine/Content/Tutorial/Basics/LevelEditorOverview.uasset" 306
+"../../../Engine/Content/Tutorial/BlueprintTutorials/TutorialAssets/Blueprint_64x.uasset" 307
+"../../../Engine/Content/Tutorial/BlueprintTutorials/BlueprintEditorTutorial.uasset" 308
+"../../../Engine/Content/Tutorial/BlueprintTutorials/LevelBlueprintEditorOverview.uasset" 309
+"../../../Engine/Content/Tutorial/SubEditors/MaterialEditorTutorial.uasset" 310
+"../../../Engine/Content/Tutorial/SubEditors/StaticMeshEditorTutorial.uasset" 311
+"../../../Engine/Content/Tutorial/SubEditors/TutorialAssets/TutorialMaterial.uasset" 312
+"../../../Engine/Content/VREditor/LaserPointer/VR_LaserPower_01.uasset" 313
+"../../../Engine/Content/VREditor/TransformGizmo/TransformGizmoMaterial.uasset" 314
+"../../../Engine/Content/VREditor/TransformGizmo/TranslucentTransformGizmoMaterial.uasset" 315
+"../../../Engine/Content/VREditor/TransformGizmo/BoundingBoxCorner.uasset" 316
+"../../../Engine/Content/VREditor/TransformGizmo/BoundingBoxEdge.uasset" 317
+"../../../Engine/Content/VREditor/TransformGizmo/PlaneTranslationHandle.uasset" 318
+"../../../Engine/Content/VREditor/TransformGizmo/Main.uasset" 319
+"../../../Engine/Content/VREditor/TransformGizmo/Xray.uasset" 320
+"../../../Engine/Content/VREditor/TransformGizmo/SM_Sequencer_Key.uasset" 321
+"../../../Engine/Content/VREditor/TransformGizmo/SM_Sequencer_Node.uasset" 322
+"../../Plugins/2D/Paper2D/Content/PlaceholderTextures/DummySpriteTexture.uasset" 323
+"../../Plugins/2D/Paper2D/Content/DummySprite.uasset" 324
+"../../Plugins/2D/Paper2D/Content/DefaultPaperTerrainMaterial.uasset" 325
+"../../Plugins/2D/Paper2D/Content/DefaultSpriteMaterial.uasset" 326
+"../../Plugins/2D/Paper2D/Content/MaskedUnlitSpriteMaterial.uasset" 327
+"../../Plugins/2D/Paper2D/Content/OpaqueUnlitSpriteMaterial.uasset" 328
+"../../../Engine/Content/Functions/Engine_MaterialFunctions02/Utility/BreakOutFloat4Components.uasset" 329
+"../../Plugins/Runtime/Oculus/OculusVR/Content/Materials/OculusMR_ChromaKey.uasset" 330
+"../../Plugins/Runtime/Oculus/OculusVR/Content/Materials/OculusMR_ChromaKey_Lit.uasset" 331
+"../../Plugins/Runtime/Oculus/OculusVR/Content/Materials/OculusMR_OpaqueColoredMaterial.uasset" 332
+"../../Plugins/Runtime/Oculus/OculusVR/Content/Materials/OculusMR_WhiteMaterial.uasset" 333
+"../../../Engine/Content/Maps/Entry_BuiltData.uasset" 334
+"../../../Engine/Content/Maps/Entry.umap" 335
+"D:/Documents/Unreal Projects/GolfGame/Content/WindBlueprint.uasset" 336
+"D:/Documents/Unreal Projects/GolfGame/Content/StarterContent/Props/lambert1.uasset" 337
+"D:/Documents/Unreal Projects/GolfGame/Content/StarterContent/Props/door.uasset" 338
+"D:/Documents/Unreal Projects/GolfGame/Content/ProximityDoorLeft.uasset" 339
+"D:/Documents/Unreal Projects/GolfGame/Content/ProximityDoorRight.uasset" 340
+"D:/Documents/Unreal Projects/GolfGame/Content/StarterContent/Maps/GolfGame_Level1_BuiltData.uasset" 341
+"../../../Engine/Content/BasicShapes/BasicShapeMaterial.uasset" 342
+"D:/Documents/Unreal Projects/GolfGame/Content/StarterContent/Textures/T_MacroVariation.uasset" 343
+"D:/Documents/Unreal Projects/GolfGame/Content/StarterContent/Materials/M_Metal_Brushed_Nickel.uasset" 344
+"D:/Documents/Unreal Projects/GolfGame/Content/StarterContent/Textures/T_Metal_Aluminum_D.uasset" 345
+"D:/Documents/Unreal Projects/GolfGame/Content/StarterContent/Textures/T_Metal_Gold_N.uasset" 346
+"D:/Documents/Unreal Projects/GolfGame/Content/StarterContent/Materials/M_Metal_Burnished_Steel.uasset" 347
+"D:/Documents/Unreal Projects/GolfGame/Content/StarterContent/Materials/M_Metal_Chrome.uasset" 348
+"D:/Documents/Unreal Projects/GolfGame/Content/StarterContent/Textures/T_Tech_Hex_Tile_M.uasset" 349
+"D:/Documents/Unreal Projects/GolfGame/Content/StarterContent/Textures/T_Tech_Hex_Tile_N.uasset" 350
+"D:/Documents/Unreal Projects/GolfGame/Content/StarterContent/Materials/M_Tech_Hex_Tile_Pulse.uasset" 351
+"../../../Engine/Content/Functions/Engine_MaterialFunctions02/Utility/BlendAngleCorrectedNormals.uasset" 352
+"D:/Documents/Unreal Projects/GolfGame/Content/StarterContent/Textures/T_Perlin_Noise_M.uasset" 353
+"D:/Documents/Unreal Projects/GolfGame/Content/StarterContent/Textures/T_Water_M.uasset" 354
+"D:/Documents/Unreal Projects/GolfGame/Content/StarterContent/Textures/T_Water_N.uasset" 355
+"D:/Documents/Unreal Projects/GolfGame/Content/StarterContent/Materials/M_Water_Ocean.uasset" 356
+"D:/Documents/Unreal Projects/GolfGame/Content/StarterContent/Materials/Off_Material.uasset" 357
+"D:/Documents/Unreal Projects/GolfGame/Content/StarterContent/Materials/On_Material.uasset" 358
+"D:/Documents/Unreal Projects/GolfGame/Content/StarterContent/Textures/myst_book.uasset" 359
+"D:/Documents/Unreal Projects/GolfGame/Content/StarterContent/Textures/myst_book_Mat.uasset" 360
+"D:/Documents/Unreal Projects/GolfGame/Content/StarterContent/Textures/seed.uasset" 361
+"D:/Documents/Unreal Projects/GolfGame/Content/StarterContent/Textures/seed_Mat.uasset" 362
+"D:/Documents/Unreal Projects/GolfGame/Content/StarterContent/Textures/up_here.uasset" 363
+"D:/Documents/Unreal Projects/GolfGame/Content/StarterContent/Textures/up_here_Mat.uasset" 364
+"../../../Engine/Content/Functions/Engine_MaterialFunctions01/ImageAdjustment/CheapContrast_RGB.uasset" 365
+"D:/Documents/Unreal Projects/GolfGame/Content/ModSci_Engineer/Textures/StorageAreaNetwork/T_SAN_EM_M.uasset" 366
+"D:/Documents/Unreal Projects/GolfGame/Content/ModSci_EngiProps/Textures/Pipes/T_PipeCoated_A.uasset" 367
+"D:/Documents/Unreal Projects/GolfGame/Content/ModSci_EngiProps/Textures/Pipes/T_PipeCoated_A_normals.uasset" 368
+"D:/Documents/Unreal Projects/GolfGame/Content/ModSci_EngiProps/Textures/Pipes/T_PipeCoated_A_rough.uasset" 369
+"D:/Documents/Unreal Projects/GolfGame/Content/ModSci_EngiProps/Textures/T_SolidMask.uasset" 370
+"D:/Documents/Unreal Projects/GolfGame/Content/ModSci_EngiProps/Materials/M_Base_Props.uasset" 371
+"D:/Documents/Unreal Projects/GolfGame/Content/ModSci_EngiProps/Textures/AngleSeatValve/T_AngleSeatValve_Diff.uasset" 372
+"D:/Documents/Unreal Projects/GolfGame/Content/ModSci_EngiProps/Textures/AngleSeatValve/T_AngleSeatValve_M.uasset" 373
+"D:/Documents/Unreal Projects/GolfGame/Content/ModSci_EngiProps/Textures/AngleSeatValve/T_AngleSeatValve_normals.uasset" 374
+"D:/Documents/Unreal Projects/GolfGame/Content/ModSci_EngiProps/Textures/AngleSeatValve/T_AngleSeatValve_Rough.uasset" 375
+"D:/Documents/Unreal Projects/GolfGame/Content/ModSci_EngiProps/Materials/AngleSeatValve/MI_AngleSeatValve.uasset" 376
+"D:/Documents/Unreal Projects/GolfGame/Content/StarterContent/EBase.uasset" 377
+"D:/Documents/Unreal Projects/GolfGame/Content/StarterContent/EBlue.uasset" 378
+"../../../Engine/Content/BasicShapes/Cone.uasset" 379
+"../../../Engine/Content/BasicShapes/Cube.uasset" 380
+"../../../Engine/Content/BasicShapes/Cylinder.uasset" 381
+"../../../Engine/Content/BasicShapes/Plane.uasset" 382
+"../../../Engine/Content/BasicShapes/Sphere.uasset" 383
+"D:/Documents/Unreal Projects/GolfGame/Content/Meshes/ControlStand.uasset" 384
+"D:/Documents/Unreal Projects/GolfGame/Content/Meshes/Platform_Assist_Lift.uasset" 385
+"D:/Documents/Unreal Projects/GolfGame/Content/Meshes/Platform_Skinny_Tall.uasset" 386
+"D:/Documents/Unreal Projects/GolfGame/Content/Meshes/Platform_Wide_Tall.uasset" 387
+"D:/Documents/Unreal Projects/GolfGame/Content/Meshes/Switch.uasset" 388
+"D:/Documents/Unreal Projects/GolfGame/Content/ModSciInteriors/Materials/M_Base_Solid.uasset" 389
+"D:/Documents/Unreal Projects/GolfGame/Content/ModSciInteriors/Materials/MI_GlossyBlack.uasset" 390
+"D:/Documents/Unreal Projects/GolfGame/Content/ModSciInteriors/Textures/Base/BrushedMetal/T_BrushedMetal_Diff.uasset" 391
+"D:/Documents/Unreal Projects/GolfGame/Content/ModSciInteriors/Textures/Base/BrushedMetal/T_BrushedMetal_Normal.uasset" 392
+"D:/Documents/Unreal Projects/GolfGame/Content/ModSciInteriors/Textures/Base/BrushedMetal/T_BrushedMetal_Rough.uasset" 393
+"D:/Documents/Unreal Projects/GolfGame/Content/ModSciInteriors/Textures/T_Trims_A_Diffuse.uasset" 394
+"D:/Documents/Unreal Projects/GolfGame/Content/ModSciInteriors/Textures/T_Trims_A_M.uasset" 395
+"D:/Documents/Unreal Projects/GolfGame/Content/ModSciInteriors/Textures/T_Trims_A_normals.uasset" 396
+"D:/Documents/Unreal Projects/GolfGame/Content/ModSciInteriors/Materials/M_Base_Trim.uasset" 397
+"D:/Documents/Unreal Projects/GolfGame/Content/ModSciInteriors/Textures/Base/ScratchedMetal/T_ScratchedMetal_Diff.uasset" 398
+"D:/Documents/Unreal Projects/GolfGame/Content/ModSciInteriors/Textures/Base/ScratchedMetal/T_ScratchedMetal_Normal.uasset" 399
+"D:/Documents/Unreal Projects/GolfGame/Content/ModSciInteriors/Textures/Base/ScratchedMetal/T_ScratchedMetal_Rough.uasset" 400
+"D:/Documents/Unreal Projects/GolfGame/Content/ModSciInteriors/Materials/MI_Trim_A_Black.uasset" 401
+"D:/Documents/Unreal Projects/GolfGame/Content/ModSciInteriors/Materials/MI_Trim_A_GlossLight.uasset" 402
+"D:/Documents/Unreal Projects/GolfGame/Content/ModSciInteriors/Textures/T_Metal_Brushed_N.uasset" 403
+"D:/Documents/Unreal Projects/GolfGame/Content/ModSciInteriors/Materials/MI_Trim_A_OliveGray.uasset" 404
+"D:/Documents/Unreal Projects/GolfGame/Content/ModSciInteriors/Materials/MI_Trim_A_Red2.uasset" 405
+"D:/Documents/Unreal Projects/GolfGame/Content/ModSciInteriors/Textures/T_Trims_A_Dirt.uasset" 406
+"D:/Documents/Unreal Projects/GolfGame/Content/ModSciInteriors/Materials/MI_Trim_A_Shiny.uasset" 407
+"D:/Documents/Unreal Projects/GolfGame/Content/ModSciInteriors/Meshes/SM_Door_Small_A.uasset" 408
+"D:/Documents/Unreal Projects/GolfGame/Content/StarterContent/Materials/M_Basic_Wall.uasset" 409
+"D:/Documents/Unreal Projects/GolfGame/Content/StarterContent/Shapes/Shape_Cube.uasset" 410
+"D:/Documents/Unreal Projects/GolfGame/Content/StarterContent/Shapes/Shape_Sphere.uasset" 411
+"D:/Documents/Unreal Projects/GolfGame/Content/StarterContent/Maps/GolfGame_Level1.umap" 412
+"D:/Documents/Unreal Projects/GolfGame/Content/StarterContent/Maps/MainMenu_BuiltData.uasset" 413
+"D:/Documents/Unreal Projects/GolfGame/Content/StarterContent/Maps/MainMenuHUD.uasset" 414
+"D:/Documents/Unreal Projects/GolfGame/Content/StarterContent/Maps/MainMenu.umap" 415

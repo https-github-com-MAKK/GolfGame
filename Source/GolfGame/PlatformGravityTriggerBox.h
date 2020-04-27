@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Engine/TriggerBox.h"
+#include "Ball.h"
 #include "PlatformGravityTriggerBox.generated.h"
 
 /**
@@ -33,10 +34,10 @@ public:
 
 	// specific actor for overlap
 	UPROPERTY(EditAnywhere)
-		class AActor* SpecificActor;
+		class ABall* Ball;
 
 	UPROPERTY(EditAnywhere)
-		float GravityInsideTriggerBox = -100;
+		float GravityInsideTriggerBox = -100.0;
 
 private:
 
