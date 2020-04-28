@@ -5,6 +5,7 @@
 #include "Components/InputComponent.h"
 #include "GameFramework/InputSettings.h"
 #include "Ball.h"
+#include "Kismet/GameplayStatics.h"
 
 // Sets default values
 AGolfGameCharacter::AGolfGameCharacter()
@@ -24,6 +25,9 @@ AGolfGameCharacter::AGolfGameCharacter()
 
 	GrabberClass = CreateDefaultSubobject<UGrabThrowComponent>(TEXT("GrabberClass"));
 	PhysicsHandle = CreateDefaultSubobject<UPhysicsHandleComponent>(TEXT("PhysicsHandle"));
+
+	DialoguePlayer = CreateDefaultSubobject<UAudioComponent>(TEXT("Dialogue Player"));
+	DialoguePlayer->SetupAttachment(RootComponent);
 }
 
 // Called when the game starts or when spawned
@@ -187,5 +191,20 @@ void AGolfGameCharacter::SummonBall()
 	if (Ball != nullptr) {
 		FVector charLocation = GetActorLocation();
 		Ball->SetActorLocation(charLocation, false);
+	}
+}
+
+void AGolfGameCharacter::PlaySoundCue()
+{
+	DialoguePlayer->Play();
+}
+
+void AGolfGameCharacter::ChangeSoundCue(USoundBase* NewDialogue)
+{
+	if(NewDialogue != nullptr)
+	{
+		CurrentDialogueCue = NewDialogue;
+		DialoguePlayer->SetSound(CurrentDialogueCue);
+		PlaySoundCue();
 	}
 }
