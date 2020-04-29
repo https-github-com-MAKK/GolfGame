@@ -24,6 +24,7 @@ AChangeMaterialController::AChangeMaterialController()
 	OffMaterial = CreateDefaultSubobject<UMaterial>(TEXT("OffMaterial"));
 
 	MyBoxComponent->OnComponentBeginOverlap.AddDynamic(this, &AChangeMaterialController::OnOverlapBegin);
+
 	
 }
 
@@ -43,6 +44,8 @@ void AChangeMaterialController::BeginPlay()
 
 	CanBeHit = true;
 	GetWorldTimerManager().SetTimer(MemberTimerHandle, this, &AChangeMaterialController::SetCanBeHit, 1.0f, true, 5.0f);
+
+	
 	
 }
 
@@ -73,6 +76,7 @@ void AChangeMaterialController::OnOverlapBegin(UPrimitiveComponent* OverlappedCo
 		}
 		TogglePlatformMovement();
 		ToggleSpotlight();
+		CyclePlatformMovingAudio();
 		CanBeHit = false;
 		GEngine->AddOnScreenDebugMessage(-1, 1.5, FColor::Orange, TEXT("Must wait"));
 	}
@@ -115,6 +119,22 @@ void AChangeMaterialController::ToggleSpotlight()
 void AChangeMaterialController::SetCanBeHit()
 {
 	CanBeHit = true;
+}
+
+void AChangeMaterialController::CyclePlatformMovingAudio()
+{
+	if(CurrentMovingAudio == On)
+	{
+		//AssociatedPlatform->PlatformMovingAudio->FadeOut(2, 0, EAudioFaderCurve::Linear);
+		//AssociatedPlatform->PlatformMovingAudio->Stop();
+		CurrentMovingAudio = Off;
+	}
+	else
+	{
+		//AssociatedPlatform->PlatformMovingAudio->FadeIn(2, 1,0, EAudioFaderCurve::Linear);
+		//AssociatedPlatform->PlatformMovingAudio->Play();
+		CurrentMovingAudio = On;
+	}
 }
 
 

@@ -1,5 +1,6 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 #include "Platform_Moving.h"
+#include "Components/AudioComponent.h"
 #include "Engine/Engine.h"
 
 
@@ -12,6 +13,10 @@ APlatform_Moving::APlatform_Moving()
 	VisualMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh"));
 	VisualMesh->SetupAttachment(RootComponent);
 	VisualMesh->SetRelativeLocation(FVector(0.0f, 0.0f, 0.0f));
+
+	//PlatformMovingAudio = CreateDefaultSubobject<UAudioComponent>(TEXT("Audio"));
+	//PlatformMovingAudio->SetupAttachment(VisualMesh);
+	//PlatformMovingAudio->SetSound(MovingSound);
 	
 }
 
@@ -21,6 +26,7 @@ void APlatform_Moving::BeginPlay()
 	Super::BeginPlay();
 
 	Random = rand() % 100000;
+	//PlatformMovingAudio->Stop();
 	
 }
 
