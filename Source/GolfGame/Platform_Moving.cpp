@@ -14,9 +14,9 @@ APlatform_Moving::APlatform_Moving()
 	VisualMesh->SetupAttachment(RootComponent);
 	VisualMesh->SetRelativeLocation(FVector(0.0f, 0.0f, 0.0f));
 
-	//PlatformMovingAudio = CreateDefaultSubobject<UAudioComponent>(TEXT("Audio"));
-	//PlatformMovingAudio->SetupAttachment(VisualMesh);
-	//PlatformMovingAudio->SetSound(MovingSound);
+	PlatformMovingAudio = CreateDefaultSubobject<UAudioComponent>(TEXT("Moving Sound"));
+	PlatformMovingAudio->SetupAttachment(RootComponent);
+	PlatformMovingAudio->SetSound(MovingSound);
 	
 }
 

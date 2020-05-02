@@ -6,6 +6,7 @@
 #include "Components/BoxComponent.h"
 #include "TimerManager.h"
 #include "Engine/Engine.h"
+#include "Kismet/GameplayStatics.h"
 
 // Sets default values
 AChangeMaterialController::AChangeMaterialController()
@@ -127,12 +128,14 @@ void AChangeMaterialController::CyclePlatformMovingAudio()
 	{
 		//AssociatedPlatform->PlatformMovingAudio->FadeOut(2, 0, EAudioFaderCurve::Linear);
 		//AssociatedPlatform->PlatformMovingAudio->Stop();
+		
 		CurrentMovingAudio = Off;
 	}
 	else
 	{
 		//AssociatedPlatform->PlatformMovingAudio->FadeIn(2, 1,0, EAudioFaderCurve::Linear);
 		//AssociatedPlatform->PlatformMovingAudio->Play();
+		
 		CurrentMovingAudio = On;
 	}
 }

@@ -9,7 +9,7 @@
 AChangeDialogueTriggerBox::AChangeDialogueTriggerBox()
 {
 	OnActorBeginOverlap.AddDynamic(this, &AChangeDialogueTriggerBox::OnOverlapBegin);
-	OnActorEndOverlap.AddDynamic(this, &AChangeDialogueTriggerBox::OnOverlapEnd);
+	DialoguePlayed = false;
 };
 
 void AChangeDialogueTriggerBox::BeginPlay()
@@ -21,15 +21,11 @@ void AChangeDialogueTriggerBox::BeginPlay()
 
 void AChangeDialogueTriggerBox::OnOverlapBegin(class AActor* OverlappedActor, class AActor* OtherActor)
 {	
-	if(Dialogue != nullptr && OtherActor == Player && OtherActor && OtherActor != this)
+	if(Dialogue != nullptr && OtherActor == Player && OtherActor && OtherActor != this && !DialoguePlayed)
 	{
 		Player->ChangeSoundCue(Dialogue);
+		DialoguePlayed = true;
 	}
 }
 
-
-void AChangeDialogueTriggerBox::OnOverlapEnd(class AActor* OverlappedActor, class AActor* OtherActor)
-{
-	GEngine->AddOnScreenDebugMessage(-1, 1.5, FColor::Green, TEXT("End Begin"));
-}
 
