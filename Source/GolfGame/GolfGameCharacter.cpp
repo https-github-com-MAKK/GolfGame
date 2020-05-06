@@ -26,14 +26,13 @@ AGolfGameCharacter::AGolfGameCharacter()
 	PhysicsHandle = CreateDefaultSubobject<UPhysicsHandleComponent>(TEXT("PhysicsHandle"));
 
 	DialoguePlayer = CreateDefaultSubobject<UAudioComponent>(TEXT("Dialogue Player"));
-	DialoguePlayer->SetupAttachment(RootComponent);
+	MusicPlayer = CreateDefaultSubobject<UAudioComponent>(TEXT("Music Player"));
 }
 
 // Called when the game starts or when spawned
 void AGolfGameCharacter::BeginPlay()
 {
 	Super::BeginPlay();
-	
 }
 
 // Called every frame
@@ -193,17 +192,42 @@ void AGolfGameCharacter::SummonBall()
 	}
 }
 
-void AGolfGameCharacter::PlaySoundCue()
+void AGolfGameCharacter::PlayDialogueCue()
 {
 	DialoguePlayer->Play();
 }
 
-void AGolfGameCharacter::ChangeSoundCue(USoundBase* NewDialogue)
+void AGolfGameCharacter::PlayMusicCue()
+{
+	MusicPlayer->Play();
+}
+
+void AGolfGameCharacter::AdjustMusicVolumeUp()
+{
+	MusicPlayer->AdjustVolume(1, 1, EAudioFaderCurve::Linear);
+}
+
+void AGolfGameCharacter::AdjustMusicVolumeDown()
+{
+	MusicPlayer->AdjustVolume(1, 0, EAudioFaderCurve::Linear);
+}
+
+void AGolfGameCharacter::ChangeDialogueCue(USoundBase* NewDialogue)
 {
 	if(NewDialogue != nullptr)
 	{
 		CurrentDialogueCue = NewDialogue;
 		DialoguePlayer->SetSound(CurrentDialogueCue);
-		PlaySoundCue();
+		PlayDialogueCue();
+	}
+}
+
+void AGolfGameCharacter::ChangeMusicCue(USoundBase* NewMusic)
+{
+	if (NewMusic != nullptr)
+	{
+		CurrentDialogueCue = NewMusic;
+		DialoguePlayer->SetSound(CurrentDialogueCue);
+		PlayMusicCue();
 	}
 }

@@ -18,7 +18,6 @@ AChangeMaterialController::AChangeMaterialController()
 	RootComponent = MyMesh;
 
 	MyBoxComponent = CreateDefaultSubobject<UBoxComponent>(TEXT("MyBoxComponent"));
-	//MyBoxComponent->SetCollisionProfileName("Trigger");
 	MyBoxComponent->SetupAttachment(RootComponent);
 
 	OnMaterial = CreateDefaultSubobject<UMaterial>(TEXT("OnMaterial"));
@@ -26,7 +25,6 @@ AChangeMaterialController::AChangeMaterialController()
 
 	MyBoxComponent->OnComponentBeginOverlap.AddDynamic(this, &AChangeMaterialController::OnOverlapBegin);
 
-	
 }
 
 // Called when the game starts or when spawned
@@ -124,20 +122,21 @@ void AChangeMaterialController::SetCanBeHit()
 
 void AChangeMaterialController::CyclePlatformMovingAudio()
 {
-	if(CurrentMovingAudio == On)
+	//AssociatedPlatform->ToggleMovingAudio();
+	/*if(CurrentMovingAudio == On)
 	{
 		//AssociatedPlatform->PlatformMovingAudio->FadeOut(2, 0, EAudioFaderCurve::Linear);
-		//AssociatedPlatform->PlatformMovingAudio->Stop();
-		
+		AssociatedPlatform->PlatformMovingAudio->Stop();
+		GEngine->AddOnScreenDebugMessage(-1, 1.5, FColor::White, TEXT("Platform audio stopped"));
 		CurrentMovingAudio = Off;
 	}
 	else
 	{
 		//AssociatedPlatform->PlatformMovingAudio->FadeIn(2, 1,0, EAudioFaderCurve::Linear);
-		//AssociatedPlatform->PlatformMovingAudio->Play();
-		
+		AssociatedPlatform->PlatformMovingAudio->Play();
+		GEngine->AddOnScreenDebugMessage(-1, 1.5, FColor::White, TEXT("Platform audio started"));
 		CurrentMovingAudio = On;
-	}
+	}*/
 }
 
 

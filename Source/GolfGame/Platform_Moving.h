@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "Components/AudioComponent.h"
+#include  "PlatformAudioComponent.h"
 #include "Platform_Moving.generated.h"
 
 UENUM()
@@ -40,12 +41,14 @@ public:
 	UPROPERTY(EditAnywhere)
 		EMovementType Movement = EMovementType::UpDown;
 
-	UPROPERTY()
+	UPROPERTY(VisibleAnywhere)
 		class UAudioComponent* PlatformMovingAudio;
 
 	UPROPERTY(EditAnywhere)
 		class USoundBase* MovingSound;
-
+	
+	void ToggleMovingAudio();
+	
 
 protected:
 	// Called when the game starts or when spawned

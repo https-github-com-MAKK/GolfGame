@@ -15,6 +15,8 @@ class AGolfGameCharacter final : public ACharacter
 {
 	GENERATED_BODY()
 
+public:
+	
 	/** First person camera */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 		class UCameraComponent* FirstPersonCameraComponent;
@@ -35,11 +37,17 @@ class AGolfGameCharacter final : public ACharacter
 	UPROPERTY(EditAnywhere, Category = Projectile)
 		class ABall* Ball;
 
-	UPROPERTY()
+	UPROPERTY(VisibleAnywhere)
 		class UAudioComponent* DialoguePlayer;
 
+	UPROPERTY(VisibleAnywhere)
+		class UAudioComponent* MusicPlayer;
+
+	UPROPERTY(EditAnywhere)
+		class USoundBase* CurrentMusicCue;
+
 	
-public:
+
 	// Sets default values for this character's properties
 	AGolfGameCharacter();
 
@@ -107,11 +115,17 @@ public:
 	//Returns FirstPersonCameraComponent subobject
 	FORCEINLINE class UCameraComponent* GetFirstPersonCameraComponent() const { return FirstPersonCameraComponent; }
 
-	UFUNCTION()
-		void PlaySoundCue();
+	
+	void PlayDialogueCue();
+	void PlayMusicCue();
+	void AdjustMusicVolumeUp();
+	void AdjustMusicVolumeDown();
 
 	UFUNCTION()
-		void ChangeSoundCue(USoundBase* NewDialogue);
+		void ChangeDialogueCue(USoundBase* NewDialogue);
+
+	UFUNCTION()
+		void ChangeMusicCue(USoundBase* NewMusic);
 
 private:
 

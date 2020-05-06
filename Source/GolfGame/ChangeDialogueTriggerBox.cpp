@@ -15,7 +15,7 @@ AChangeDialogueTriggerBox::AChangeDialogueTriggerBox()
 void AChangeDialogueTriggerBox::BeginPlay()
 {
 	Super::BeginPlay();
-	DrawDebugBox(GetWorld(), GetActorLocation(), GetComponentsBoundingBox().GetExtent(), FColor::Green, true, -1, 0, 5);
+	DrawDebugBox(GetWorld(), GetActorLocation(), GetComponentsBoundingBox().GetExtent(), FColor::Orange, true, -1, 0, 5);
 }
 
 
@@ -23,7 +23,7 @@ void AChangeDialogueTriggerBox::OnOverlapBegin(class AActor* OverlappedActor, cl
 {	
 	if(Dialogue != nullptr && OtherActor == Player && OtherActor && OtherActor != this && !DialoguePlayed)
 	{
-		Player->ChangeSoundCue(Dialogue);
+		Player->ChangeDialogueCue(Dialogue);
 		DialoguePlayed = true;
 	}
 }
