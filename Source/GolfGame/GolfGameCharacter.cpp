@@ -4,7 +4,7 @@
 #include "Components/CapsuleComponent.h"
 #include "Components/InputComponent.h"
 #include "GameFramework/InputSettings.h"
-#include "Ball.h"
+#include "TestBall.h"
 
 // Sets default values
 AGolfGameCharacter::AGolfGameCharacter()
