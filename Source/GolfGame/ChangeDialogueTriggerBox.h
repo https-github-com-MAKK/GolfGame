@@ -16,7 +16,7 @@ class GOLFGAME_API AChangeDialogueTriggerBox : public ATriggerBox
 {
 	GENERATED_BODY()
 
-	protected:
+protected:
 
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
