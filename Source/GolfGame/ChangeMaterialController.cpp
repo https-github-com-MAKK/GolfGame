@@ -123,7 +123,7 @@ void AChangeMaterialController::SetCanBeHit()
 void AChangeMaterialController::CyclePlatformMovingAudio()
 {
 	//AssociatedPlatform->ToggleMovingAudio();
-	/*if(CurrentMovingAudio == On)
+	if(CurrentMovingAudio == On)
 	{
 		//AssociatedPlatform->PlatformMovingAudio->FadeOut(2, 0, EAudioFaderCurve::Linear);
 		AssociatedPlatform->PlatformMovingAudio->Stop();
@@ -136,7 +136,7 @@ void AChangeMaterialController::CyclePlatformMovingAudio()
 		AssociatedPlatform->PlatformMovingAudio->Play();
 		GEngine->AddOnScreenDebugMessage(-1, 1.5, FColor::White, TEXT("Platform audio started"));
 		CurrentMovingAudio = On;
-	}*/
+	}
 }
 
 

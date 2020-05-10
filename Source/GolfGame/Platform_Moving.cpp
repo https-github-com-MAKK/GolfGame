@@ -12,10 +12,10 @@ APlatform_Moving::APlatform_Moving()
 	PrimaryActorTick.bCanEverTick = true;
 
 	VisualMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh"));
-	VisualMesh->SetupAttachment(RootComponent);
-	VisualMesh->SetRelativeLocation(FVector(0.0f, 0.0f, 0.0f));
+	RootComponent = VisualMesh;
+	//VisualMesh->SetRelativeLocation(FVector(0.0f, 0.0f, 0.0f));
 	PlatformMovingAudio = CreateDefaultSubobject<UAudioComponent>(TEXT("Moving Sound"));
-	
+	PlatformMovingAudio->SetupAttachment(RootComponent);
 	
 }
 
