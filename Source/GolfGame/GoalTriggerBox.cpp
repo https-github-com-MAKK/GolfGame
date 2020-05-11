@@ -27,7 +27,6 @@ void AGoalTriggerBox::OnOverlapBegin(class AActor* OverlappedActor, class AActor
         IsBallInGoal = true;
     	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Overlap begin actor"));
 
-
     }
 }
 

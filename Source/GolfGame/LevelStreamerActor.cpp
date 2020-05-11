@@ -2,6 +2,8 @@
 #include "LevelStreamerActor.h"
 #include "Engine/Engine.h"
 #include "GameFramework/Character.h"
+#include "Blueprint/UserWidget.h"
+//#include "GenericPlatform/GenericPlatformProcess.h"
 #include "Kismet/GameplayStatics.h"
 
 ALevelStreamerActor::ALevelStreamerActor()
@@ -30,12 +32,21 @@ void ALevelStreamerActor::Tick(float DeltaTime)
 
 void ALevelStreamerActor::OverlapBegins(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-    
+
     ACharacter* MyCharacter = UGameplayStatics::GetPlayerCharacter(this, 0);
-    if (OtherActor == MyCharacter && LevelToLoad != "")
+    if (OtherActor == MyCharacter && LevelToLoad != "" /*&& LoadingScreen != NULL*/)
     {
-        //GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("ENCOUNTERED BOX"));
-        FLatentActionInfo LatentInfo;
-        UGameplayStatics::OpenLevel(this, LevelToLoad);
+        IsCharacterInTrigger = true;
+        // LoadingScreen->AddToViewport();
+
+         //GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("ENCOUNTERED BOX"));
+        //FLatentActionInfo LatentInfo;
+        //FPlatformProcess::Sleep(5.0);
+        //UGameplayStatics::OpenLevel(this, LevelToLoad);
     }
 }
+void ALevelStreamerActor::LevelLoad(){
+    UGameplayStatics::OpenLevel(this, LevelToLoad);
+
+}
+

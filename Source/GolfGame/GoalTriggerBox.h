@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "Engine/TriggerBox.h"
 #include "TestBall.h"
+#include "Components/LightComponent.h"
 #include "GoalTriggerBox.generated.h"
 
 
@@ -16,11 +17,15 @@ class GOLFGAME_API AGoalTriggerBox : public ATriggerBox
 protected:
 
 	virtual void BeginPlay() override;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category =References)
 		ATestBall* Ball;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		AActor* Target;
-
+	UPROPERTY(EditAnywhere, BlueprintReadWrite,Category = References)
+		AActor* DoorTarget;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = References)
+		AActor* DoorLight;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = References)
+		AActor* GoalLight;
+	
 public:
 
 	AGoalTriggerBox();
