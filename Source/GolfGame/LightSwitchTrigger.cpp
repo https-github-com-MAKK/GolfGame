@@ -3,6 +3,8 @@
 
 #include "LightSwitchTrigger.h"
 
+
+#include "DrawDebugHelpers.h"
 #include "Kismet/GameplayStatics.h"
 
 // Sets default values
@@ -13,6 +15,8 @@ ALightSwitchTrigger::ALightSwitchTrigger()
 
 	OnActorBeginOverlap.AddDynamic(this, &ALightSwitchTrigger::OnOverlapBegin);
 	OnActorEndOverlap.AddDynamic(this, &ALightSwitchTrigger::OnOverlapEnd);
+	OverlapVolume = CreateDefaultSubobject<UBoxComponent>(TEXT("OverlapVolume"));
+	RootComponent = OverlapVolume;
 
 }
 
@@ -20,7 +24,8 @@ ALightSwitchTrigger::ALightSwitchTrigger()
 void ALightSwitchTrigger::BeginPlay()
 {
 	Super::BeginPlay();
-	
+	DrawDebugBox(GetWorld(), GetActorLocation(), GetComponentsBoundingBox().GetExtent(), FColor::Purple, true, -1, 0, 5);
+
 }
 
 // Called every frame
@@ -54,19 +59,19 @@ void ALightSwitchTrigger::TurnOnLights()
 
 void ALightSwitchTrigger::OnOverlapBegin(class AActor* OverlappedActor, class AActor* OtherActor)
 {
-	ACharacter* MyCharacter = UGameplayStatics::GetPlayerCharacter(this, 0);
-	if (OtherActor == MyCharacter){
-		//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Overlap begin actor"));
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Overlap begin actor"));
 
+	if (OtherActor && (OtherActor != this) && OtherActor == MyCharacter){
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Overlap begin actor"));
+		TurnOffLights();
 	}
 }
 
 void ALightSwitchTrigger::OnOverlapEnd(class AActor* OverlappedActor, class AActor* OtherActor)
 {
-	ACharacter* MyCharacter = UGameplayStatics::GetPlayerCharacter(this, 0);
-	if (OtherActor == MyCharacter){
-		//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Overlap end actor"));
-
+	if (OtherActor && (OtherActor != this) && OtherActor == MyCharacter){
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Overlap end actor"));
+		TurnOnLights();
 
 	}
 }

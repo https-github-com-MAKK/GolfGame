@@ -25,7 +25,7 @@ void AGoalTriggerBox::OnOverlapBegin(class AActor* OverlappedActor, class AActor
 {
     if (OtherActor && (OtherActor != this) && OtherActor == Ball) {
         IsBallInGoal = true;
-    	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Overlap begin actor"));
+    	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Overlap begin actor"));
 
     }
 }
@@ -34,7 +34,7 @@ void AGoalTriggerBox::OnOverlapEnd(class AActor* OverlappedActor, class AActor* 
 {
     if (OtherActor && (OtherActor != this)&& OtherActor == Ball) {
         IsBallInGoal = false;
-    	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Overlap end actor"));
+    	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Overlap end actor"));
 
 
     }
