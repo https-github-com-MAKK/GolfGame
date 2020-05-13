@@ -1,12 +1,12 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
+#include "WindTriggerBox.h"
 #include "PlatformGravityTriggerBox.h"
 #include "DrawDebugHelpers.h"
 #include "Engine/Engine.h"
 #include "Engine/World.h"
 #include <Ball.h>
 #include "GameFramework/WorldSettings.h"
-#include "WindTriggerBox.h"
 #include "GameFramework/Pawn.h"
 
 
