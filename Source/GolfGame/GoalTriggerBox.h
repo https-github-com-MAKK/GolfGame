@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Engine/TriggerBox.h"
-#include "TestBall.h"
+#include "Ball.h"
 #include "Components/LightComponent.h"
 #include "GoalTriggerBox.generated.h"
 
@@ -18,7 +18,7 @@ protected:
 
 	virtual void BeginPlay() override;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category =References)
-		ATestBall* Ball;
+		ABall* Ball;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite,Category = References)
 		AActor* DoorTarget;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = References)

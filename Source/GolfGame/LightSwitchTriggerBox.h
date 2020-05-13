@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Engine/TriggerBox.h"
-#include "TestBall.h"
+#include "Ball.h"
 #include "Components/LightComponent.h"
 #include "LightSwitchTriggerBox.generated.h"
 
