@@ -33,6 +33,7 @@ void ABall::AddForce()
 void ABall::BeginPlay()
 {
 	Super::BeginPlay();
+	CanBeTeleportedTo = true;
 	
 }
 
@@ -41,5 +42,15 @@ void ABall::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+}
+
+bool ABall::GetCanBeTeleportedTo()
+{
+	return CanBeTeleportedTo;
+}
+
+void ABall::SetCanBeTeleportedTo(bool CanTeleportTo)
+{
+	CanBeTeleportedTo = CanTeleportTo;
 }
 

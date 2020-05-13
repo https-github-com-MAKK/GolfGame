@@ -21,6 +21,8 @@ public:
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+	UPROPERTY(VisibleAnywhere)
+		bool CanBeTeleportedTo;
 
 public:	
 	// Called every frame
@@ -34,6 +36,9 @@ public:
 
 	UPROPERTY(EditAnywhere)
 		class UMaterial* BallMaterial;
-	
+
+	UFUNCTION()
+		bool GetCanBeTeleportedTo();
+		void SetCanBeTeleportedTo(bool CanTeleportTo);
 
 };

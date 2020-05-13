@@ -4,7 +4,7 @@
 #include "Components/CapsuleComponent.h"
 #include "Components/InputComponent.h"
 #include "GameFramework/InputSettings.h"
-#include "TestBall.h"
+#include "Ball.h"
 
 // Sets default values
 AGolfGameCharacter::AGolfGameCharacter()
@@ -175,7 +175,7 @@ void AGolfGameCharacter::LookUpAtRate(const float Rate)
 
 void AGolfGameCharacter::Teleport()
 {
-	if (Ball != nullptr) {
+	if (Ball != nullptr && Ball->GetCanBeTeleportedTo()) {
 		FVector ballLocation = Ball->GetActorLocation();
 		SetActorLocation(ballLocation, false);
 	}
