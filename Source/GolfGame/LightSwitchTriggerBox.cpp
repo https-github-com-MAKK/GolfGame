@@ -120,7 +120,7 @@ void ALightSwitchTriggerBox::TurnOnLights()
 {
 	int32 num = Lights.Num();
 	for (int i = 0; i < num; i++) {
-		//Lights[i]->SetActorHiddenInGame(false);
+		Lights[i]->SetActorHiddenInGame(false);
 
 		//SetActorHiddenInGame(false);
 	}
