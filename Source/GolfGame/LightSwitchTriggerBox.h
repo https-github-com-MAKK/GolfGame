@@ -6,6 +6,7 @@
 #include "Engine/TriggerBox.h"
 #include "TestBall.h"
 #include "Components/LightComponent.h"
+#include "Engine/Light.h"
 #include "LightSwitchTriggerBox.generated.h"
 
 
@@ -42,9 +43,17 @@ protected:
 		AActor* MyCharacter;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Lights)
 		TArray<AActor*> Lights;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Lights)
+		TArray<AActor*> LightsToFlicker;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Lights)
+		TArray<ALight*> LightsToDim;
+	UPROPERTY(BlueprintReadWrite, Category = Lights)
+		bool AreLightsHidden;
 	UFUNCTION()
 	void TurnOffLights();
 	void TurnOnLights();
+	void FlickerLights();
+	void DimLights();
 public:
 
 	ALightSwitchTriggerBox();

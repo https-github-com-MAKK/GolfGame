@@ -1,6 +1,6 @@
 
 #include "LightSwitchTriggerBox.h"
-
+#include "TimerManager.h"
 #include "DrawDebugHelpers.h"
 #include "Engine/Engine.h"
 /*
@@ -99,7 +99,7 @@ void ALightSwitchTriggerBox::OnOverlapEnd(class AActor* OverlappedActor, class A
 {
 	if (OtherActor && (OtherActor != this) && OtherActor == MyCharacter) {
 		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Overlap end actor"));
-		TurnOnLights();
+		//TurnOnLights();
 
 	}
 }
@@ -112,17 +112,57 @@ void ALightSwitchTriggerBox::TurnOffLights()
 			Lights[i]->SetActorHiddenInGame(true);
 		
 		}
+		AreLightsHidden = true;
 		//SetActorHiddenInGame(false);
 	}
-
+	DimLights();
 }
 void ALightSwitchTriggerBox::TurnOnLights()
 {
+	FTimerHandle TimerHandle;
 	int32 num = Lights.Num();
 	for (int i = 0; i < num; i++) {
 		Lights[i]->SetActorHiddenInGame(false);
-
 		//SetActorHiddenInGame(false);
 	}
+	AreLightsHidden = false;
+	DimLights();
+	//GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &ALightSwitchTriggerBox::FlickerLights, .05f, true, 5.0f);
+
+
+}
+void ALightSwitchTriggerBox::DimLights()
+{
+	//bool NewBoolean;
+	int32 num = LightsToDim.Num();
+	for (int i = 0; i < num; i++)
+	{
+		LightsToDim[i]->SetBrightness(10.0);
+		
+	}
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Dim lights"));
+
+	
+}
+void ALightSwitchTriggerBox::FlickerLights()
+{
+	bool NewBoolean;
+	int32 num = Lights.Num();
+	for (int i = 0; i < num; i++) {
+		if(AreLightsHidden==true)
+		{
+			Lights[i]->SetActorHiddenInGame(false);
+			NewBoolean = false;
+		}else
+		{
+			Lights[i]->SetActorHiddenInGame(true);
+			NewBoolean = true;
+			
+		}
+		//SetActorHiddenInGame(false);
+	}
+	AreLightsHidden = NewBoolean;
+	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Flickering lights"));
+
 
 }
