@@ -33,7 +33,7 @@ void ABall::AddForce()
 void ABall::BeginPlay()
 {
 	Super::BeginPlay();
-	CanBeTeleportedTo = true;
+	CanBeTeleportedTo = CanTeleportToInBeginning;
 	
 }
 
@@ -54,3 +54,12 @@ void ABall::SetCanBeTeleportedTo(bool CanTeleportTo)
 	CanBeTeleportedTo = CanTeleportTo;
 }
 
+bool ABall::GetHasBeenSummonedOnce()
+{
+	return CanBeTeleportedTo;
+}
+
+void ABall::SetHasBeenSummonedOnce(bool HasSummoned)
+{
+	CanBeTeleportedTo = HasSummoned;
+}

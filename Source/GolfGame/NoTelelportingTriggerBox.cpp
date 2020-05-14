@@ -32,9 +32,10 @@ void ANoTelelportingTriggerBox::BeginPlay()
 
 void ANoTelelportingTriggerBox::OnOverlapBegin(class AActor* OverlappedActor, class AActor* OtherActor)
 {
-    if (OtherActor && (OtherActor != this) && OtherActor == Ball) {
+
+   if(OtherActor && (OtherActor != this) && OtherActor == Ball) {
         Ball->SetCanBeTeleportedTo(false);
-        GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Overlap begin actor"));
+        GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Inside no teleport box"));
 
     }
 }

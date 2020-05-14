@@ -16,29 +16,19 @@
 UCLASS()
 class GOLFGAME_API ALightSwitchTriggerBox : public ATriggerBox
 {
-	GENERATED_BODY()/*
-public:
-	// Sets default values for this actor's properties
-	ALightSwitchTriggerBox();
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = References)
-		AActor* MyCharacter;
-
+	GENERATED_BODY()
 protected:
-	// Called when the game starts or when spawned
+
 	virtual void BeginPlay() override;
-	UFUNCTION()
-		void TurnOffLights();
-	void TurnOnLights();
-	void OnOverlapBegin(class AActor* OverlappedActor, class AActor* OtherActor);
-	void OnOverlapEnd(class AActor* OverlappedActor, class AActor* OtherActor);
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = References)
-		ATestBall* Ball;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Lights)
-		TArray<AActor*> Lights;
-*/
-protected:
+		float flickerRate;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Lights)
+		float flickerRate2;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Lights)
+		float Brightness;
 
-	virtual void BeginPlay() override;
+UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Lights)
+		float Brightness2;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = References)
 		AActor* MyCharacter;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Lights)
@@ -47,13 +37,24 @@ protected:
 		TArray<AActor*> LightsToFlicker;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Lights)
 		TArray<ALight*> LightsToDim;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Lights)
+		TArray<ALight*> LightsToFlicker2;
 	UPROPERTY(BlueprintReadWrite, Category = Lights)
 		bool AreLightsHidden;
+	UPROPERTY(BlueprintReadWrite, Category = Lights)
+	bool AreLightsDimmed;
+	
+	UPROPERTY()
+	UWorld* World;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Lights)
+		int Time;
 	UFUNCTION()
 	void TurnOffLights();
 	void TurnOnLights();
 	void FlickerLights();
+	void FlickerLights2();
 	void DimLights();
+	
 public:
 
 	ALightSwitchTriggerBox();

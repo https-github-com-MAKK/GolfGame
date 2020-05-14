@@ -19,8 +19,9 @@ protected:
 	virtual void BeginPlay() override;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = References)
 		ABall* Ball;
-
-
+	//default is true
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = References)
+		bool IsBallInBoxToStart;
 public:
 
 	ANoTelelportingTriggerBox();

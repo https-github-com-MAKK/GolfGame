@@ -5,6 +5,7 @@
 #include "Components/InputComponent.h"
 #include "GameFramework/InputSettings.h"
 #include "Ball.h"
+#include "Engine/Engine.h"
 
 // Sets default values
 AGolfGameCharacter::AGolfGameCharacter()
@@ -175,15 +176,21 @@ void AGolfGameCharacter::LookUpAtRate(const float Rate)
 
 void AGolfGameCharacter::Teleport()
 {
-	if (Ball != nullptr && Ball->GetCanBeTeleportedTo()) {
+	if (Ball != nullptr && Ball->GetCanBeTeleportedTo() && Ball->GetHasBeenSummonedOnce()) {
 		FVector ballLocation = Ball->GetActorLocation();
 		SetActorLocation(ballLocation, false);
+	}else
+	{
+
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Player cant teleport"));
+
 	}
 
 }
 
 void AGolfGameCharacter::SummonBall()
 {
+	Ball->SetHasBeenSummonedOnce(true);
 	if (Ball != nullptr) {
 		FVector charLocation = GetActorLocation();
 		Ball->SetActorLocation(charLocation, false);
