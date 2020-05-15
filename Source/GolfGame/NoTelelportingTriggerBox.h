@@ -5,31 +5,25 @@
 #include "CoreMinimal.h"
 #include "Engine/TriggerBox.h"
 #include "Ball.h"
+#include "GolfGameTriggerBox.h"
 #include "NoTelelportingTriggerBox.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class GOLFGAME_API ANoTelelportingTriggerBox : public ATriggerBox
+class GOLFGAME_API ANoTelelportingTriggerBox : public AGolfGameTriggerBox
 {
 	GENERATED_BODY()
+private:
+	ABall* Ball;
 protected:
-
 	virtual void BeginPlay() override;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = References)
-		ABall* Ball;
-	//default is true
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = References)
-		bool IsBallInBoxToStart;
 public:
 
 	ANoTelelportingTriggerBox();
-
-	UFUNCTION()
-		void OnOverlapBegin(class AActor* OverlappedActor, class AActor* OtherActor);
-	UFUNCTION()
-		void OnOverlapEnd(class AActor* OverlappedActor, class AActor* OtherActor);
+	virtual void OverlapBeginAction() override;
+	virtual void OverlapEndAction() override;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 		bool IsBallInNoTeleportationZone;
 };

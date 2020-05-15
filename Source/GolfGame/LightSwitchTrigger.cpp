@@ -2,76 +2,51 @@
 
 
 #include "LightSwitchTrigger.h"
-
-
 #include "DrawDebugHelpers.h"
+#include "Engine/Engine.h"
 #include "Kismet/GameplayStatics.h"
 
-// Sets default values
+
 ALightSwitchTrigger::ALightSwitchTrigger()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+
+	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
+}
 
-	OnActorBeginOverlap.AddDynamic(this, &ALightSwitchTrigger::OnOverlapBegin);
-	OnActorEndOverlap.AddDynamic(this, &ALightSwitchTrigger::OnOverlapEnd);
-	OverlapVolume = CreateDefaultSubobject<UBoxComponent>(TEXT("OverlapVolume"));
-	RootComponent = OverlapVolume;
+
+void ALightSwitchTrigger::OverlapBeginAction()
+{
+	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Overlap begin action light trigger"));
+	LightActionBegin();
+}
+
+
+void ALightSwitchTrigger::OverlapEndAction()
+{
+	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Overlap end action light trigger"));
+	LightActionEnd();
 
 }
 
-// Called when the game starts or when spawned
-void ALightSwitchTrigger::BeginPlay()
+void ALightSwitchTrigger::LightActionEnd()
 {
-	Super::BeginPlay();
-	DrawDebugBox(GetWorld(), GetActorLocation(), GetComponentsBoundingBox().GetExtent(), FColor::Purple, true, -1, 0, 5);
-
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("trigger switch end"));
+	int32 size = LightSwitch.Num();
+	for (int i = 0; i < size; i++)
+	{
+		LightSwitch[i]->LightActionOff();
+	}	
 }
-
-// Called every frame
-void ALightSwitchTrigger::Tick(float DeltaTime)
+void ALightSwitchTrigger::LightActionBegin()
 {
-	Super::Tick(DeltaTime);
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("trigger switch begin"));
 
-}
-
-void ALightSwitchTrigger::TurnOffLights()
-{
-	int num = Lights.Num();
-	for (int i = 0; i < num;  i++) {
-		Lights[i]->SetActorHiddenInGame(true);
-		
-		//SetActorHiddenInGame(false);
-	}
-	
-}
-void ALightSwitchTrigger::TurnOnLights()
-{
-	int32 num = Lights.Num();
-	for (int i = 0; i < num; i++) {
-		Lights[i]->SetActorHiddenInGame(false);
-
-		//SetActorHiddenInGame(false);
+	int32 size = LightSwitch.Num();
+	for (int i = 0; i < size; i++)
+	{
+		LightSwitch[i]->LightActionOn();
 	}
 
 }
 
-
-void ALightSwitchTrigger::OnOverlapBegin(class AActor* OverlappedActor, class AActor* OtherActor)
-{
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Overlap begin actor"));
-
-	if (OtherActor && (OtherActor != this) && OtherActor == MyCharacter){
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Overlap begin actor"));
-		TurnOffLights();
-	}
-}
-
-void ALightSwitchTrigger::OnOverlapEnd(class AActor* OverlappedActor, class AActor* OtherActor)
-{
-	if (OtherActor && (OtherActor != this) && OtherActor == MyCharacter){
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Overlap end actor"));
-		TurnOnLights();
-
-	}
-}

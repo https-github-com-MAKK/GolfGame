@@ -35,26 +35,36 @@ UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Lights)
 		TArray<AActor*> Lights;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Lights)
 		TArray<AActor*> LightsToFlicker;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Lights)
-		TArray<ALight*> LightsToDim;
+	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Lights)
+		//TArray<ALight*> LightsToDim;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Lights)
 		TArray<ALight*> LightsToFlicker2;
 	UPROPERTY(BlueprintReadWrite, Category = Lights)
 		bool AreLightsHidden;
 	UPROPERTY(BlueprintReadWrite, Category = Lights)
-	bool AreLightsDimmed;
+		bool AreLightsDimmed;
 	
 	UPROPERTY()
 	UWorld* World;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Lights)
 		int Time;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Lights)
+		int LightLoopTime;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Lights)
+		int LightStableTime;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Lights)
+		int LightFlickerTime;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Lights)
+		int LightOffTime;
+	UPROPERTY()
+		int LastCalled;
 	UFUNCTION()
 	void TurnOffLights();
 	void TurnOnLights();
 	void FlickerLights();
 	void FlickerLights2();
-	void DimLights();
-	
+	void DimLights(TArray<ALight*> LightsToDim, float Brightness);
+	void HideShowActors(TArray<AActor *> ActorsToHideShow, bool Show );
 public:
 
 	ALightSwitchTriggerBox();

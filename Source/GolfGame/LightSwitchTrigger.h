@@ -1,5 +1,5 @@
 // Fill out your copyright notice in the Description page of Project Settings.
-
+/*
 #pragma once
 
 #include "CoreMinimal.h"
@@ -36,3 +36,38 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 		UBoxComponent* OverlapVolume;
 };
+
+// Fill out your copyright notice in the Description page of Project Settings.
+
+*/
+// Fill out your copyright notice in the Description page of Project Settings.
+
+#pragma once
+#include "CoreMinimal.h"
+#include "GolfGameTriggerBox.h"
+#include "Ball.h"
+#include "Components/LightComponent.h"
+#include "Engine/Light.h"
+#include "LightSwitch.h"
+#include "LightSwitchTrigger.generated.h"
+
+
+UCLASS()
+class GOLFGAME_API ALightSwitchTrigger : public AGolfGameTriggerBox
+{
+
+	GENERATED_BODY()
+protected:
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = References)
+		TArray<ALightSwitch*> LightSwitch;
+public:
+
+	ALightSwitchTrigger();
+	void LightActionBegin();
+	void LightActionEnd();
+	
+	virtual void OverlapBeginAction() override;
+	virtual void OverlapEndAction() override;
+};
+
+

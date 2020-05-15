@@ -7,35 +7,43 @@
 
 AGoalTriggerBox::AGoalTriggerBox()
 {
-   
-    OnActorBeginOverlap.AddDynamic(this, &AGoalTriggerBox::OnOverlapBegin);
-    OnActorEndOverlap.AddDynamic(this, &AGoalTriggerBox::OnOverlapEnd);
+
 }
-
-
 void AGoalTriggerBox::BeginPlay()
 {
     Super::BeginPlay();
-
-    DrawDebugBox(GetWorld(), GetActorLocation(), GetComponentsBoundingBox().GetExtent(), FColor::Purple, true, -1, 0, 5);
-
+    if (ActorToCheck == NULL) {
+        GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("ctor null"));
+    }
+    Ball = dynamic_cast<ABall*>(ActorToCheck);
+    if (Ball == NULL) {
+        GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Null bitch"));
+    }
 }
 
-void AGoalTriggerBox::OnOverlapBegin(class AActor* OverlappedActor, class AActor* OtherActor)
+void AGoalTriggerBox::OverlapBeginAction()
 {
-    if (OtherActor && (OtherActor != this) && OtherActor == Ball) {
+    if (ActorToCheck == NULL) {
+        GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("ctor null action"));
+    }else
+    {
+        GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("ctor ok action"));
+
+    	
+    }
+    GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Overlap begin action goal trigger"));
+    if (Ball) {
+        GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("begin if"));
         IsBallInGoal = true;
-    	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Overlap begin actor"));
-
     }
 }
 
-void AGoalTriggerBox::OnOverlapEnd(class AActor* OverlappedActor, class AActor* OtherActor)
+
+void AGoalTriggerBox::OverlapEndAction()
 {
-    if (OtherActor && (OtherActor != this)&& OtherActor == Ball) {
+    GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Overlap end action goal trigger"));
+    if (Ball) {
         IsBallInGoal = false;
-    	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Overlap end actor"));
-
-
     }
 }
+

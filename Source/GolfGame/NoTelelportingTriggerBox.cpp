@@ -2,50 +2,44 @@
 
 
 #pragma once
-
+#include "NoTelelportingTriggerBox.h"
 #include "CoreMinimal.h"
-#include "Engine/TriggerBox.h"
 #include "Ball.h"
 #include "Components/LightComponent.h"
-#include "NoTelelportingTriggerBox.h"
-
-
-#include "DrawDebugHelpers.h"
 #include "Engine/Engine.h"
 
 
 ANoTelelportingTriggerBox::ANoTelelportingTriggerBox()
 {
+    
 
-    OnActorBeginOverlap.AddDynamic(this, &ANoTelelportingTriggerBox::OnOverlapBegin);
-    OnActorEndOverlap.AddDynamic(this, &ANoTelelportingTriggerBox::OnOverlapEnd);
 }
-
 
 void ANoTelelportingTriggerBox::BeginPlay()
 {
     Super::BeginPlay();
-
-    DrawDebugBox(GetWorld(), GetActorLocation(), GetComponentsBoundingBox().GetExtent(), FColor::Purple, true, -1, 0, 5);
-
+    if (ActorToCheck == NULL) {
+        GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("ctor null"));
+    }
+    Ball = dynamic_cast<ABall*>(ActorToCheck);
+    if (Ball == NULL) {
+        GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Null bitch"));
+    }
 }
 
-void ANoTelelportingTriggerBox::OnOverlapBegin(class AActor* OverlappedActor, class AActor* OtherActor)
-{
 
-   if(OtherActor && (OtherActor != this) && OtherActor == Ball) {
+void ANoTelelportingTriggerBox::OverlapBeginAction()
+{
+    if (Ball) {
         Ball->SetCanBeTeleportedTo(false);
-        GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Inside no teleport box"));
-
     }
 }
 
-void ANoTelelportingTriggerBox::OnOverlapEnd(class AActor* OverlappedActor, class AActor* OtherActor)
+void ANoTelelportingTriggerBox::OverlapEndAction()
 {
-    if (OtherActor && (OtherActor != this) && OtherActor == Ball) {
+    if (Ball) {
         Ball->SetCanBeTeleportedTo(true);
-        GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Overlap end actor"));
-
-
     }
 }
+
+
