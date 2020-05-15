@@ -31,7 +31,8 @@ class AGolfGameCharacter final : public ACharacter
 	UPROPERTY(EditAnywhere, Category = "Custom")
 		uint32 bMouseUp : 1;
 	UPROPERTY(EditAnywhere, Category = Projectile)
-		ABall* Ball;
+		class ABall* Ball;
+
 public:
 	// Sets default values for this character's properties
 	AGolfGameCharacter();
