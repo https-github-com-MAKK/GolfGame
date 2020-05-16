@@ -16,6 +16,9 @@ class AGolfGameCharacter final : public ACharacter
 	GENERATED_BODY()
 
 public:
+
+	// Sets default values for this character's properties
+	AGolfGameCharacter();
 	
 	/** First person camera */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
@@ -46,10 +49,6 @@ public:
 	UPROPERTY(EditAnywhere)
 		class USoundBase* CurrentMusicCue;
 
-	
-
-	// Sets default values for this character's properties
-	AGolfGameCharacter();
 
 protected:
 	// Called when the game starts or when spawned
