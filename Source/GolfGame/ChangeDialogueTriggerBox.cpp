@@ -15,7 +15,7 @@ AChangeDialogueTriggerBox::AChangeDialogueTriggerBox()
 void AChangeDialogueTriggerBox::BeginPlay()
 {
 	Super::BeginPlay();
-	DrawDebugBox(GetWorld(), GetActorLocation(), GetComponentsBoundingBox().GetExtent(), FColor::Orange, true, -1, 0, 5);
+	//DrawDebugBox(GetWorld(), GetActorLocation(), GetComponentsBoundingBox().GetExtent(), FColor::Orange, true, -1, 0, 5);
 }
 
 
