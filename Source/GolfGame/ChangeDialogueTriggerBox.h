@@ -8,9 +8,14 @@
 #include "Sound/SoundBase.h"
 #include "ChangeDialogueTriggerBox.generated.h"
 
-/**
- * 
- */
+
+UENUM()
+enum class ETriggeringActor
+{
+	TriggeredByBall UMETA(DisplayName = "Ball"),
+	TriggeredByPlayer UMETA(DisplayName = "Player")
+};
+
 UCLASS()
 class GOLFGAME_API AChangeDialogueTriggerBox : public ATriggerBox
 {
@@ -30,6 +35,12 @@ public:
 
 	UPROPERTY(EditAnywhere)
 		class AGolfGameCharacter* Player;
+
+	UPROPERTY(EditAnywhere)
+		class ABall* Ball;
+
+	UPROPERTY(EditAnywhere)
+		ETriggeringActor TriggeringActor = ETriggeringActor::TriggeredByPlayer;
 
 	UFUNCTION()
 		void OnOverlapBegin(class AActor* OverlappedActor, class AActor* OtherActor);

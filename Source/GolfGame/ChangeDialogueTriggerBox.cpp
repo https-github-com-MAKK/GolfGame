@@ -20,12 +20,34 @@ void AChangeDialogueTriggerBox::BeginPlay()
 
 
 void AChangeDialogueTriggerBox::OnOverlapBegin(class AActor* OverlappedActor, class AActor* OtherActor)
-{	
-	if(Dialogue != nullptr && OtherActor == Player && OtherActor && OtherActor != this && !DialoguePlayed)
+{
+	if(OtherActor && Player != nullptr && Ball != nullptr && Dialogue != nullptr && !DialoguePlayed)
+	{
+		if(OtherActor == Ball && TriggeringActor == ETriggeringActor::TriggeredByBall)
+		{
+			Player->ChangeDialogueCue(Dialogue);
+			DialoguePlayed = true;
+			
+		}
+		else if(OtherActor == Player && TriggeringActor == ETriggeringActor::TriggeredByPlayer)
+		{
+			Player->ChangeDialogueCue(Dialogue);
+			DialoguePlayed = true;
+		}
+		
+	}
+
+	
+	/*if()
+	{
+		if(OtherActor && OtherActor == Ball)
+	}
+	
+	if(Dialogue != nullptr && OtherActor && (OtherActor == Player || OtherActor == Ball)  && OtherActor != this && !DialoguePlayed)
 	{
 		Player->ChangeDialogueCue(Dialogue);
 		DialoguePlayed = true;
-	}
+	}*/
 }
 
 
