@@ -16,11 +16,28 @@ APlatform_Moving::APlatform_Moving()
 	RootComponent = VisualMesh; 
 	//VisualMesh->SetupAttachment(RootComponent);
 	
-	PlatformMovingAudio = CreateDefaultSubobject<UPlatformAudioComponent>(TEXT("Sound Player"));
+	PlatformMovingAudio = CreateDefaultSubobject<UAudioComponent>(TEXT("SoundPlayer"));
 	PlatformMovingAudio->bAutoActivate = false;
 	PlatformMovingAudio->SetRelativeLocation(FVector(0.0f, 0.0f, 0.0f));
-	PlatformMovingAudio->SetSound(MovingSound);
+	PlatformMovingAudio->Mobility = EComponentMobility::Movable;
 	PlatformMovingAudio->SetupAttachment(RootComponent);
+
+	/*
+	 *
+	 *AudioComponent = CreateDefaultSubobject<UAudioComponent>(TEXT("AudioComponent0"));
+
+	AudioComponent->bAutoActivate = true;
+	AudioComponent->bStopWhenOwnerDestroyed = true;
+	AudioComponent->bShouldRemainActiveIfDropped = true;
+	AudioComponent->Mobility = EComponentMobility::Movable;
+
+	RootComponent = AudioComponent;
+
+	bReplicates = false;
+	SetHidden(true);
+	SetCanBeDamaged(false);
+	 * 
+	 */
 	
 }
 
@@ -30,7 +47,7 @@ void APlatform_Moving::BeginPlay()
 	Super::BeginPlay();
 
 	Random = rand() % 100000;
-	
+	//PlatformMovingAudio->SetSound(MovingSound);
 	
 }
 

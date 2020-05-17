@@ -35,17 +35,9 @@ void AChangeMaterialController::BeginPlay()
 	//DrawDebugBox(GetWorld(), GetActorLocation(), FVector(100, 100, 100), FColor::Green, true, -1, 0, 10);
 
 	MyMesh->SetMaterial(0, OffMaterial);
-
-	if(AssociatedPlatform == nullptr)
-	{
-		GEngine->AddOnScreenDebugMessage(-1, 1.5, FColor::Green, TEXT("Platform/wind switch not setup"));
-	}
-
 	CanBeHit = true;
 	GetWorldTimerManager().SetTimer(MemberTimerHandle, this, &AChangeMaterialController::SetCanBeHit, 1.0f, true, 5.0f);
 
-	
-	
 }
 
 // Called every frame
@@ -122,7 +114,7 @@ void AChangeMaterialController::SetCanBeHit()
 
 void AChangeMaterialController::CyclePlatformMovingAudio()
 {
-	AssociatedPlatform->ToggleMovingAudio();
+	//AssociatedPlatform->ToggleMovingAudio();
 	/*if(CurrentMovingAudio == On)
 	{
 		//AssociatedPlatform->PlatformMovingAudio->FadeOut(2, 0, EAudioFaderCurve::Linear);

@@ -41,10 +41,13 @@ public:
 	UPROPERTY(EditAnywhere)
 		EMovementType Movement = EMovementType::UpDown;
 
-	UPROPERTY(EditAnywhere, Category = "Audio")
-		class UPlatformAudioComponent* PlatformMovingAudio;
+	//UPROPERTY(Category = Sound, VisibleAnywhere, BlueprintReadOnly, meta = (ExposeFunctionCategories = "Sound,Audio,Audio|Components|Audio", AllowPrivateAccess = "true"))
+		//class UAudioComponent* AudioComponent;
+	
+	UPROPERTY(EditAnywhere, Category = Sound)
+		class UAudioComponent* PlatformMovingAudio;
 
-	UPROPERTY(EditAnywhere, Category = "Audio")
+	UPROPERTY(EditAnywhere, Category = Sound)
 		class USoundBase* MovingSound;
 	
 	void ToggleMovingAudio();
