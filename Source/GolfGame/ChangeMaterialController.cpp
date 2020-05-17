@@ -122,7 +122,7 @@ void AChangeMaterialController::SetCanBeHit()
 
 void AChangeMaterialController::CyclePlatformMovingAudio()
 {
-	//AssociatedPlatform->ToggleMovingAudio();
+	AssociatedPlatform->ToggleMovingAudio();
 	/*if(CurrentMovingAudio == On)
 	{
 		//AssociatedPlatform->PlatformMovingAudio->FadeOut(2, 0, EAudioFaderCurve::Linear);

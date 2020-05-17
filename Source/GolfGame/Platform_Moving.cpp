@@ -3,6 +3,7 @@
 #include "Components/AudioComponent.h"
 #include  "PlatformAudioComponent.h"
 #include "Engine/Engine.h"
+#include "Components/BoxComponent.h"
 
 
 // Sets default values
@@ -10,12 +11,16 @@ APlatform_Moving::APlatform_Moving()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
-
+	
 	VisualMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh"));
-	RootComponent = VisualMesh;
-	//VisualMesh->SetRelativeLocation(FVector(0.0f, 0.0f, 0.0f));
-	//PlatformMovingAudio = CreateDefaultSubobject<UAudioComponent>(TEXT("Moving Sound"));
-	//PlatformMovingAudio->SetupAttachment(RootComponent);
+	RootComponent = VisualMesh; 
+	//VisualMesh->SetupAttachment(RootComponent);
+	
+	PlatformMovingAudio = CreateDefaultSubobject<UPlatformAudioComponent>(TEXT("Sound Player"));
+	PlatformMovingAudio->bAutoActivate = false;
+	PlatformMovingAudio->SetRelativeLocation(FVector(0.0f, 0.0f, 0.0f));
+	PlatformMovingAudio->SetSound(MovingSound);
+	PlatformMovingAudio->SetupAttachment(RootComponent);
 	
 }
 
@@ -25,8 +30,7 @@ void APlatform_Moving::BeginPlay()
 	Super::BeginPlay();
 
 	Random = rand() % 100000;
-	//PlatformMovingAudio->SetSound(MovingSound);
-	//PlatformMovingAudio->Stop();
+	
 	
 }
 
