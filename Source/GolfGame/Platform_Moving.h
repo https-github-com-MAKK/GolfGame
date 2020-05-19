@@ -5,7 +5,6 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "Components/AudioComponent.h"
-#include  "PlatformAudioComponent.h"
 #include "Platform_Moving.generated.h"
 
 UENUM()
@@ -25,11 +24,9 @@ public:
 	// Sets default values for this actor's properties
 	APlatform_Moving();
 
-	//skinny or wide platform mesh
 	UPROPERTY(EditAnywhere)
 		UStaticMeshComponent* VisualMesh;
 
-	//factor for which the platform will move up and down
 	UPROPERTY(EditAnywhere)
 		float ScaleFactor = 50.0;
 
@@ -40,9 +37,6 @@ public:
 
 	UPROPERTY(EditAnywhere)
 		EMovementType Movement = EMovementType::UpDown;
-
-	//UPROPERTY(Category = Sound, VisibleAnywhere, BlueprintReadOnly, meta = (ExposeFunctionCategories = "Sound,Audio,Audio|Components|Audio", AllowPrivateAccess = "true"))
-		//class UAudioComponent* AudioComponent;
 	
 	UPROPERTY(EditAnywhere, Category = Sound)
 		class UAudioComponent* PlatformMovingAudio;
@@ -50,16 +44,14 @@ public:
 	UPROPERTY(EditAnywhere, Category = Sound)
 		class USoundBase* MovingSound;
 	
-	void ToggleMovingAudio();
 	
 
 protected:
-	// Called when the game starts or when spawned
+	
 	virtual void BeginPlay() override;
 
 private:
 	
-	//random number for platform motion, takes place of time since creation
 	int Random;
 
 };

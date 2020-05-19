@@ -81,17 +81,5 @@ void APlatform_Moving::Tick(float DeltaTime)
 
 }
 
-void APlatform_Moving::ToggleMovingAudio()
-{
-	if(IsPlatFormMoving)
-	{
-		//PlatformMovingAudio->StopMovingAudio();
-	}
-	else
-	{
-		//PlatformMovingAudio->PlayMovingAudio();
-	}
-}
-
 
 

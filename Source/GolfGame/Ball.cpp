@@ -38,6 +38,9 @@ ABall::ABall()
         SparksParticleSystem->SetTemplate(ParticleAsset.Object);
     }
 
+    CrackleSoundPlayer = CreateDefaultSubobject<UAudioComponent>(TEXT("CrackleSoundComponent"));
+    CrackleSoundPlayer->SetupAttachment(RootComponent);
+
 }
 
 // Called when the game starts or when spawned
