@@ -4,6 +4,8 @@
 #include "GameFramework/Character.h"
 #include "GrabThrowComponent.h"
 #include "PhysicsEngine/PhysicsHandleComponent.h"
+#include "Components/AudioComponent.h"
+#include "Sound/SoundBase.h"
 #include "GolfGameCharacter.generated.h"
 
 
@@ -13,25 +15,41 @@ class AGolfGameCharacter final : public ACharacter
 {
 	GENERATED_BODY()
 
+public:
+
+	// Sets default values for this character's properties
+	AGolfGameCharacter();
+	
 	/** First person camera */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 		class UCameraComponent* FirstPersonCameraComponent;
 
 	//Grabber class
 	UPROPERTY(EditAnywhere, Category = "Custom")
-		UGrabThrowComponent* GrabberClass;
+		class UGrabThrowComponent* GrabberClass;
 
 	//PhysicsHandle class
 	UPROPERTY(EditAnywhere, Category = "Custom")
-		UPhysicsHandleComponent* PhysicsHandle;
+		class UPhysicsHandleComponent* PhysicsHandle;
 
 	UPROPERTY(EditAnywhere, Category = "Custom")
 		uint32 bMouseDown : 1;
 
 	UPROPERTY(EditAnywhere, Category = "Custom")
 		uint32 bMouseUp : 1;
+
 	UPROPERTY(EditAnywhere, Category = Projectile)
-		ABall* Ball;
+		class ABall* Ball;
+
+	UPROPERTY(VisibleAnywhere)
+		class UAudioComponent* DialoguePlayer;
+
+	UPROPERTY(VisibleAnywhere)
+		class UAudioComponent* MusicPlayer;
+
+	UPROPERTY(EditAnywhere)
+		class USoundBase* CurrentMusicCue;
+
 public:
 	// Sets default values for this character's properties
 	AGolfGameCharacter();
@@ -99,5 +117,22 @@ protected:
 public:
 	//Returns FirstPersonCameraComponent subobject
 	FORCEINLINE class UCameraComponent* GetFirstPersonCameraComponent() const { return FirstPersonCameraComponent; }
+
+	
+	void PlayDialogueCue();
+	void PlayMusicCue();
+	void AdjustMusicVolumeUp();
+	void AdjustMusicVolumeDown();
+
+	UFUNCTION()
+		void ChangeDialogueCue(USoundBase* NewDialogue);
+
+	UFUNCTION()
+		void ChangeMusicCue(USoundBase* NewMusic);
+
+private:
+
+	UPROPERTY()
+		class USoundBase* CurrentDialogueCue;
 
 };

@@ -5,6 +5,8 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "Components/SphereComponent.h"
+#include "Particles/ParticleSystemComponent.h"
+#include "Components/AudioComponent.h"
 #include "Ball.generated.h"
 
 UCLASS()
@@ -16,7 +18,6 @@ public:
 	// Sets default values for this actor's properties
 	ABall();
 
-	void AddForce();
 
 protected:
 	// Called when the game starts or when spawned
@@ -31,12 +32,21 @@ protected:
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
-
+	
 	UPROPERTY()
 		USphereComponent* SphereComponent;
 	
 	UPROPERTY(VisibleAnywhere)
-		UStaticMeshComponent* VisualMesh;
+		UStaticMeshComponent* SphereVisual;
+
+	UPROPERTY()
+		UParticleSystemComponent* SparksParticleSystem;
+
+	UPROPERTY(VisibleAnywhere, Category = Sound)
+		class UAudioComponent* CrackleSoundPlayer;
+
+	UPROPERTY(EditAnywhere, Category = Sound)
+		class USoundCue* CrackleSound;
 
 	UPROPERTY(EditAnywhere)
 		class UMaterial* BallMaterial;

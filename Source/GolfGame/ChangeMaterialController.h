@@ -9,6 +9,7 @@
 #include "Ball.h"
 #include "Engine/RectLight.h"
 #include "Components/RectLightComponent.h"
+#include "Components/AudioComponent.h"
 #include "ChangeMaterialController.generated.h"
 
 
@@ -55,8 +56,7 @@ public:
 
 	UPROPERTY(EditAnywhere)
 		class ARectLight* AssociatedRectlight;
-
-	FTimerHandle MemberTimerHandle;
+	
 	
 private:
 
@@ -66,10 +66,15 @@ private:
 
 	void SetCanBeHit();
 
+	void CyclePlatformMovingAudio();
+	
 	enum SwitchState { On, Off };
 	SwitchState CurrentSwitchState = Off;
 	SwitchState CurrentSpotlightState = Off;
+	SwitchState CurrentMovingAudio = Off;
 
 	bool CanBeHit;
+
+	FTimerHandle MemberTimerHandle;
 	
 };

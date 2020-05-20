@@ -6,6 +6,7 @@
 #include "Components/BoxComponent.h"
 #include "TimerManager.h"
 #include "Engine/Engine.h"
+#include "Kismet/GameplayStatics.h"
 
 // Sets default values
 AChangeMaterialController::AChangeMaterialController()
@@ -17,14 +18,13 @@ AChangeMaterialController::AChangeMaterialController()
 	RootComponent = MyMesh;
 
 	MyBoxComponent = CreateDefaultSubobject<UBoxComponent>(TEXT("MyBoxComponent"));
-	//MyBoxComponent->SetCollisionProfileName("Trigger");
 	MyBoxComponent->SetupAttachment(RootComponent);
 
 	OnMaterial = CreateDefaultSubobject<UMaterial>(TEXT("OnMaterial"));
 	OffMaterial = CreateDefaultSubobject<UMaterial>(TEXT("OffMaterial"));
 
 	MyBoxComponent->OnComponentBeginOverlap.AddDynamic(this, &AChangeMaterialController::OnOverlapBegin);
-	
+
 }
 
 // Called when the game starts or when spawned
@@ -35,15 +35,9 @@ void AChangeMaterialController::BeginPlay()
 	//DrawDebugBox(GetWorld(), GetActorLocation(), FVector(100, 100, 100), FColor::Green, true, -1, 0, 10);
 
 	MyMesh->SetMaterial(0, OffMaterial);
-
-	if(AssociatedPlatform == nullptr)
-	{
-		GEngine->AddOnScreenDebugMessage(-1, 1.5, FColor::Green, TEXT("Platform/wind switch not setup"));
-	}
-
 	CanBeHit = true;
 	GetWorldTimerManager().SetTimer(MemberTimerHandle, this, &AChangeMaterialController::SetCanBeHit, 1.0f, true, 5.0f);
-	
+
 }
 
 // Called every frame
@@ -73,6 +67,7 @@ void AChangeMaterialController::OnOverlapBegin(UPrimitiveComponent* OverlappedCo
 		}
 		TogglePlatformMovement();
 		ToggleSpotlight();
+		CyclePlatformMovingAudio();
 		CanBeHit = false;
 		GEngine->AddOnScreenDebugMessage(-1, 1.5, FColor::Orange, TEXT("Must wait"));
 	}
@@ -115,6 +110,25 @@ void AChangeMaterialController::ToggleSpotlight()
 void AChangeMaterialController::SetCanBeHit()
 {
 	CanBeHit = true;
+}
+
+void AChangeMaterialController::CyclePlatformMovingAudio()
+{
+	//AssociatedPlatform->ToggleMovingAudio();
+	/*if(CurrentMovingAudio == On)
+	{
+		//AssociatedPlatform->PlatformMovingAudio->FadeOut(2, 0, EAudioFaderCurve::Linear);
+		AssociatedPlatform->PlatformMovingAudio->Stop();
+		GEngine->AddOnScreenDebugMessage(-1, 1.5, FColor::White, TEXT("Platform audio stopped"));
+		CurrentMovingAudio = Off;
+	}
+	else
+	{
+		//AssociatedPlatform->PlatformMovingAudio->FadeIn(2, 1,0, EAudioFaderCurve::Linear);
+		AssociatedPlatform->PlatformMovingAudio->Play();
+		GEngine->AddOnScreenDebugMessage(-1, 1.5, FColor::White, TEXT("Platform audio started"));
+		CurrentMovingAudio = On;
+	}*/
 }
 
 

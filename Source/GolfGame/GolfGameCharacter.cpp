@@ -3,8 +3,8 @@
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
 #include "Components/InputComponent.h"
-#include "GameFramework/InputSettings.h"
 #include "Ball.h"
+#include "Kismet/GameplayStatics.h"
 #include "Engine/Engine.h"
 
 // Sets default values
@@ -25,13 +25,15 @@ AGolfGameCharacter::AGolfGameCharacter()
 
 	GrabberClass = CreateDefaultSubobject<UGrabThrowComponent>(TEXT("GrabberClass"));
 	PhysicsHandle = CreateDefaultSubobject<UPhysicsHandleComponent>(TEXT("PhysicsHandle"));
+
+	DialoguePlayer = CreateDefaultSubobject<UAudioComponent>(TEXT("Dialogue Player"));
+	MusicPlayer = CreateDefaultSubobject<UAudioComponent>(TEXT("Music Player"));
 }
 
 // Called when the game starts or when spawned
 void AGolfGameCharacter::BeginPlay()
 {
 	Super::BeginPlay();
-	
 }
 
 // Called every frame
@@ -198,5 +200,45 @@ void AGolfGameCharacter::SummonBall()
 	if (Ball != nullptr) {
 		FVector charLocation = GetActorLocation();
 		Ball->SetActorLocation(charLocation, false);
+	}
+}
+
+void AGolfGameCharacter::PlayDialogueCue()
+{
+	DialoguePlayer->Play();
+}
+
+void AGolfGameCharacter::PlayMusicCue()
+{
+	MusicPlayer->Play();
+}
+
+void AGolfGameCharacter::AdjustMusicVolumeUp()
+{
+	MusicPlayer->AdjustVolume(1, 1, EAudioFaderCurve::Linear);
+}
+
+void AGolfGameCharacter::AdjustMusicVolumeDown()
+{
+	MusicPlayer->AdjustVolume(1, 0, EAudioFaderCurve::Linear);
+}
+
+void AGolfGameCharacter::ChangeDialogueCue(USoundBase* NewDialogue)
+{
+	if(NewDialogue != nullptr)
+	{
+		CurrentDialogueCue = NewDialogue;
+		DialoguePlayer->SetSound(CurrentDialogueCue);
+		PlayDialogueCue();
+	}
+}
+
+void AGolfGameCharacter::ChangeMusicCue(USoundBase* NewMusic)
+{
+	if (NewMusic != nullptr)
+	{
+		CurrentDialogueCue = NewMusic;
+		DialoguePlayer->SetSound(CurrentDialogueCue);
+		PlayMusicCue();
 	}
 }
