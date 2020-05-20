@@ -38,6 +38,9 @@ void AHideShowActorSwitch::FlickerInAndOut()
 
 	Time = World->GetTimeSeconds() - LastCalled;
 	//FlickerTime = World->GetTimeSeconds() - LastCalled;
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("currruntime %d"), CurrentRunTime));
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("flicker %d"), FlickerIndex));
+
 	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("time : %d"), Time));
 
 	if (Time % CurrentRunTime==0 && World->GetTimeSeconds() != 0)
@@ -77,7 +80,7 @@ void AHideShowActorSwitch::FlickerInAndOut()
 void AHideShowActorSwitch::IncrementFlickerIndex()
 {
 	FlickerIndex++;
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("flickerindex %d"), FlickerIndex));
+	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("flickerindex %d"), FlickerIndex));
 
 	if (FlickerIndex == FlickerPattern.Num())
 	{
@@ -104,7 +107,7 @@ void AHideShowActorSwitch::SetCurrentRunTime()
 }
 void AHideShowActorSwitch::HideOrShowActors(bool Show)
 {
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("hide/show Actors"));
+//	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("hide/show Actors"));
 	int num = ActorsToShowHide.Num();
 	for (int i = 0; i < num; i++) {
 
@@ -117,26 +120,21 @@ void AHideShowActorSwitch::HideOrShowActors(bool Show)
 
 void AHideShowActorSwitch::GetMethodToCall(uint8 Status)
 {
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("get method actor %d"), Status));
+	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("get method actor %d"), Status));
 	FTimerHandle TimerHandle;
 	ActorHideShowStatus Stat = static_cast<ActorHideShowStatus>(Status);
 	switch (Stat)
 	{
 		
 	case ActorHideShowStatus::ActorsShow:
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("show actor"));
-
 		HideOrShowActors(false);
 		break;
 	case ActorHideShowStatus::ActorsHide:
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("hide actor"));
-
 		HideOrShowActors(true);
 		break;
 	case ActorHideShowStatus::ActorsFlicker:
 		HideOrShowActors(false); //show lights if they're off
 		SetCurrentRunTime();
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("flicker actor"));
 		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &AHideShowActorSwitch::FlickerInAndOut, FlickerRate, true, 0.0f);
 		break;
 	default:
@@ -148,14 +146,14 @@ void AHideShowActorSwitch::ActionOn()
 {
 
 	GetMethodToCall(static_cast<uint8>(On));
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("switch action on"));
+//	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("switch action on"));
 
 }
 void AHideShowActorSwitch::ActionOff()
 {
 
 	GetMethodToCall(static_cast<uint8>(Off));
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("switch action off"));
+	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("switch action off"));
 
 }
 uint8 AHideShowActorSwitch::GetActionOff()
