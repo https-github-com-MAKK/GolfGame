@@ -16,7 +16,7 @@ ABall::ABall()
 
 	SphereComponent = CreateDefaultSubobject<USphereComponent>(TEXT("Sphere Visual"));
 	
-	SphereComponent->OnComponentBeginOverlap.AddDynamic(this, &ABall::OnOverlapBegin);
+	//SphereComponent->OnComponentBeginOverlap.AddDynamic(this, &ABall::OnOverlapBegin);
 	//SphereComponent->OnComponentEndOverlap.AddDynamic(this, &ABall::OnOverlapEnd);
 	
     static ConstructorHelpers::FObjectFinder<UStaticMesh> SphereVisualAsset(TEXT("/Game/StarterContent/Shapes/Shape_Sphere.Shape_Sphere"));
