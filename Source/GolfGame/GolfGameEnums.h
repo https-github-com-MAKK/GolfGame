@@ -1,19 +1,21 @@
 #pragma once
 UENUM()
-enum LightStatus
+enum class LightStatus: uint8
 {
-	LightsDoNothing  UMETA(DisplayName = "DoNothing"),
 	LightsTurnOn    UMETA(DisplayName = "TurnOnLights"),
 	LightsTurnOff    UMETA(DisplayName = "TurnOffLights"),
 	LightsFlicker   UMETA(DisplayName = "FlickerLights"),
-	LightsDim  UMETA(DisplayName = "DimLights")
+	LightsDim  UMETA(DisplayName = "DimLights"),
+	LightsDoNothing  UMETA(DisplayName = "DoNothing")
 };
 
 UENUM()
-enum ActorHideShowStatus
+enum class ActorHideShowStatus: uint8
 {
-	ActorsDoNothing  UMETA(DisplayName = "DoNothing"),
 	ActorsShow   UMETA(DisplayName = "ShowActors"),
 	ActorsHide   UMETA(DisplayName = "HideActors"),
 	ActorsFlicker   UMETA(DisplayName = "FlickerActors"),
+	ActorsDoNothing  UMETA(DisplayName = "DoNothing")
+	
 };
+

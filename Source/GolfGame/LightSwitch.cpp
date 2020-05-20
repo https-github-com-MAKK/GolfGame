@@ -4,12 +4,9 @@
 #include "LightSwitch.h"
 
 
-#include "DrawDebugHelpers.h"
-#include "Engine/Engine.h"
-#include "GolfGameEnums.h"
-#include "Kismet/GameplayStatics.h"
 
-// Sets default values
+#include "Engine/Engine.h"
+
 ALightSwitch::ALightSwitch()
 {
 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
@@ -17,8 +14,6 @@ ALightSwitch::ALightSwitch()
 
 
 }
-
-// Called when the game starts or when spawned
 void ALightSwitch::BeginPlay()
 {
 	Super::BeginPlay();
@@ -27,7 +22,7 @@ void ALightSwitch::BeginPlay()
 
 void ALightSwitch::TurnOffLights()
 {
-	HideShowLights(true);
+	HideShowLights(false);
 }
 
 void ALightSwitch::TurnOnLights()
@@ -74,59 +69,64 @@ void ALightSwitch::HideShowLights(bool Show)
 	AreLightsHidden = Show;
 }
 
-void ALightSwitch::LightActionOn()
+void ALightSwitch::ActionOn()
 {
 
-	GetMethodToCall(On);
+	GetMethodToCall(static_cast<uint8>(On));
 	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("switch action on"));
 
 }
-void ALightSwitch::LightActionOff()
+void ALightSwitch::ActionOff()
 {
-	GetMethodToCall(Off);
+	GetMethodToCall(static_cast<uint8>(Off));
 	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("switch action off"));
 
 }
 
-void ALightSwitch::GetMethodToCall(TEnumAsByte<LightStatus>  Status)
+void ALightSwitch::GetMethodToCall(uint8 Status)
 {
 	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("get method"));
 	FTimerHandle TimerHandle;
-	switch(Status)
+	LightStatus Stat = static_cast<LightStatus>(Status);
+	switch (Stat)
 	{
-		case LightsTurnOn:
-			HideShowLights(false);
-			break;
-		case LightsTurnOff:
-			HideShowLights(true);
-			break;
-		case LightsFlicker:
-			HideShowLights(false); //show lights if they're off
-			GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &ALightSwitch::FlickerLights, FlickerRate, true, 0.0f);
-			//FlickerLights();
-			break;
-		case LightsDim:
-			DimLights(Dim);
-			break;
-		default:
-			break;
+	case LightStatus::LightsTurnOn:
+		HideShowLights(false);
+		break;
+	case LightStatus::LightsTurnOff:
+		HideShowLights(true);
+		break;
+	case LightStatus::LightsFlicker:
+		HideShowLights(false); //show lights if they're off
+		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &ALightSwitch::FlickerLights, FlickerRate, true, 0.0f);
+		//FlickerLights();
+		break;
+	case LightStatus::LightsDim:
+		DimLights(Dim);
+		break;
+	default:
+		break;
 	}
 }
 
-void ALightSwitch::SetLightActionOn(TEnumAsByte<LightStatus> Status)
+uint8 ALightSwitch::GetActionOff()
 {
-	On = Status;
+	return static_cast<uint8>(Off);
+
 }
-void ALightSwitch::SetLightActionOff(TEnumAsByte<LightStatus>  Status)
+uint8 ALightSwitch::GetActionOn()
 {
-	Off = Status;
+	return static_cast<uint8>(On);
+
 }
 
-TEnumAsByte<LightStatus> ALightSwitch::GetLightActionOn()
+void ALightSwitch::SetActionOn(uint8 Status)
 {
-	return On;
+	On = static_cast<LightStatus>(Status);
+
 }
-TEnumAsByte<LightStatus> ALightSwitch::GetLightActionOff()
+void ALightSwitch::SetActionOff(uint8 Status)
 {
-	return Off;
+	Off = static_cast<LightStatus>(Status);
+
 }

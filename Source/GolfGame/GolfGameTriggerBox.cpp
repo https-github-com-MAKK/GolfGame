@@ -24,7 +24,7 @@ void AGolfGameTriggerBox::OnOverlapBegin(class AActor* OverlappedActor, class AA
 {
     if (OtherActor && (OtherActor != this) && OtherActor == ActorToCheck) {
         OverlapBeginAction();
-        GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Overlap begin actor"));
+       GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Overlap begin actor"));
 
     }
 }

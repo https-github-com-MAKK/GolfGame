@@ -18,13 +18,7 @@ ANoTelelportingTriggerBox::ANoTelelportingTriggerBox()
 void ANoTelelportingTriggerBox::BeginPlay()
 {
     Super::BeginPlay();
-    if (ActorToCheck == NULL) {
-        GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("ctor null"));
-    }
     Ball = dynamic_cast<ABall*>(ActorToCheck);
-    if (Ball == NULL) {
-        GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Null bitch"));
-    }
 }
 
 
