@@ -47,6 +47,7 @@ ABall::ABall()
 void ABall::BeginPlay()
 {
 	Super::BeginPlay();
+	CanBeTeleportedTo = CanTeleportToInBeginning;
 	
 }
 
@@ -57,13 +58,23 @@ void ABall::Tick(float DeltaTime)
 
 }
 
-void ABall::OnOverlapBegin(class UPrimitiveComponent* OverlappedComp, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+bool ABall::GetCanBeTeleportedTo()
 {
-	//SparksParticleSystem->ToggleActive();
+	return CanBeTeleportedTo;
 }
 
-void ABall::OnOverlapEnd(class UPrimitiveComponent* OverlappedComp, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+void ABall::SetCanBeTeleportedTo(bool CanTeleportTo)
 {
-	//SparksParticleSystem->ToggleActive();
+	CanBeTeleportedTo = CanTeleportTo;
+}
+
+bool ABall::GetHasBeenSummonedOnce()
+{
+	return CanBeTeleportedTo;
+}
+
+void ABall::SetHasBeenSummonedOnce(bool HasSummoned)
+{
+	CanBeTeleportedTo = HasSummoned;
 }
 

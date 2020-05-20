@@ -22,7 +22,13 @@ public:
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
-
+	//default the ball cannot be telported to in beginning
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category= BallOptions)
+		bool CanTeleportToInBeginning;
+	UPROPERTY(VisibleAnywhere, Category = BallOptions)
+		bool CanBeTeleportedTo;
+	UPROPERTY(VisibleAnywhere, Category = BallOptions)
+		bool HasBeenSummoned;
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
@@ -42,10 +48,12 @@ public:
 	UPROPERTY(EditAnywhere, Category = Sound)
 		class USoundCue* CrackleSound;
 
-	UFUNCTION()
-		void OnOverlapBegin(class UPrimitiveComponent* OverlappedComp, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
+	UPROPERTY(EditAnywhere)
+		class UMaterial* BallMaterial;
 
 	UFUNCTION()
-		void OnOverlapEnd(class UPrimitiveComponent* OverlappedComp, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
-
+		bool GetCanBeTeleportedTo();
+		void SetCanBeTeleportedTo(bool CanTeleportTo);
+		bool GetHasBeenSummonedOnce();
+		void SetHasBeenSummonedOnce(bool HasSummoned);
 };

@@ -37,6 +37,7 @@ public:
 
 	UPROPERTY(EditAnywhere, Category = "Custom")
 		uint32 bMouseUp : 1;
+
 	UPROPERTY(EditAnywhere, Category = Projectile)
 		class ABall* Ball;
 
@@ -49,6 +50,9 @@ public:
 	UPROPERTY(EditAnywhere)
 		class USoundBase* CurrentMusicCue;
 
+public:
+	// Sets default values for this character's properties
+	AGolfGameCharacter();
 
 protected:
 	// Called when the game starts or when spawned

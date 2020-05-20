@@ -5,6 +5,7 @@
 #include "Components/InputComponent.h"
 #include "Ball.h"
 #include "Kismet/GameplayStatics.h"
+#include "Engine/Engine.h"
 
 // Sets default values
 AGolfGameCharacter::AGolfGameCharacter()
@@ -101,6 +102,8 @@ void AGolfGameCharacter::GrabOrRelease()
 			break;
 		}
 	}
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("grab or release"));
+
 }
 
 void AGolfGameCharacter::MouseDown()
@@ -112,6 +115,8 @@ void AGolfGameCharacter::MouseDown()
 		UE_LOG(LogTemp, Warning, TEXT("Throw succeeded."));
 	}
 	else UE_LOG(LogTemp, Warning, TEXT("Throw failed."));
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("mouse down"));
+
 }
 
 void AGolfGameCharacter::MouseUp()
@@ -134,6 +139,8 @@ void AGolfGameCharacter::BeginTouch(const ETouchIndex::Type FingerIndex, const F
 	TouchItem.FingerIndex = FingerIndex;
 	TouchItem.Location = Location;
 	TouchItem.bMoved = false;
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("touvh method"));
+
 }
 
 void AGolfGameCharacter::EndTouch(const ETouchIndex::Type FingerIndex, const FVector Location)
@@ -177,15 +184,19 @@ void AGolfGameCharacter::LookUpAtRate(const float Rate)
 
 void AGolfGameCharacter::Teleport()
 {
-	if (Ball != nullptr) {
+	if (Ball != nullptr && Ball->GetCanBeTeleportedTo() && Ball->GetHasBeenSummonedOnce()) {
 		FVector ballLocation = Ball->GetActorLocation();
 		SetActorLocation(ballLocation, false);
+	}else{
+
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Player cant teleport"));
 	}
 
 }
 
 void AGolfGameCharacter::SummonBall()
 {
+	Ball->SetHasBeenSummonedOnce(true);
 	if (Ball != nullptr) {
 		FVector charLocation = GetActorLocation();
 		Ball->SetActorLocation(charLocation, false);
