@@ -50,10 +50,6 @@ public:
 	UPROPERTY(EditAnywhere)
 		class USoundBase* CurrentMusicCue;
 
-public:
-	// Sets default values for this character's properties
-	AGolfGameCharacter();
-
 protected:
 	// Called when the game starts or when spawned
 	void BeginPlay() override;
