@@ -63,9 +63,19 @@ bool ABall::GetCanBeTeleportedTo()
 	return CanBeTeleportedTo;
 }
 
+bool ABall::GetCanBallBeSummoned()
+{
+    return CanBallBeSummoned;
+}
+
 void ABall::SetCanBeTeleportedTo(bool CanTeleportTo)
 {
 	CanBeTeleportedTo = CanTeleportTo;
+}
+
+void ABall::SetCanBallBeSummoned(bool CanBeSummoned)
+{
+    CanBeTeleportedTo = CanBeSummoned;
 }
 
 bool ABall::GetHasBeenSummonedOnce()

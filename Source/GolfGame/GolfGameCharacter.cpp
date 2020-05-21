@@ -27,6 +27,8 @@ AGolfGameCharacter::AGolfGameCharacter()
 	PhysicsHandle = CreateDefaultSubobject<UPhysicsHandleComponent>(TEXT("PhysicsHandle"));
 
 	DialoguePlayer = CreateDefaultSubobject<UAudioComponent>(TEXT("Dialogue Player"));
+	DialoguePlayer->SetAutoActivate(false);
+	
 	MusicPlayer = CreateDefaultSubobject<UAudioComponent>(TEXT("Music Player"));
 }
 
@@ -34,6 +36,7 @@ AGolfGameCharacter::AGolfGameCharacter()
 void AGolfGameCharacter::BeginPlay()
 {
 	Super::BeginPlay();
+	
 }
 
 // Called every frame
@@ -187,9 +190,14 @@ void AGolfGameCharacter::Teleport()
 	if (Ball != nullptr && Ball->GetCanBeTeleportedTo() && Ball->GetHasBeenSummonedOnce()) {
 		FVector ballLocation = Ball->GetActorLocation();
 		SetActorLocation(ballLocation, false);
-	}else{
-
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Player cant teleport"));
+	}
+	else
+	{
+		if(NeedToTeleportBallCue != nullptr)
+		{
+			DialoguePlayer->SetSound(NeedToTeleportBallCue);
+			DialoguePlayer->Play();
+		}
 	}
 
 }
@@ -201,6 +209,16 @@ void AGolfGameCharacter::SummonBall()
 		FVector charLocation = GetActorLocation();
 		Ball->SetActorLocation(charLocation, false);
 	}
+
+	if(!Ball->GetCanBallBeSummoned())
+	{
+		if(CannotSummonBallCue != nullptr)
+		{
+			DialoguePlayer->SetSound(CannotSummonBallCue);
+			DialoguePlayer->Play();
+		}
+	}
+	
 }
 
 void AGolfGameCharacter::PlayDialogueCue()

@@ -50,6 +50,9 @@ public:
 	UPROPERTY(EditAnywhere)
 		class USoundBase* CurrentMusicCue;
 
+	UPROPERTY(EditAnywhere, Category = Sound)
+		class USoundBase* CannotSummonBallCue;
+
 protected:
 	// Called when the game starts or when spawned
 	void BeginPlay() override;
@@ -62,6 +65,9 @@ public:
 	/** Base look up/down rate, in deg/sec. Other scaling may affect final rate. */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera)
 		float BaseLookUpRate;
+
+	UPROPERTY(EditAnywhere, Category = Sound)
+		class USoundBase* NeedToTeleportBallCue;
 
 
 protected:
@@ -126,8 +132,8 @@ public:
 	UFUNCTION()
 		void ChangeMusicCue(USoundBase* NewMusic);
 
-private:
-
+private: 
+	
 	UPROPERTY()
 		class USoundBase* CurrentDialogueCue;
 

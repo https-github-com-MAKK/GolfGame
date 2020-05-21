@@ -21,6 +21,8 @@ void AGoalTriggerBox::OverlapBeginAction()
     if (Ball) {
         GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("AGoalTriggerBox: Ball Overlap Begin"));
         IsBallInGoal = true;
+        Ball->SetCanBallBeSummoned(false);
+        Ball->SetCanBeTeleportedTo(false);
     }
 }
 
@@ -30,6 +32,8 @@ void AGoalTriggerBox::OverlapEndAction()
     GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("AGoalTriggerBox: Ball Overlap End"));
     if (Ball) {
         IsBallInGoal = false;
+        Ball->SetCanBallBeSummoned(true);
+        Ball->SetCanBeTeleportedTo(true);
     }
 }
 
