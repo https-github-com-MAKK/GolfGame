@@ -197,9 +197,12 @@ void AGolfGameCharacter::Teleport()
 void AGolfGameCharacter::SummonBall()
 {
 	Ball->SetHasBeenSummonedOnce(true);
+	
 	if (Ball != nullptr) {
 		FVector charLocation = GetActorLocation();
-		Ball->SetActorLocation(charLocation, false);
+		FVector CameraLocation=FirstPersonCameraComponent->GetComponentLocation();
+		GrabberClass->TeleportBall(Ball, CameraLocation, PhysicsHandle);
+
 	}
 }
 

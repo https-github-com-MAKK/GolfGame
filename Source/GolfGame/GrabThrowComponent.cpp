@@ -1,8 +1,11 @@
 #include "GrabThrowComponent.h"
+
+#include "Ball.h"
 #include "PhysicsEngine/PhysicsHandleComponent.h"
 #include "Camera/CameraComponent.h"
 #include "GameFramework/Actor.h"
 #include "Components/PrimitiveComponent.h"
+#include "Engine/Engine.h"
 #include "Kismet/KismetSystemLibrary.h"
 #include "Kismet/GameplayStatics.h"
 
@@ -42,6 +45,7 @@ bool UGrabThrowComponent::Grab(UObject* WorldContextObject, UPhysicsHandleCompon
 		HitComponent = Hit.GetComponent();
 		const auto Distance = MyLocation - HitComponent->GetComponentLocation();
 		PlayerObjectDist = Distance.Size();
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("component name %p"), Hit.GetComponent()));
 
 		if (Hit.GetActor() != nullptr && HitComponent != nullptr && Ph != nullptr && HitComponent->IsSimulatingPhysics() && PlayerObjectDist <= MinGrabDist)
 		{
@@ -59,6 +63,34 @@ bool UGrabThrowComponent::Grab(UObject* WorldContextObject, UPhysicsHandleCompon
 		return false;
 	}
 	return false;
+}
+void UGrabThrowComponent::TeleportBall(ABall* Ball, FVector PlayerLocation, UPhysicsHandleComponent* Ph)
+{
+
+	HitComponent = Ball->SphereVisual;
+	const auto MyLocation = GetOwner()->GetActorLocation();
+	const auto Distance = MyLocation - HitComponent->GetComponentLocation();
+	PlayerObjectDist = Distance.Size();
+
+if (HitComponent != nullptr && Ph != nullptr && HitComponent->IsSimulatingPhysics())
+	{
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("grabbing ball if "));
+
+		HitComponent->SetEnableGravity(true);
+		bPhysicsHandleActive = true;
+		PlayerObjectDist = SnapDistance;
+		bObjectHeld = true;
+		if (GrabSound != nullptr)
+		{
+			UGameplayStatics::PlaySoundAtLocation(this, GrabSound, GetOwner()->GetActorLocation());
+		}
+		
+		FHitResult Hit;
+		Ph->GrabComponentAtLocation(HitComponent, Hit.BoneName, HitComponent->GetCenterOfMass());
+
+
+	}
+	
 }
 
 bool UGrabThrowComponent::Throw(UPhysicsHandleComponent* Ph, UCameraComponent* FPCameraComponent, const bool MouseDown)

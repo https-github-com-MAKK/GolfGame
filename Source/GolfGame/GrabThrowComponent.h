@@ -5,6 +5,7 @@
 #include "GameFramework/Actor.h"
 #include "GrabThrowComponent.generated.h"
 
+class ABall;
 class UCameraComponent;
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class GOLFGAME_API UGrabThrowComponent final : public UActorComponent
@@ -88,6 +89,6 @@ public:
 	bool Release(class UPhysicsHandleComponent* Ph, bool bThrow);
 
 	void TraceHandleLocation(class UPhysicsHandleComponent* Ph, UCameraComponent* FPCameraComponent);
-
+	void TeleportBall (ABall* Ball, FVector PlayerLocation, UPhysicsHandleComponent* Ph);
 	FORCEINLINE bool GetIsObjectHeld() const { return bObjectHeld; }
 };
