@@ -6,6 +6,7 @@
 #include "PhysicsEngine/PhysicsHandleComponent.h"
 #include "Components/AudioComponent.h"
 #include "Sound/SoundBase.h"
+#include "Components/ShapeComponent.h"
 #include "GolfGameCharacter.generated.h"
 
 
@@ -31,7 +32,15 @@ public:
 	//PhysicsHandle class
 	UPROPERTY(EditAnywhere, Category = "Custom")
 		class UPhysicsHandleComponent* PhysicsHandle;
-
+	
+	UPROPERTY(EditAnywhere, Category = "Custom")
+		class USphereComponent* BallSummonLocation;
+	/*UPROPERTY(EditAnywhere, Category = "Custom")
+		float x;
+	UPROPERTY(EditAnywhere, Category = "Custom")
+		float y;
+	UPROPERTY(EditAnywhere, Category = "Custom")
+		float z;*/
 	UPROPERTY(EditAnywhere, Category = "Custom")
 		uint32 bMouseDown : 1;
 

@@ -84,9 +84,10 @@ if (HitComponent != nullptr && Ph != nullptr && HitComponent->IsSimulatingPhysic
 		{
 			UGameplayStatics::PlaySoundAtLocation(this, GrabSound, GetOwner()->GetActorLocation());
 		}
-		
+		Ball->SetActorLocation(PlayerLocation);
 		FHitResult Hit;
-		Ph->GrabComponentAtLocation(HitComponent, Hit.BoneName, HitComponent->GetCenterOfMass());
+		Ph->GrabComponentAtLocationWithRotation(HitComponent, Hit.BoneName, HitComponent->GetCenterOfMass(),HitComponent->GetComponentRotation());
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("updating"));
 
 
 	}

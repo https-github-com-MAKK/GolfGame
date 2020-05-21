@@ -24,10 +24,15 @@ AGolfGameCharacter::AGolfGameCharacter()
 	FirstPersonCameraComponent->bUsePawnControlRotation = true;
 
 	GrabberClass = CreateDefaultSubobject<UGrabThrowComponent>(TEXT("GrabberClass"));
+	BallSummonLocation = CreateDefaultSubobject<USphereComponent>(TEXT("Ball Teleportation Position"));
+	BallSummonLocation->SetupAttachment(GetCapsuleComponent());
+	BallSummonLocation->SetRelativeLocation(FVector(150.0f, 1.75f, 44.f));
+
 	PhysicsHandle = CreateDefaultSubobject<UPhysicsHandleComponent>(TEXT("PhysicsHandle"));
 
 	DialoguePlayer = CreateDefaultSubobject<UAudioComponent>(TEXT("Dialogue Player"));
 	MusicPlayer = CreateDefaultSubobject<UAudioComponent>(TEXT("Music Player"));
+	
 }
 
 // Called when the game starts or when spawned
@@ -201,7 +206,7 @@ void AGolfGameCharacter::SummonBall()
 	if (Ball != nullptr) {
 		FVector charLocation = GetActorLocation();
 		FVector CameraLocation=FirstPersonCameraComponent->GetComponentLocation();
-		GrabberClass->TeleportBall(Ball, CameraLocation, PhysicsHandle);
+		GrabberClass->TeleportBall(Ball, BallSummonLocation->GetComponentLocation(), PhysicsHandle);
 
 	}
 }
