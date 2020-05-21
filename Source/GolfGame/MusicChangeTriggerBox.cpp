@@ -8,20 +8,25 @@
 
 AMusicChangeTriggerBox::AMusicChangeTriggerBox()
 {
-	OnActorBeginOverlap.AddDynamic(this, &AMusicChangeTriggerBox::OnOverlapBegin);
+
 }
 
 void AMusicChangeTriggerBox::BeginPlay()
 {
 	Super::BeginPlay();
-	DrawDebugBox(GetWorld(), GetActorLocation(), GetComponentsBoundingBox().GetExtent(), FColor::Blue, true, -1, 0, 5);
+	Player = dynamic_cast<AGolfGameCharacter*>(ActorToCheck);
 }
 
 
-void AMusicChangeTriggerBox::OnOverlapBegin(class AActor* OverlappedActor, class AActor* OtherActor)
+void AMusicChangeTriggerBox::OverlapBeginAction()
 {
-	if(Music != nullptr && OtherActor == Player && OtherActor && OtherActor != this)
+	if(Music != nullptr && Player != NULL)
 	{
 		Player->ChangeDialogueCue(Music);
 	}
+}
+
+void AMusicChangeTriggerBox::OverlapEndAction()
+{
+	
 }

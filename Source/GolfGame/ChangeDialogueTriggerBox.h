@@ -6,6 +6,7 @@
 #include "Engine/TriggerBox.h"
 #include "GolfGameCharacter.h"
 #include "Sound/SoundBase.h"
+#include "GolfGameTriggerBox.h"
 #include "ChangeDialogueTriggerBox.generated.h"
 
 
@@ -17,7 +18,7 @@ enum class ETriggeringActor
 };
 
 UCLASS()
-class GOLFGAME_API AChangeDialogueTriggerBox : public ATriggerBox
+class GOLFGAME_API AChangeDialogueTriggerBox : public AGolfGameTriggerBox
 {
 	GENERATED_BODY()
 
@@ -25,25 +26,16 @@ protected:
 
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
-
+	virtual void OverlapBeginAction() override;
+	virtual void OverlapEndAction() override;
 public:
 
 	AChangeDialogueTriggerBox();
 	
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = Dialogue)
 		class USoundBase* Dialogue;
-
-	UPROPERTY(EditAnywhere)
-		class AGolfGameCharacter* Player;
-
-	UPROPERTY(EditAnywhere)
-		class ABall* Ball;
-
-	UPROPERTY(EditAnywhere)
-		ETriggeringActor TriggeringActor = ETriggeringActor::TriggeredByPlayer;
-
-	UFUNCTION()
-		void OnOverlapBegin(class AActor* OverlappedActor, class AActor* OtherActor);
+	UPROPERTY(EditAnywhere, Category=Dialogue)
+		class AGolfGameCharacter* PlayerForAudio;
 
 private:
 

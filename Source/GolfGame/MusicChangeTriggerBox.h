@@ -5,13 +5,14 @@
 #include "CoreMinimal.h"
 #include "Engine/TriggerBox.h"
 #include "GolfGameCharacter.h"
+#include "GolfGameTriggerBox.h"
 #include "MusicChangeTriggerBox.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class GOLFGAME_API AMusicChangeTriggerBox : public ATriggerBox
+class GOLFGAME_API AMusicChangeTriggerBox : public AGolfGameTriggerBox
 {
 	GENERATED_BODY()
 
@@ -31,6 +32,6 @@ public:
 		class AGolfGameCharacter* Player;
 
 	UFUNCTION()
-		void OnOverlapBegin(class AActor* OverlappedActor, class AActor* OtherActor);
-	
+		virtual void OverlapBeginAction() override;
+		virtual void OverlapEndAction() override;
 };

@@ -1,4 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "WindTriggerBox.h"
 #include "PlatformGravityTriggerBox.h"
@@ -10,12 +9,9 @@
 #include "GameFramework/Pawn.h"
 
 
-
-
 AWindTriggerBox::AWindTriggerBox()
 {
-	OnActorBeginOverlap.AddDynamic(this, &AWindTriggerBox::OnOverlapBegin);
-	OnActorEndOverlap.AddDynamic(this, &AWindTriggerBox::OnOverlapEnd);
+
 }
 
 void AWindTriggerBox::BeginPlay() 
@@ -24,26 +20,22 @@ void AWindTriggerBox::BeginPlay()
 
 }
 
-void AWindTriggerBox::OnOverlapBegin(class AActor* OverlappedActor,  class AActor* OtherActor) 
+void AWindTriggerBox::OverlapBeginAction()
 {
-		
-
 	 cameraForward = GetActorForwardVector();
-	 if (OtherActor && OtherActor != this && OtherActor == Ball && WindOn == false)
+	 if (WindOn == false)
 	 {
-	
-		 AddForce(OverlappedActor, OtherActor);
-
-		 
+		 AddForce();
 	 }
 }
 
-void AWindTriggerBox::AddForce( class AActor* OverlappedActor, class AActor* OtherActor)
+void AWindTriggerBox::AddForce()
 {
 	
 
 	WindOn = true;
-	meshRootComp = Cast<UStaticMeshComponent>(OtherActor->GetRootComponent());
+	ABall * Ball =  dynamic_cast<ABall*>(ActorToCheck);
+	meshRootComp = Cast<UStaticMeshComponent>(Ball->GetRootComponent());
 	GEngine->AddOnScreenDebugMessage(-1, 1.5, FColor::White, TEXT("ForceAdded"));
 
 	GetWorld()->GetTimerManager().SetTimer(InputADelayManager, this, &AWindTriggerBox::Tick, .1F, true);
@@ -52,12 +44,10 @@ void AWindTriggerBox::AddForce( class AActor* OverlappedActor, class AActor* Oth
 
 void AWindTriggerBox::Tick()
 {
-
-	meshRootComp->AddForce(cameraForward * force * meshRootComp->GetMass());
-	
+	meshRootComp->AddForce(cameraForward * force * meshRootComp->GetMass());	
 }
 
-void AWindTriggerBox::OnOverlapEnd(AActor* OverlappedActor, AActor* OtherActor)
+void AWindTriggerBox::OverlapEndAction()
 {
 	if (GetWorld()->GetTimerManager().IsTimerActive(InputADelayManager)) 
 	{

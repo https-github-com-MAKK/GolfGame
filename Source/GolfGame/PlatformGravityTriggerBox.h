@@ -5,13 +5,14 @@
 #include "CoreMinimal.h"
 #include "Engine/TriggerBox.h"
 #include "Ball.h"
+#include "GolfGameTriggerBox.h"
 #include "PlatformGravityTriggerBox.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class GOLFGAME_API APlatformGravityTriggerBox : public ATriggerBox
+class GOLFGAME_API APlatformGravityTriggerBox : public AGolfGameTriggerBox
 {
 	GENERATED_BODY()
 
@@ -24,20 +25,10 @@ public:
 	// constructor sets default values for this actor's properties
 	APlatformGravityTriggerBox();
 
-	// overlap begin function
-	UFUNCTION()
-		void OnOverlapBegin(class AActor* OverlappedActor, class AActor* OtherActor);
-
-	// overlap end function
-	UFUNCTION()
-		void OnOverlapEnd(class AActor* OverlappedActor, class AActor* OtherActor);
-
-	// specific actor for overlap
-	UPROPERTY(EditAnywhere)
-		class ABall* Ball;
-
 	UPROPERTY(EditAnywhere)
 		float GravityInsideTriggerBox = -100.0;
+	virtual void OverlapBeginAction() override;
+	virtual void OverlapEndAction() override;
 
 private:
 

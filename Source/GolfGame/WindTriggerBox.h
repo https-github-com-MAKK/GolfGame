@@ -1,27 +1,24 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+
 
 #pragma once
 
 #include "TimerManager.h"
 #include "CoreMinimal.h"
-#include "PlatformGravityTriggerBox.h"
+#include "GolfGameTriggerBox.h"
 #include "WindTriggerBox.generated.h"
 
 
-/**
- * 
- */
 UCLASS()
-class GOLFGAME_API AWindTriggerBox : public ATriggerBox
+class GOLFGAME_API AWindTriggerBox : public AGolfGameTriggerBox
 {
 	GENERATED_BODY()
-	
+
 protected:
 
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-	void AddForce(class AActor* OverlappedActor, class AActor* OtherActor);
+	void AddForce();
 
 	FTimerHandle InputADelayManager;
 
@@ -33,24 +30,17 @@ public:
 	AWindTriggerBox();
 
 	// overlap begin function
-	UFUNCTION()
-		void OnOverlapBegin(class AActor* OverlappedActor, class AActor* OtherActor);
-
-	// overlap end function
-	UFUNCTION()
-		void OnOverlapEnd(class AActor* OverlappedActor, class AActor* OtherActor);
-
-	UPROPERTY(EditAnywhere)
-		class ABall* Ball;
+	virtual void OverlapBeginAction() override;
+	virtual void OverlapEndAction() override;
 
 	UPROPERTY(EditAnywhere)
 		int force = 1000;
 private:
-		bool WindOn;
+	bool WindOn;
 
-		FVector cameraForward;
+	FVector cameraForward;
 
-		FTimerHandle loopHandle;
+	FTimerHandle loopHandle;
 
-		UStaticMeshComponent* meshRootComp;
+	UStaticMeshComponent* meshRootComp;
 };

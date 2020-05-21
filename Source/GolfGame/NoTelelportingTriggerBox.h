@@ -25,5 +25,5 @@ public:
 	virtual void OverlapBeginAction() override;
 	virtual void OverlapEndAction() override;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-		bool IsBallInNoTeleportationZone;
+	bool IsBallInNoTeleportationZone;
 };
