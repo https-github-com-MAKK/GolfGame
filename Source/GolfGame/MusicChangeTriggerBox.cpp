@@ -14,15 +14,14 @@ AMusicChangeTriggerBox::AMusicChangeTriggerBox()
 void AMusicChangeTriggerBox::BeginPlay()
 {
 	Super::BeginPlay();
-	Player = dynamic_cast<AGolfGameCharacter*>(ActorToCheck);
 }
 
 
 void AMusicChangeTriggerBox::OverlapBeginAction()
 {
-	if(Music != nullptr && Player != NULL)
+	if(Music != nullptr && PlayerForAudio != NULL)
 	{
-		Player->ChangeDialogueCue(Music);
+		PlayerForAudio->ChangeDialogueCue(Music);
 	}
 }
 

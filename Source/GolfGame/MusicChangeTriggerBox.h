@@ -25,11 +25,11 @@ public:
 
 	AMusicChangeTriggerBox();
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category =Music)
 		class USoundBase* Music;
 
-	UPROPERTY(EditAnywhere)
-		class AGolfGameCharacter* Player;
+	UPROPERTY(EditAnywhere, Category = Music)
+		class AGolfGameCharacter* PlayerForAudio;
 
 	UFUNCTION()
 		virtual void OverlapBeginAction() override;
