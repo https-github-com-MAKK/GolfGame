@@ -33,3 +33,12 @@ void AGoalTriggerBox::OverlapEndAction()
     }
 }
 
+bool AGoalTriggerBox::GetIsBallInGoal()
+{
+    return IsBallInGoal;
+}
+
+void AGoalTriggerBox::SetIsBallInGoal(bool BallInGoal)
+{
+    IsBallInGoal=BallInGoal;
+}

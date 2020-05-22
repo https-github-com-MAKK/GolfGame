@@ -19,12 +19,13 @@ protected:
 	virtual void BeginPlay() override;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = References)
 		AActor* ActorToCheck;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = GolfGameTriggerBox)
+		bool ShowDrawDebugBox=true;
 
 public:
 	AGolfGameTriggerBox();
 	UFUNCTION()
 		void OnOverlapBegin(class AActor* OverlappedActor, class AActor* OtherActor);
-	UFUNCTION()
 		void OnOverlapEnd(class AActor* OverlappedActor, class AActor* OtherActor);
 		virtual void OverlapEndAction() PURE_VIRTUAL(AGolfGameTriggerBox::OverlapEndAction,);
 		virtual void OverlapBeginAction() PURE_VIRTUAL(AGolfGameTriggerBox::OverlapBeginAction,);

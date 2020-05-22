@@ -24,13 +24,15 @@ protected:
 		AActor* DoorLight;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = References)
 		AActor* GoalLight;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+		bool IsBallInGoal;
 
 public:
 
 	AGoalTriggerBox();
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-		bool IsBallInGoal;
 	virtual void OverlapBeginAction() override;
 	virtual void OverlapEndAction() override;
+	bool GetIsBallInGoal();
+	void SetIsBallInGoal(bool BallInGoal);
 
 };

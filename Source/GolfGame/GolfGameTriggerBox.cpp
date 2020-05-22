@@ -16,8 +16,11 @@ AGolfGameTriggerBox::AGolfGameTriggerBox()
 void AGolfGameTriggerBox::BeginPlay()
 {
     Super::BeginPlay();
-    DrawDebugBox(GetWorld(), GetActorLocation(), GetComponentsBoundingBox().GetExtent(), FColor::Purple, true, -1, 0, 5);
-
+    if (ShowDrawDebugBox == true)
+    {
+        DrawDebugBox(GetWorld(), GetActorLocation(), GetComponentsBoundingBox().GetExtent(), FColor::Purple, true, -1, 0, 5);
+    }
+   
 }
 
 void AGolfGameTriggerBox::OnOverlapBegin(class AActor* OverlappedActor, class AActor* OtherActor)
@@ -36,3 +39,5 @@ void AGolfGameTriggerBox::OnOverlapEnd(class AActor* OverlappedActor, class AAct
     	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Overlap end actor"));
     }
 }
+
+

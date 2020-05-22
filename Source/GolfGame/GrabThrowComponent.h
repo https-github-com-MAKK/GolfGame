@@ -89,6 +89,6 @@ public:
 	bool Release(class UPhysicsHandleComponent* Ph, bool bThrow);
 
 	void TraceHandleLocation(class UPhysicsHandleComponent* Ph, UCameraComponent* FPCameraComponent);
-	void TeleportBall (ABall* Ball, FVector PlayerLocation, UPhysicsHandleComponent* Ph);
+	void TeleportBall (ABall* Ball, FVector TeleportLocation, UPhysicsHandleComponent* Ph);
 	FORCEINLINE bool GetIsObjectHeld() const { return bObjectHeld; }
 };

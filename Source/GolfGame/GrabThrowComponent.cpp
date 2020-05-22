@@ -64,15 +64,12 @@ bool UGrabThrowComponent::Grab(UObject* WorldContextObject, UPhysicsHandleCompon
 	}
 	return false;
 }
-void UGrabThrowComponent::TeleportBall(ABall* Ball, FVector PlayerLocation, UPhysicsHandleComponent* Ph)
+void UGrabThrowComponent::TeleportBall(ABall* Ball, FVector TeleportLocation, UPhysicsHandleComponent* Ph)
 {
 
 	HitComponent = Ball->SphereVisual;
-	const auto MyLocation = GetOwner()->GetActorLocation();
-	const auto Distance = MyLocation - HitComponent->GetComponentLocation();
-	PlayerObjectDist = Distance.Size();
 
-if (HitComponent != nullptr && Ph != nullptr && HitComponent->IsSimulatingPhysics())
+	if (HitComponent != nullptr && Ph != nullptr && HitComponent->IsSimulatingPhysics())
 	{
 		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("grabbing ball if "));
 
@@ -84,12 +81,10 @@ if (HitComponent != nullptr && Ph != nullptr && HitComponent->IsSimulatingPhysic
 		{
 			UGameplayStatics::PlaySoundAtLocation(this, GrabSound, GetOwner()->GetActorLocation());
 		}
-		Ball->SetActorLocation(PlayerLocation);
+		Ball->SetActorLocation(TeleportLocation);
 		FHitResult Hit;
 		Ph->GrabComponentAtLocationWithRotation(HitComponent, Hit.BoneName, HitComponent->GetCenterOfMass(),HitComponent->GetComponentRotation());
 		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("updating"));
-
-
 	}
 	
 }
