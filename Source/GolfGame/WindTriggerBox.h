@@ -49,7 +49,8 @@ public:
 	UPROPERTY(EditAnywhere)
 		bool IsTriggered = false;
 
-	bool IsUsable;
+	UPROPERTY(BlueprintReadWrite)
+		bool IsUsable;
 
 
 	void SetIsUsable(bool choice)
