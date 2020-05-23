@@ -27,17 +27,6 @@ void AWindTriggerBox::BeginPlay()
 
 void AWindTriggerBox::OnOverlapBegin(class AActor* OverlappedActor,  class AActor* OtherActor) 
 {
-	if(IsUsable)
-		GEngine->AddOnScreenDebugMessage(-1, 1.5, FColor::White, TEXT("ISUSable true"));
-
-	if (!IsUsable)
-		GEngine->AddOnScreenDebugMessage(-1, 1.5, FColor::White, TEXT("ISUSable false"));
-
-	if (IsTriggered)
-		GEngine->AddOnScreenDebugMessage(-1, 1.5, FColor::White, TEXT("ISTriggered true"));
-
-	if (!IsTriggered)
-		GEngine->AddOnScreenDebugMessage(-1, 1.5, FColor::White, TEXT("ISTriggered true"));
 
 	 cameraForward = GetActorForwardVector();
 	 if (OtherActor && OtherActor != this && OtherActor == Ball && !WindOn && ((IsTriggered && IsUsable) || (!IsTriggered && !IsUsable)))
@@ -45,12 +34,7 @@ void AWindTriggerBox::OnOverlapBegin(class AActor* OverlappedActor,  class AActo
 		 AddForce(OverlappedActor, OtherActor);
 		 
 	 }
-	/* cameraForward = GetActorForwardVector();
-	 if (OtherActor && OtherActor != this && OtherActor == Ball && !WindOn)
-	 {
-		 AddForce(OverlappedActor, OtherActor);
 
-	 }*/
 }
 
 void AWindTriggerBox::AddForce( class AActor* OverlappedActor, class AActor* OtherActor)
