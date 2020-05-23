@@ -3,6 +3,7 @@
 #include "GameFramework/Character.h"
 #include "GrabThrowComponent.h"
 #include "PhysicsEngine/PhysicsHandleComponent.h"
+#include "Kismet/GameplayStatics.h"
 #include "GolfGameCharacter.generated.h"
 
 class UInputComponent;
@@ -22,6 +23,7 @@ class AGolfGameCharacter final : public ACharacter
 	//PhysicsHandle class
 	UPROPERTY(EditAnywhere)
 		UPhysicsHandleComponent* PhysicsHandle;
+
 	
 public:
 	// Sets default values for this character's properties
@@ -33,12 +35,21 @@ protected:
 
 public:	
 	/** Base turn rate, in deg/sec. Other scaling may affect final turn rate. */
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera)
+	UPROPERTY(EditAnywhere)
 		float BaseTurnRate;
 
 	/** Base look up/down rate, in deg/sec. Other scaling may affect final rate. */
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera)
+	UPROPERTY(EditAnywhere)
 		float BaseLookUpRate;
+
+	UPROPERTY(EditAnywhere)
+		float BaseSpeed;
+
+	UPROPERTY(EditAnywhere)
+		float RunningSpeed;
+
+	UPROPERTY(EditAnywhere)
+		FVector CameraPosition;
 
 protected:
 	/** Handles moving forward/backward */
@@ -49,6 +60,10 @@ protected:
 	void GrabOrRelease();
 
 	void MouseDown();
+
+	void Walk();
+
+	void Sprint();
 
 	/**
 	 * Called via input to turn at a given rate.
