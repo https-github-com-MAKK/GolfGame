@@ -5,6 +5,8 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "Components/SphereComponent.h"
+#include "Particles/ParticleSystemComponent.h"
+#include "Components/AudioComponent.h"
 #include "Ball.generated.h"
 
 UCLASS()
@@ -16,24 +18,46 @@ public:
 	// Sets default values for this actor's properties
 	ABall();
 
-	void AddForce();
 
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
-
+	//default the ball cannot be telported to in beginning
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = BallOptions)
+		bool CanTeleportToInBeginning;
+	UPROPERTY(VisibleAnywhere, Category = BallOptions)
+		bool CanBeTeleportedTo;
+	UPROPERTY(VisibleAnywhere, Category = BallOptions)
+		bool HasBeenSummoned;
+	UPROPERTY(EditAnywhere, Category = BallOptions)
+		bool CanBallBeSummoned;
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
-
+	
 	UPROPERTY()
 		USphereComponent* SphereComponent;
 	
 	UPROPERTY(VisibleAnywhere)
-		UStaticMeshComponent* VisualMesh;
+		UStaticMeshComponent* SphereVisual;
+
+	UPROPERTY()
+		UParticleSystemComponent* SparksParticleSystem;
+
+	UPROPERTY(VisibleAnywhere, Category = Sound)
+		class UAudioComponent* CrackleSoundPlayer;
+
+	UPROPERTY(EditAnywhere, Category = Sound)
+		class USoundCue* CrackleSound;
 
 	UPROPERTY(EditAnywhere)
 		class UMaterial* BallMaterial;
-	
 
+	UFUNCTION()
+		bool GetCanBeTeleportedTo();
+		void SetCanBeTeleportedTo(bool CanTeleportTo);
+		bool GetHasBeenSummonedOnce();
+		void SetHasBeenSummonedOnce(bool HasSummoned);
+		bool GetCanBallBeSummoned();
+		void SetCanBallBeSummoned(bool CanBeSummoned);
 };

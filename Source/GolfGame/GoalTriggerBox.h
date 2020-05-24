@@ -6,35 +6,31 @@
 #include "Engine/TriggerBox.h"
 #include "Ball.h"
 #include "Components/LightComponent.h"
+#include "GolfGameTriggerBox.h"
 #include "GoalTriggerBox.generated.h"
 
 
 UCLASS()
-class GOLFGAME_API AGoalTriggerBox : public ATriggerBox
+class GOLFGAME_API AGoalTriggerBox : public AGolfGameTriggerBox
 {
-	GENERATED_BODY()
-
+GENERATED_BODY()
+private:
+	ABall* Ball;
 protected:
-
 	virtual void BeginPlay() override;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category =References)
-		ABall* Ball;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite,Category = References)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = References)
 		AActor* DoorTarget;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = References)
 		AActor* DoorLight;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = References)
 		AActor* GoalLight;
-	
+
 public:
 
 	AGoalTriggerBox();
-	
-	UFUNCTION()
-		void OnOverlapBegin(class AActor* OverlappedActor, class AActor* OtherActor);
-	UFUNCTION()
-		void OnOverlapEnd(class AActor* OverlappedActor, class AActor* OtherActor);
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 		bool IsBallInGoal;
-	
+	virtual void OverlapBeginAction() override;
+	virtual void OverlapEndAction() override;
+
 };
