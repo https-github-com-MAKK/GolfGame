@@ -26,19 +26,6 @@ public:
 		class UCameraComponent* FirstPersonCameraComponent;
 
 	//Grabber class
-
-	UPROPERTY(EditAnywhere)
-		UGrabThrowComponent* GrabberClass;
-
-	//PhysicsHandle class
-	UPROPERTY(EditAnywhere)
-		UPhysicsHandleComponent* PhysicsHandle;
-
-	
-public:
-	// Sets default values for this character's properties
-	AGolfGameCharacter();
-
 	UPROPERTY(EditAnywhere, Category = "Custom")
 		class UGrabThrowComponent* GrabberClass;
 

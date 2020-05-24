@@ -115,18 +115,7 @@ void AGolfGameCharacter::GrabOrRelease()
 
 void AGolfGameCharacter::Sprint()
 {
-
 	GetCharacterMovement()->MaxWalkSpeed = RunningSpeed;
-
-	bMouseUp = false;
-	bMouseDown = true;
-	if (GrabberClass != nullptr && PhysicsHandle != nullptr && FirstPersonCameraComponent != nullptr && GrabberClass->GetIsObjectHeld() && GrabberClass->Throw(PhysicsHandle, FirstPersonCameraComponent, bMouseDown))
-	{
-		UE_LOG(LogTemp, Warning, TEXT("Throw succeeded."));
-	}
-	else UE_LOG(LogTemp, Warning, TEXT("Throw failed."));
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("mouse down"));
-
 }
 
 void AGolfGameCharacter::Walk()
@@ -136,32 +125,9 @@ void AGolfGameCharacter::Walk()
 
 
 void AGolfGameCharacter::MouseDown()
-
-void AGolfGameCharacter::BeginTouch(const ETouchIndex::Type FingerIndex, const FVector Location)
 {
-	if (TouchItem.bIsPressed == true)
-	{
-		return;
-	}
-	/*if ((FingerIndex == TouchItem.FingerIndex) && (TouchItem.bMoved == false))
-	{
-		OnFire();
-	}*/
-	TouchItem.bIsPressed = true;
-	TouchItem.FingerIndex = FingerIndex;
-	TouchItem.Location = Location;
-	TouchItem.bMoved = false;
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("touvh method"));
-
-}
-
-void AGolfGameCharacter::EndTouch(const ETouchIndex::Type FingerIndex, const FVector Location)
-{
-	if (TouchItem.bIsPressed == false)
-	{
-		return;
-	}
-	TouchItem.bIsPressed = false;
+	if (GrabberClass != nullptr && PhysicsHandle != nullptr && FirstPersonCameraComponent != nullptr && GrabberClass->GetIsObjectHeld())
+		GrabberClass->Throw(PhysicsHandle, FirstPersonCameraComponent);
 }
 
 void AGolfGameCharacter::MoveForward(const float Value)
