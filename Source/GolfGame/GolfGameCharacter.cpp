@@ -6,6 +6,9 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "GameFramework/InputSettings.h"
+#include "Ball.h"
+#include "Kismet/GameplayStatics.h"
+#include "Engine/Engine.h"
 
 // Sets default values
 AGolfGameCharacter::AGolfGameCharacter()
@@ -31,6 +34,11 @@ AGolfGameCharacter::AGolfGameCharacter()
 
 	GrabberClass = CreateDefaultSubobject<UGrabThrowComponent>(TEXT("GrabberClass"));
 	PhysicsHandle = CreateDefaultSubobject<UPhysicsHandleComponent>(TEXT("PhysicsHandle"));
+
+	DialoguePlayer = CreateDefaultSubobject<UAudioComponent>(TEXT("Dialogue Player"));
+	DialoguePlayer->SetAutoActivate(false);
+	
+	MusicPlayer = CreateDefaultSubobject<UAudioComponent>(TEXT("Music Player"));
 }
 
 // Called when the game starts or when spawned
@@ -66,6 +74,10 @@ void AGolfGameCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputC
 	PlayerInputComponent->BindAction("Grab", IE_Released, this, &AGolfGameCharacter::GrabOrRelease);
 	PlayerInputComponent->BindAction("MouseDown", IE_Released, this, &AGolfGameCharacter::MouseDown);
 
+	PlayerInputComponent->BindAction("Teleport", IE_Pressed, this, &AGolfGameCharacter::Teleport);
+	PlayerInputComponent->BindAction("SummonBall", IE_Released, this, &AGolfGameCharacter::SummonBall);
+
+	
 	// Bind movement events
 	PlayerInputComponent->BindAxis("MoveForward", this, &AGolfGameCharacter::MoveForward);
 	PlayerInputComponent->BindAxis("MoveRight", this, &AGolfGameCharacter::MoveRight);
@@ -97,11 +109,24 @@ void AGolfGameCharacter::GrabOrRelease()
 			break;
 		}
 	}
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("grab or release"));
+
 }
 
 void AGolfGameCharacter::Sprint()
 {
+
 	GetCharacterMovement()->MaxWalkSpeed = RunningSpeed;
+
+	bMouseUp = false;
+	bMouseDown = true;
+	if (GrabberClass != nullptr && PhysicsHandle != nullptr && FirstPersonCameraComponent != nullptr && GrabberClass->GetIsObjectHeld() && GrabberClass->Throw(PhysicsHandle, FirstPersonCameraComponent, bMouseDown))
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Throw succeeded."));
+	}
+	else UE_LOG(LogTemp, Warning, TEXT("Throw failed."));
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("mouse down"));
+
 }
 
 void AGolfGameCharacter::Walk()
@@ -109,10 +134,34 @@ void AGolfGameCharacter::Walk()
 	GetCharacterMovement()->MaxWalkSpeed = BaseSpeed;
 }
 
+
 void AGolfGameCharacter::MouseDown()
+
+void AGolfGameCharacter::BeginTouch(const ETouchIndex::Type FingerIndex, const FVector Location)
 {
-	if (GrabberClass != nullptr && PhysicsHandle != nullptr && FirstPersonCameraComponent != nullptr && GrabberClass->GetIsObjectHeld())
-		GrabberClass->Throw(PhysicsHandle, FirstPersonCameraComponent);
+	if (TouchItem.bIsPressed == true)
+	{
+		return;
+	}
+	/*if ((FingerIndex == TouchItem.FingerIndex) && (TouchItem.bMoved == false))
+	{
+		OnFire();
+	}*/
+	TouchItem.bIsPressed = true;
+	TouchItem.FingerIndex = FingerIndex;
+	TouchItem.Location = Location;
+	TouchItem.bMoved = false;
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("touvh method"));
+
+}
+
+void AGolfGameCharacter::EndTouch(const ETouchIndex::Type FingerIndex, const FVector Location)
+{
+	if (TouchItem.bIsPressed == false)
+	{
+		return;
+	}
+	TouchItem.bIsPressed = false;
 }
 
 void AGolfGameCharacter::MoveForward(const float Value)
@@ -145,3 +194,78 @@ void AGolfGameCharacter::LookUpAtRate(const float Rate)
 	AddControllerPitchInput(Rate * BaseLookUpRate * GetWorld()->GetDeltaSeconds());
 }
 
+void AGolfGameCharacter::Teleport()
+{
+	if (Ball != nullptr && Ball->GetCanBeTeleportedTo() && Ball->GetHasBeenSummonedOnce()) {
+		FVector ballLocation = Ball->GetActorLocation();
+		SetActorLocation(ballLocation, false);
+	}
+	else
+	{
+		if(NeedToTeleportBallCue != nullptr)
+		{
+			DialoguePlayer->SetSound(NeedToTeleportBallCue);
+			DialoguePlayer->Play();
+		}
+	}
+
+}
+
+void AGolfGameCharacter::SummonBall()
+{
+	Ball->SetHasBeenSummonedOnce(true);
+	if (Ball != nullptr) {
+		FVector charLocation = GetActorLocation();
+		Ball->SetActorLocation(charLocation, false);
+	}
+
+	if(!Ball->GetCanBallBeSummoned())
+	{
+		if(CannotSummonBallCue != nullptr)
+		{
+			DialoguePlayer->SetSound(CannotSummonBallCue);
+			DialoguePlayer->Play();
+		}
+	}
+	
+}
+
+void AGolfGameCharacter::PlayDialogueCue()
+{
+	DialoguePlayer->Play();
+}
+
+void AGolfGameCharacter::PlayMusicCue()
+{
+	MusicPlayer->Play();
+}
+
+void AGolfGameCharacter::AdjustMusicVolumeUp()
+{
+	MusicPlayer->AdjustVolume(1, 1, EAudioFaderCurve::Linear);
+}
+
+void AGolfGameCharacter::AdjustMusicVolumeDown()
+{
+	MusicPlayer->AdjustVolume(1, 0, EAudioFaderCurve::Linear);
+}
+
+void AGolfGameCharacter::ChangeDialogueCue(USoundBase* NewDialogue)
+{
+	if(NewDialogue != nullptr)
+	{
+		CurrentDialogueCue = NewDialogue;
+		DialoguePlayer->SetSound(CurrentDialogueCue);
+		PlayDialogueCue();
+	}
+}
+
+void AGolfGameCharacter::ChangeMusicCue(USoundBase* NewMusic)
+{
+	if (NewMusic != nullptr)
+	{
+		CurrentDialogueCue = NewMusic;
+		DialoguePlayer->SetSound(CurrentDialogueCue);
+		PlayMusicCue();
+	}
+}
