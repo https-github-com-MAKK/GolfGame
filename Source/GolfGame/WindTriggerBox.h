@@ -45,8 +45,27 @@ public:
 
 	UPROPERTY(EditAnywhere)
 		int force = 1000;
+
+	UPROPERTY(EditAnywhere)
+		bool IsTriggered = false;
+
+	UPROPERTY(BlueprintReadWrite)
+		bool IsUsable;
+
+
+	void SetIsUsable(bool choice)
+	{
+		IsUsable = choice;
+	}
+
+	bool GetIsUsable() 
+	{
+		return IsUsable;
+	}
+
 private:
 		bool WindOn;
+
 
 		FVector cameraForward;
 
