@@ -3,7 +3,6 @@
 #include "PlatformGravityTriggerBox.h"
 #include "DrawDebugHelpers.h"
 #include "Engine/Engine.h"
-#include <Ball.h>
 #include "GameFramework/WorldSettings.h"
 
 APlatformGravityTriggerBox::APlatformGravityTriggerBox()
@@ -26,13 +25,13 @@ void APlatformGravityTriggerBox::OnOverlapBegin(class AActor* OverlappedActor, c
     {
         if (GEngine)
         {
-            GEngine->AddOnScreenDebugMessage(-1, 1.5, FColor::Green, TEXT("Overlap Begin"));
-            GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Magenta, FString::Printf(TEXT("Overlapping Actor = %s"), *OverlappedActor->GetName()));
+            //GEngine->AddOnScreenDebugMessage(-1, 1.5, FColor::Green, TEXT("Overlap Begin"));
+            //GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Magenta, FString::Printf(TEXT("Overlapping Actor = %s"), *OverlappedActor->GetName()));
 
             GetWorldSettings()->bGlobalGravitySet = true;
             GetWorldSettings()->GlobalGravityZ = GravityInsideTriggerBox;
 
-            GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Magenta, FString::Printf(TEXT("Current gravity = %f"), GetWorldSettings()->GetGravityZ()));
+            //GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Magenta, FString::Printf(TEXT("Current gravity = %f"), GetWorldSettings()->GetGravityZ()));
         }
     }
 }
@@ -43,13 +42,13 @@ void APlatformGravityTriggerBox::OnOverlapEnd(class AActor* OverlappedActor, cla
     {
         if (GEngine)
         {
-            GEngine->AddOnScreenDebugMessage(-1, 1.5, FColor::Green, TEXT("Overlap Ended"));
-            GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Magenta, FString::Printf(TEXT("%s has left the Trigger Box"), *OtherActor->GetName()));
+            //GEngine->AddOnScreenDebugMessage(-1, 1.5, FColor::Green, TEXT("Overlap Ended"));
+            //GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Magenta, FString::Printf(TEXT("%s has left the Trigger Box"), *OtherActor->GetName()));
 
             GetWorldSettings()->bGlobalGravitySet = false;
             GetWorldSettings()->GlobalGravityZ = OriginalWorldGravity;
 
-            GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Magenta, FString::Printf(TEXT("Current gravity = %f"), GetWorldSettings()->GetGravityZ()));
+            //GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Magenta, FString::Printf(TEXT("Current gravity = %f"), GetWorldSettings()->GetGravityZ()));
         }
     }
 }
