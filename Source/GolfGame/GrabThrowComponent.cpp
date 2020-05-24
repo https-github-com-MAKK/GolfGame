@@ -40,7 +40,7 @@ bool UGrabThrowComponent::Grab(UObject* WorldContextObject, UPhysicsHandleCompon
 	const auto ForwardVector = FPCameraComponent->GetForwardVector();
 	const auto EndTrace = StartTrace + (ForwardVector * MaxGrabDist);
 	const auto MyLocation = GetOwner()->GetActorLocation();
-	if (UKismetSystemLibrary::LineTraceSingleForObjects(WorldContextObject, StartTrace, EndTrace, PhysicsObjectType, false, ActorsToIgnore, EDrawDebugTrace::None, Hit, true, FColor::Blue, FColor::Green))
+	if (UKismetSystemLibrary::LineTraceSingleForObjects(WorldContextObject, StartTrace, EndTrace, PhysicsObjectType, false, ActorsToIgnore, EDrawDebugTrace::None, Hit, true, FColor::Blue, FColor::Blue))
 	{
 		HitComponent = Hit.GetComponent();
 		const auto Distance = MyLocation - HitComponent->GetComponentLocation();
@@ -89,9 +89,9 @@ void UGrabThrowComponent::TeleportBall(ABall* Ball, FVector TeleportLocation, UP
 	
 }
 
-bool UGrabThrowComponent::Throw(UPhysicsHandleComponent* Ph, UCameraComponent* FPCameraComponent, const bool MouseDown)
+bool UGrabThrowComponent::Throw(UPhysicsHandleComponent* Ph, UCameraComponent* FPCameraComponent)
 {
-	if (Ph != nullptr && FPCameraComponent != nullptr && HitComponent != nullptr && Release(Ph, true) && MouseDown && HitComponent->IsSimulatingPhysics())
+	if (Ph != nullptr && FPCameraComponent != nullptr && HitComponent != nullptr && Release(Ph, true) && HitComponent->IsSimulatingPhysics())
 	{
 		const auto ForwardVector = FPCameraComponent->GetForwardVector();
 		const auto ImpulseVector = ForwardVector * ThrowingForce;

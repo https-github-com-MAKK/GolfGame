@@ -16,61 +16,61 @@ class GOLFGAME_API UGrabThrowComponent final : public UActorComponent
 
 private:
 	// Physics handle destination > Visible
-	UPROPERTY(EditAnywhere, Category = "Custom")
+	UPROPERTY(EditAnywhere)
 		FVector HandleLocation;
 
 	// Type of object that can be picked up
-	UPROPERTY(EditAnywhere, Category = "Custom")
+	UPROPERTY(EditAnywhere)
 		TArray<TEnumAsByte<EObjectTypeQuery>> PhysicsObjectType;
 
 	// Actors to ignore
-	UPROPERTY(EditAnywhere, Category = "Custom")
+	UPROPERTY(EditAnywhere)
 		TArray<AActor*> ActorsToIgnore;
 
 	// Cached reference to the hit component
-	UPROPERTY(EditAnywhere, Category = "Custom")
+	UPROPERTY(EditAnywhere)
 		UPrimitiveComponent* HitComponent;
 
 	// Grab Sound
-	UPROPERTY(EditAnywhere, Category = "Custom")
+	UPROPERTY(EditAnywhere)
 		class USoundBase* GrabSound;
 
 	// Grab Sound
-	UPROPERTY(EditAnywhere, Category = "Custom")
+	UPROPERTY(EditAnywhere)
 		class USoundBase* ThrowSound;
 
 	// Grab Sound
-	UPROPERTY(EditAnywhere, Category = "Custom")
+	UPROPERTY(EditAnywhere)
 		class USoundBase* ReleaseSound;
 
 private:
 	// Check if object being held > Visible
-	UPROPERTY(EditAnywhere, Category = "Custom")
+	UPROPERTY(EditAnywhere)
 		bool bObjectHeld;
 
 	// Check if physics handle active > Visible
-	UPROPERTY(EditAnywhere, Category = "Custom")
+	UPROPERTY(EditAnywhere)
 		bool bPhysicsHandleActive;
 
 private:
 	// Min distance to allow pickup
-	UPROPERTY(EditAnywhere, Category = "Custom")
-		float MinGrabDist = 500.0f;
+	UPROPERTY(EditAnywhere)
+		float MinGrabDist = 300.0f;
 
 	// Max distance to allow pickup
-	UPROPERTY(EditAnywhere, Category = "Custom")
-		float MaxGrabDist = 1000.0f;
+	UPROPERTY(EditAnywhere)
+		float MaxGrabDist = 1500.0f;
 
 	// Distance between player and pickup > Visible
-	UPROPERTY(EditAnywhere, Category = "Custom")
+	UPROPERTY(EditAnywhere)
 		float PlayerObjectDist = 1.0f;
 
 	// Throwing force
-	UPROPERTY(EditAnywhere, Category = "Custom")
-		float ThrowingForce = 2000.0f;
+	UPROPERTY(EditAnywhere)
+		float ThrowingForce = 1500.0f;
 
 	// Snap distance
-	UPROPERTY(EditAnywhere, Category = "Custom")
+	UPROPERTY(EditAnywhere)
 		float SnapDistance = 200.0f;
 public:
 	// Sets default values for this component's properties
@@ -85,7 +85,7 @@ public:
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
 	bool Grab(UObject* WorldContextObject, class UPhysicsHandleComponent* Ph, UCameraComponent* FPCameraComponent);
-	bool Throw(class UPhysicsHandleComponent* Ph, UCameraComponent* FPCameraComponent, bool MouseDown);
+	bool Throw(class UPhysicsHandleComponent* Ph, UCameraComponent* FPCameraComponent);
 	bool Release(class UPhysicsHandleComponent* Ph, bool bThrow);
 
 	void TraceHandleLocation(class UPhysicsHandleComponent* Ph, UCameraComponent* FPCameraComponent);

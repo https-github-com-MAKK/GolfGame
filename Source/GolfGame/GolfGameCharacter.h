@@ -4,6 +4,7 @@
 #include "GameFramework/Character.h"
 #include "GrabThrowComponent.h"
 #include "PhysicsEngine/PhysicsHandleComponent.h"
+#include "Kismet/GameplayStatics.h"
 #include "Components/AudioComponent.h"
 #include "Sound/SoundBase.h"
 #include "Components/ShapeComponent.h"
@@ -59,31 +60,49 @@ public:
 	UPROPERTY(EditAnywhere)
 		class USoundBase* CurrentMusicCue;
 
+	UPROPERTY(EditAnywhere, Category = Sound)
+		class USoundBase* CannotSummonBallCue;
+
+
 protected:
 	// Called when the game starts or when spawned
 	void BeginPlay() override;
 
 public:	
 	/** Base turn rate, in deg/sec. Other scaling may affect final turn rate. */
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera)
+	UPROPERTY(EditAnywhere)
 		float BaseTurnRate;
 
 	/** Base look up/down rate, in deg/sec. Other scaling may affect final rate. */
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera)
+	UPROPERTY(EditAnywhere)
 		float BaseLookUpRate;
+
+	UPROPERTY(EditAnywhere)
+		float BaseSpeed;
+
+	UPROPERTY(EditAnywhere)
+		float RunningSpeed;
+
+	UPROPERTY(EditAnywhere)
+		FVector CameraPosition;
+
+	UPROPERTY(EditAnywhere, Category = Sound)
+		class USoundBase* NeedToTeleportBallCue;
 
 
 protected:
 	/** Handles moving forward/backward */
 	void MoveForward(float Value);
-
 	/** Handles movement, left and right */
 	void MoveRight(float Value);
 
 	void GrabOrRelease();
 
 	void MouseDown();
-	void MouseUp();
+
+	void Walk();
+
+	void Sprint();
 
 	/**
 	 * Called via input to turn at a given rate.
@@ -105,8 +124,6 @@ protected:
 		FVector Location;
 		bool bMoved;
 	};
-	void BeginTouch(const ETouchIndex::Type FingerIndex, const FVector Location);
-	void EndTouch(const ETouchIndex::Type FingerIndex, const FVector Location);
 	//static void TouchUpdate(const ETouchIndex::Type FingerIndex, const FVector Location);
 	FTouchData	TouchItem;
 
@@ -135,8 +152,8 @@ public:
 	UFUNCTION()
 		void ChangeMusicCue(USoundBase* NewMusic);
 
-private:
-
+private: 
+	
 	UPROPERTY()
 		class USoundBase* CurrentDialogueCue;
 

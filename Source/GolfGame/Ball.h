@@ -23,12 +23,14 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 	//default the ball cannot be telported to in beginning
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category= BallOptions)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = BallOptions)
 		bool CanTeleportToInBeginning;
 	UPROPERTY(VisibleAnywhere, Category = BallOptions)
 		bool CanBeTeleportedTo;
 	UPROPERTY(VisibleAnywhere, Category = BallOptions)
 		bool HasBeenSummoned;
+	UPROPERTY(EditAnywhere, Category = BallOptions)
+		bool CanBallBeSummoned;
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
@@ -56,4 +58,6 @@ public:
 		void SetCanBeTeleportedTo(bool CanTeleportTo);
 		bool GetHasBeenSummonedOnce();
 		void SetHasBeenSummonedOnce(bool HasSummoned);
+		bool GetCanBallBeSummoned();
+		void SetCanBallBeSummoned(bool CanBeSummoned);
 };
