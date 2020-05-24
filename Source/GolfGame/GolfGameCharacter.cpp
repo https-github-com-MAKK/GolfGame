@@ -16,7 +16,7 @@ AGolfGameCharacter::AGolfGameCharacter()
 	// Set size for collision capsule
 	GetCapsuleComponent()->InitCapsuleSize(55.f, 96.0f);
 
-	BaseSpeed = 1000.0f; 
+	BaseSpeed = 700.0f; 
 	RunningSpeed = 2000.0f;
 	Walk();
 
@@ -25,8 +25,8 @@ AGolfGameCharacter::AGolfGameCharacter()
 	BaseLookUpRate = 45.f;
 
 	// Create a CameraComponent	
-	//CameraPosition = FVector(-39.56f, 1.75f, 64.f);
-	CameraPosition = FVector(50.f, 5.f, 100.f);
+	CameraPosition = FVector(-39.56f, 1.75f, 64.f);
+	//CameraPosition = FVector(50.f, 5.f, 100.f);
 	FirstPersonCameraComponent = CreateDefaultSubobject<UCameraComponent>(TEXT("FirstPersonCamera"));
 	FirstPersonCameraComponent->SetupAttachment(GetCapsuleComponent());
 	FirstPersonCameraComponent->SetRelativeLocation(CameraPosition); // Position the camera
