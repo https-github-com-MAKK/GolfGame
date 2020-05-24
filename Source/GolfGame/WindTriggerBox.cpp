@@ -28,7 +28,6 @@ void AWindTriggerBox::BeginPlay()
 void AWindTriggerBox::OnOverlapBegin(class AActor* OverlappedActor,  class AActor* OtherActor) 
 {
 
-
 	 cameraForward = GetActorForwardVector();
 	 if (OtherActor && OtherActor != this && OtherActor == Ball && !WindOn && ((IsTriggered && IsUsable) || (!IsTriggered && !IsUsable)))
 	 {
