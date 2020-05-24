@@ -17,7 +17,7 @@ AGolfGameCharacter::AGolfGameCharacter()
 	GetCapsuleComponent()->InitCapsuleSize(55.f, 96.0f);
 
 	BaseSpeed = 700.0f; 
-	RunningSpeed = 2000.0f;
+	RunningSpeed = 1200.0f;
 	Walk();
 
 	// set our turn rates for input
