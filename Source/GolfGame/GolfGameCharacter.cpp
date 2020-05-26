@@ -236,7 +236,7 @@ void AGolfGameCharacter::ChangeMusicCue(USoundBase* NewMusic)
 	if (NewMusic != nullptr)
 	{
 		CurrentDialogueCue = NewMusic;
-		DialoguePlayer->SetSound(CurrentDialogueCue);
+		MusicPlayer->SetSound(CurrentDialogueCue);
 		PlayMusicCue();
 	}
 }
