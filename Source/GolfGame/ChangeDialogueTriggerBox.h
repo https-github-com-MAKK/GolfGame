@@ -34,7 +34,7 @@ public:
 	
 	UPROPERTY(EditAnywhere, Category = Dialogue)
 		class USoundBase* Dialogue;
-	UPROPERTY(EditAnywhere, Category=Dialogue)
+	UPROPERTY(EditAnywhere, Category = Dialogue)
 		class AGolfGameCharacter* PlayerForAudio;
 
 private:
