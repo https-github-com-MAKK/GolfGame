@@ -28,15 +28,18 @@ protected:
 	virtual void BeginPlay() override;
 	virtual void OverlapBeginAction() override;
 	virtual void OverlapEndAction() override;
+	FTimerHandle TimerHandle;
+	UPROPERTY(EditAnywhere, Category = Dialogue)
+		float TimeToDelayDialogue;
+	
 public:
 
 	AChangeDialogueTriggerBox();
-	
 	UPROPERTY(EditAnywhere, Category = Dialogue)
 		class USoundBase* Dialogue;
-	UPROPERTY(EditAnywhere, Category=Dialogue)
+	UPROPERTY(EditAnywhere, Category = Dialogue)
 		class AGolfGameCharacter* PlayerForAudio;
-
+		void DialoguePlay();
 private:
 
 	bool DialoguePlayed;
