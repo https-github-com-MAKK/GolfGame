@@ -24,7 +24,7 @@ protected:
 
 public:
 	AGolfGameTriggerBox();
-	UFUNCTION()
+	UFUNCTION(BlueprintCallable)
 		void OnOverlapBegin(class AActor* OverlappedActor, class AActor* OtherActor);
 	UFUNCTION()
 		void OnOverlapEnd(class AActor* OverlappedActor, class AActor* OtherActor);

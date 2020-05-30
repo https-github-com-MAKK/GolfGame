@@ -30,7 +30,7 @@ protected:
 		void LevelLoad();
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		FName LevelToLoad;
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 		bool IsCharacterInTrigger;
 
 public:
