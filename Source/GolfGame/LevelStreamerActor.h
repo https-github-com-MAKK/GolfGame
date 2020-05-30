@@ -26,7 +26,8 @@ protected:
 		void LevelLoad();
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		FName LevelToLoad;
-
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		AActor* ActorToReference;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 		bool IsCharacterInTrigger;
 
