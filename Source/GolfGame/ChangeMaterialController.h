@@ -8,6 +8,7 @@
 #include "Platform_Moving.h"
 #include "Ball.h"
 #include "Engine/RectLight.h"
+#include "ElevatorPlatform.h"
 #include "Components/RectLightComponent.h"
 #include "Components/AudioComponent.h"
 #include "ChangeMaterialController.generated.h"
@@ -56,6 +57,9 @@ public:
 
 	UPROPERTY(EditAnywhere)
 		class ARectLight* AssociatedRectlight;
+
+	UPROPERTY(EditAnywhere)
+		class AElevatorPlatform* AssociatedElevator;
 	
 	
 private:
@@ -63,6 +67,8 @@ private:
 	void TogglePlatformMovement();
 
 	void ToggleSpotlight();
+
+	void ToggleElevator();
 
 	void SetCanBeHit();
 

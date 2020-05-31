@@ -24,20 +24,26 @@ public:
 		UStaticMeshComponent* Mesh;
 
 	UPROPERTY(EditAnywhere)
-		int PauseTime = 120; //Length of time platform pauses at the top or bottom of its path
+		int PauseTime; //Length of time platform pauses at the ends of its path
 	
 	UPROPERTY(EditAnywhere)
-		float PathHeight = 150.0f; //the height of the platform's path
+		float PathHeight; //the length of the platform's path
 
 	UPROPERTY(EditAnywhere)
-		float Speed = 0.5f; //speed of platform
+		float Speed; //speed of platform
 
 	UPROPERTY(EditAnywhere)
-		int Direction = 1; //indicates whether the platform is moving up or down;
+		int Direction; //indicates direction of platform movement
+
+	UPROPERTY(EditAnywhere)
+		FString Axis; //axis of movement
 
 	bool Paused; //the state of the platform is paused
 	int CurTime; //how much time has elapsed since the pause began
+	float MaxX; //the calculated max X value of the platform in the game
+	float MaxY; //the calculated max Y value of the platform in the game
 	float MaxZ; //the calculated max Z value of the platform in the game
-	float OriginalZ; //original location of platform
-
+	float OriginalX; //original X location of platform
+	float OriginalY; //original Y location of platform
+	float OriginalZ; //original Z location of platform
 };

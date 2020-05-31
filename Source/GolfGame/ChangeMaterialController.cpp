@@ -2,6 +2,7 @@
 
 
 #include "ChangeMaterialController.h"
+#include "ElevatorPlatform.h"
 #include "DrawDebugHelpers.h"
 #include "Components/BoxComponent.h"
 #include "TimerManager.h"
@@ -67,6 +68,7 @@ void AChangeMaterialController::OnOverlapBegin(UPrimitiveComponent* OverlappedCo
 		}
 		TogglePlatformMovement();
 		ToggleSpotlight();
+		ToggleElevator();
 		CyclePlatformMovingAudio();
 		CanBeHit = false;
 		GEngine->AddOnScreenDebugMessage(-1, 1.5, FColor::Orange, TEXT("Must wait"));
@@ -104,6 +106,23 @@ void AChangeMaterialController::ToggleSpotlight()
 			CurrentSpotlightState = Off;
 		}
 		AssociatedRectlight->RectLightComponent->ToggleVisibility();
+	}
+}
+
+void AChangeMaterialController::ToggleElevator()
+{
+	if (AssociatedElevator != nullptr)
+	{
+		if (AssociatedElevator->ElevatorActive)
+		{
+			AssociatedElevator->ElevatorActive = false;
+			UE_LOG(LogTemp, Warning, TEXT("Elevator Deactivated"));
+		}
+		else
+		{
+			AssociatedElevator->ElevatorActive = true;
+			UE_LOG(LogTemp, Warning, TEXT("Elevator Activated"));
+		}
 	}
 }
 

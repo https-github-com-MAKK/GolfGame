@@ -4,6 +4,12 @@
 AOscellatingPlatform::AOscellatingPlatform()
 {
 	PrimaryActorTick.bCanEverTick = true;
+
+	PauseTime = 120;
+	PathHeight = 150.0f;
+	Speed = 0.5f;
+	Direction = 1;
+	Axis = "X";
 	
 	Mesh = CreateDefaultSubobject<UStaticMeshComponent>("Mesh");
 	CurTime = PauseTime;
@@ -14,15 +20,18 @@ AOscellatingPlatform::AOscellatingPlatform()
 void AOscellatingPlatform::BeginPlay()
 {
 	Super::BeginPlay();
+	OriginalX = GetActorLocation().X;
+	OriginalY = GetActorLocation().Y;
 	OriginalZ = GetActorLocation().Z;
-	MaxZ = OriginalZ + PathHeight; //calculates path height
+	MaxX = OriginalX + PathHeight;
+	MaxY = OriginalY + PathHeight;
+	MaxZ = OriginalZ + PathHeight;
 }
 
 // Called every frame
 void AOscellatingPlatform::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	
 	if(Paused)
 	{
 		//UE_LOG(LogTemp, Warning, TEXT("Paused: %d"), CurTime);
@@ -36,14 +45,37 @@ void AOscellatingPlatform::Tick(float DeltaTime)
 	else //if not paused
 	{
 		FVector NewLocation = GetActorLocation();
-		NewLocation.Z += Speed*Direction; //movement up or down at set speed
-		SetActorLocation(NewLocation);
-		if (NewLocation.Z > MaxZ-Speed || NewLocation.Z == OriginalZ) //if Z exceeds max path height or returns to original position
-		{
-			Direction = Direction*-1; //reverse direction
-			Paused = true; //pause
+		if (Axis=="X") {
+			NewLocation.X += Speed * Direction; //movement on X axis at set speed
+			SetActorLocation(NewLocation);
+			if (NewLocation.X > MaxX - Speed || NewLocation.X == OriginalX) //if X exceeds max path length or returns to original position
+			{
+				Direction = Direction * -1; //reverse direction
+				Paused = true; //pause
+			}
 		}
+		else if (Axis=="Y") {
+			NewLocation.Y += Speed * Direction;
+			SetActorLocation(NewLocation);
+			if (NewLocation.Y > MaxY - Speed || NewLocation.Y == OriginalY)
+			{
+				Direction = Direction * -1;
+				Paused = true;
+			}
 
+		}
+		else if (Axis=="Z") {
+			NewLocation.Z += Speed * Direction;
+			SetActorLocation(NewLocation);
+			if (NewLocation.Z > MaxZ - Speed || NewLocation.Z == OriginalZ)
+			{
+				Direction = Direction * -1;
+				Paused = true;
+			}
+		}
+		else {
+			UE_LOG(LogTemp, Warning, TEXT("Axis set to invalid value!"));
+		}
 	}
 	
 
