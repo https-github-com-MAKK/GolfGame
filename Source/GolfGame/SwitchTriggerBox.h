@@ -8,13 +8,15 @@
 #include "SwitchTriggerBox.generated.h"
 
 /**
- * 
+ *
  */
 UCLASS()
 class GOLFGAME_API ASwitchTriggerBox : public AGolfGameTriggerBox
 {
 	GENERATED_BODY()
-	
+private:
+	void OverlapBeginActionHelper();
+
 protected:
 	virtual void BeginPlay() override;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Switch)
@@ -31,12 +33,14 @@ protected:
 		bool CanOnlyBeTriggeredOnce;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Switch)
 		int ReapeatNum;
-		UWorld* World;
-		FTimerHandle TimerHandleSwitchOn;
-		FTimerHandle TimerHandleSwitchOff;
-		int CallCount;
-		bool HasPreviouslyBeenTriggeredBegin;
-		bool HasPreviouslyBeenTriggeredEnd;
+	UWorld* World;
+	FTimerHandle TimerHandleSwitchOn;
+	FTimerHandle TimerHandleSwitchOff;
+	int CallCount;
+	bool HasPreviouslyBeenTriggeredBegin;
+	bool HasPreviouslyBeenTriggeredEnd;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Switch)
+		bool DisableOverlapEnd;
 public:
 
 	ASwitchTriggerBox();

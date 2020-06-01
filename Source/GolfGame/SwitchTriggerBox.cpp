@@ -4,8 +4,8 @@
 #include "SwitchTriggerBox.h"
 #include "Engine/Engine.h"
 
-ASwitchTriggerBox::ASwitchTriggerBox(){
-	
+ASwitchTriggerBox::ASwitchTriggerBox() {
+
 }
 
 void ASwitchTriggerBox::BeginPlay()
@@ -17,7 +17,7 @@ void ASwitchTriggerBox::BeginPlay()
 
 void ASwitchTriggerBox::SwitchOff()
 {
-	
+
 	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("trigger switch end"));
 	int32 size = Switches.Num();
 	for (int i = 0; i < size; i++)
@@ -34,7 +34,7 @@ void ASwitchTriggerBox::SwitchOff()
 
 void ASwitchTriggerBox::SwitchOn()
 {
-	
+
 	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("trigger switch begin"));
 	int32 size = Switches.Num();
 	for (int i = 0; i < size; i++)
@@ -49,19 +49,30 @@ void ASwitchTriggerBox::SwitchOn()
 
 void ASwitchTriggerBox::OverlapBeginAction()
 {
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("on overlapbegin action"));
-	if (CanOnlyBeTriggeredOnce && !HasPreviouslyBeenTriggeredBegin) {
-		World->GetTimerManager().SetTimer(TimerHandleSwitchOn, this, &ASwitchTriggerBox::SwitchOn, OnEverySec, true, DelayTimeOn);
-		HasPreviouslyBeenTriggeredBegin = true;
-	}
-}
 
+	if (DisableOverlapEnd && CanOnlyBeTriggeredOnce && !HasPreviouslyBeenTriggeredBegin)
+	{
+		HasPreviouslyBeenTriggeredBegin = true;
+		OverlapBeginActionHelper();
+		OverlapEndAction();
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("SWITCH ON OVERLAP BEGIN ACTION"));
+	}
+	else if ((!DisableOverlapEnd && CanOnlyBeTriggeredOnce && !HasPreviouslyBeenTriggeredBegin) || (!CanOnlyBeTriggeredOnce)) {
+		OverlapBeginActionHelper();
+	}
+
+}
+void ASwitchTriggerBox::OverlapBeginActionHelper()
+{
+	World->GetTimerManager().SetTimer(TimerHandleSwitchOn, this, &ASwitchTriggerBox::SwitchOn, OnEverySec, true, DelayTimeOn);
+	HasPreviouslyBeenTriggeredBegin = true;
+}
 
 void ASwitchTriggerBox::OverlapEndAction()
 {
-	if (CanOnlyBeTriggeredOnce && !HasPreviouslyBeenTriggeredEnd) {
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("on overlapend action"));
 
+	if ((CanOnlyBeTriggeredOnce && !HasPreviouslyBeenTriggeredEnd) || (!CanOnlyBeTriggeredOnce)) {
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("SWITCH ON OVERLAP END ACTION"));
 		World->GetTimerManager().SetTimer(TimerHandleSwitchOff, this, &ASwitchTriggerBox::SwitchOff, OffEverySec, true, DelayTimeOff + DelayTimeOn);
 		HasPreviouslyBeenTriggeredEnd = true;
 	}

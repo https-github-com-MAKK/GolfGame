@@ -31,7 +31,7 @@ protected:
 	FTimerHandle TimerHandle;
 	UPROPERTY(EditAnywhere, Category = Dialogue)
 		float TimeToDelayDialogue;
-	
+
 public:
 
 	AChangeDialogueTriggerBox();
@@ -39,9 +39,9 @@ public:
 		class USoundBase* Dialogue;
 	UPROPERTY(EditAnywhere, Category = Dialogue)
 		class AGolfGameCharacter* PlayerForAudio;
-		void DialoguePlay();
+	void DialoguePlay();
 private:
 
 	bool DialoguePlayed;
-	
+
 };
