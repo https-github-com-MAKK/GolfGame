@@ -14,20 +14,27 @@ AChangeDialogueTriggerBox::AChangeDialogueTriggerBox()
 void AChangeDialogueTriggerBox::BeginPlay()
 {
 	Super::BeginPlay();
+	
 }
 
 
-void AChangeDialogueTriggerBox::OverlapBeginAction()
-{
-
+void AChangeDialogueTriggerBox::OverlapBeginAction() {
 	
-	if(Dialogue != nullptr && !DialoguePlayed && PlayerForAudio != nullptr)
+	if (Dialogue != nullptr && !DialoguePlayed && PlayerForAudio != nullptr)
 	{
-		PlayerForAudio->ChangeDialogueCue(Dialogue);
-		DialoguePlayed = true;
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("PLAY DIALOGUE"));
+		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &AChangeDialogueTriggerBox::DialoguePlay, 10.0, true, TimeToDelayDialogue);
 	}
-	
+
 }
+
+void AChangeDialogueTriggerBox::DialoguePlay()
+{
+	PlayerForAudio->ChangeDialogueCue(Dialogue);
+	DialoguePlayed = true;
+    GetWorld()->GetTimerManager().ClearTimer(TimerHandle);
+}
+
 void AChangeDialogueTriggerBox::OverlapEndAction()
 {
 	

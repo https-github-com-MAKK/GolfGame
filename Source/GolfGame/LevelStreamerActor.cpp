@@ -32,6 +32,7 @@ void ALevelStreamerActor::Tick(float DeltaTime)
 
 void ALevelStreamerActor::OverlapBegins(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
+    GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("OVERLAP"));
 
     ACharacter* MyCharacter = UGameplayStatics::GetPlayerCharacter(this, 0);
     if (OtherActor == MyCharacter && LevelToLoad != "" /*&& LoadingScreen != NULL*/)
@@ -39,7 +40,7 @@ void ALevelStreamerActor::OverlapBegins(UPrimitiveComponent* OverlappedComponent
         IsCharacterInTrigger = true;
         // LoadingScreen->AddToViewport();
 
-         //GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("ENCOUNTERED BOX"));
+         GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("ENCOUNTERED BOX"));
         //FLatentActionInfo LatentInfo;
         //FPlatformProcess::Sleep(5.0);
         //UGameplayStatics::OpenLevel(this, LevelToLoad);

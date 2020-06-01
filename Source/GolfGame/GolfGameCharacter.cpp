@@ -17,7 +17,9 @@ AGolfGameCharacter::AGolfGameCharacter()
 	GetCapsuleComponent()->InitCapsuleSize(55.f, 96.0f);
 
 	BaseSpeed = 700.0f; 
+
 	RunningSpeed = 1400.0f;
+
 	Walk();
 
 	// set our turn rates for input
@@ -235,7 +237,7 @@ void AGolfGameCharacter::ChangeMusicCue(USoundBase* NewMusic)
 	if (NewMusic != nullptr)
 	{
 		CurrentDialogueCue = NewMusic;
-		DialoguePlayer->SetSound(CurrentDialogueCue);
+		MusicPlayer->SetSound(CurrentDialogueCue);
 		PlayMusicCue();
 	}
 }
