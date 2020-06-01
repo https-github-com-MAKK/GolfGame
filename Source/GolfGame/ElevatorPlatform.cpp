@@ -1,6 +1,5 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "ElevatorTrigger.h"
 #include "ElevatorPlatform.h"
 
 // Sets default values
