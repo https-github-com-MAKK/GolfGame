@@ -43,7 +43,7 @@ void AWindTriggerBox::AddForce( class AActor* OverlappedActor, class AActor* Oth
 
 	WindOn = true;
 	meshRootComp = Cast<UStaticMeshComponent>(OtherActor->GetRootComponent());
-	GEngine->AddOnScreenDebugMessage(-1, 1.5, FColor::White, TEXT("ForceAdded"));
+	UE_LOG(LogTemp, Log, TEXT("Force added against actor"));
 
 	GetWorld()->GetTimerManager().SetTimer(InputADelayManager, this, &AWindTriggerBox::Tick, .1F, true);
 
@@ -62,7 +62,7 @@ void AWindTriggerBox::OnOverlapEnd(AActor* OverlappedActor, AActor* OtherActor)
 	{
 		GetWorld()->GetTimerManager().ClearTimer(InputADelayManager);
 		WindOn = false;
-		GEngine->AddOnScreenDebugMessage(-1, 1.5, FColor::White, TEXT("ForceStopped"));
+		UE_LOG(LogTemp, Log, TEXT("Force stopped against actor"));
 
 	}
 }

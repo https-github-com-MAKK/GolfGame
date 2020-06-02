@@ -19,9 +19,10 @@ void AMusicChangeTriggerBox::BeginPlay()
 
 void AMusicChangeTriggerBox::OverlapBeginAction()
 {
-	if(Music != nullptr && PlayerForAudio != NULL)
+	if(Music != nullptr && PlayerForAudio != nullptr && !MusicStarted)
 	{
 		PlayerForAudio->ChangeMusicCue(Music);
+		MusicStarted = true;
 	}
 }
 

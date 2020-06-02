@@ -21,11 +21,12 @@ AGolfGameTriggerBox::AGolfGameTriggerBox()
 void AGolfGameTriggerBox::BeginPlay()
 {
     Super::BeginPlay();
+	/*      debug box for in-game testing
     if (ShowDrawDebugBox == true)
     {
         DrawDebugBox(GetWorld(), GetActorLocation(), GetComponentsBoundingBox().GetExtent(), FColor::Purple, true, -1, 0, 5);
     }
-   
+   */
 }
 
 /*Checks to see if the Actor beginning to overlap is the Actor referenced in ActorToCheck
@@ -35,7 +36,7 @@ void AGolfGameTriggerBox::OnOverlapBegin(class AActor* OverlappedActor, class AA
 {
     if (OtherActor && (OtherActor != this) && OtherActor == ActorToCheck) {
         OverlapBeginAction();
-       GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Overlap begin actor"));
+        UE_LOG(LogTemp, Log, TEXT("Triggerbox overlap begin"));
 
     }
 }
@@ -45,10 +46,9 @@ void AGolfGameTriggerBox::OnOverlapBegin(class AActor* OverlappedActor, class AA
  */
 void AGolfGameTriggerBox::OnOverlapEnd(class AActor* OverlappedActor, class AActor* OtherActor)
 {
-    GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Overlap end actor"));
     if (OtherActor && (OtherActor != this) && OtherActor == ActorToCheck) {
-       OverlapEndAction();
-    	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Overlap end actor"));
+        OverlapEndAction();
+        UE_LOG(LogTemp, Log, TEXT("Triggerbox overlap end"));
     }
 }
 

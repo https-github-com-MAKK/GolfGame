@@ -45,7 +45,6 @@ bool UGrabThrowComponent::Grab(UObject* WorldContextObject, UPhysicsHandleCompon
 		HitComponent = Hit.GetComponent();
 		const auto Distance = MyLocation - HitComponent->GetComponentLocation();
 		PlayerObjectDist = Distance.Size();
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("component name %p"), Hit.GetComponent()));
 
 		if (Hit.GetActor() != nullptr && HitComponent != nullptr && Ph != nullptr && HitComponent->IsSimulatingPhysics() && PlayerObjectDist <= MinGrabDist)
 		{
@@ -71,7 +70,7 @@ void UGrabThrowComponent::TeleportBall(ABall* Ball, FVector TeleportLocation, UP
 
 	if (HitComponent != nullptr && Ph != nullptr && HitComponent->IsSimulatingPhysics())
 	{
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("grabbing ball if "));
+		UE_LOG(LogTemp, Log, TEXT("Picked up ball"));
 
 		HitComponent->SetEnableGravity(true);
 		bPhysicsHandleActive = true;
@@ -84,7 +83,7 @@ void UGrabThrowComponent::TeleportBall(ABall* Ball, FVector TeleportLocation, UP
 		Ball->SetActorLocation(TeleportLocation);
 		FHitResult Hit;
 		Ph->GrabComponentAtLocationWithRotation(HitComponent, Hit.BoneName, HitComponent->GetCenterOfMass(),HitComponent->GetComponentRotation());
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("updating"));
+		UE_LOG(LogTemp, Log, TEXT("Updating"));
 	}
 	
 }

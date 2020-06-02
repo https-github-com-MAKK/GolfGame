@@ -59,7 +59,7 @@ void ALightSwitch::FlickerLights()
 
 void ALightSwitch::HideShowLights(bool Show)
 {
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("hide/show lights"));
+	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("hide/show lights"));
 	int num = Lights.Num();
 	for (int i = 0; i < num; i++) {
 		if (Lights[i] != NULL) {
@@ -73,19 +73,19 @@ void ALightSwitch::ActionOn()
 {
 
 	GetMethodToCall(static_cast<uint8>(On));
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("switch action on"));
+	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("switch action on"));
 
 }
 void ALightSwitch::ActionOff()
 {
 	GetMethodToCall(static_cast<uint8>(Off));
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("switch action off"));
+	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("switch action off"));
 
 }
 
 void ALightSwitch::GetMethodToCall(uint8 Status)
 {
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("get method"));
+	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("get method"));
 	FTimerHandle TimerHandle;
 	LightStatus Stat = static_cast<LightStatus>(Status);
 	switch (Stat)

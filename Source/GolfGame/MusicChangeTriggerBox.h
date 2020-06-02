@@ -34,4 +34,9 @@ public:
 	UFUNCTION()
 		virtual void OverlapBeginAction() override;
 		virtual void OverlapEndAction() override;
+
+private:
+
+	bool MusicStarted = false;
+	
 };

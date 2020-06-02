@@ -56,14 +56,14 @@ void AChangeMaterialController::OnOverlapBegin(UPrimitiveComponent* OverlappedCo
 		{
 			MyMesh->SetMaterial(0, OnMaterial);
 			CurrentSwitchState = On;
-			GEngine->AddOnScreenDebugMessage(-1, 1.5, FColor::Green, TEXT("Switch On"));
+			UE_LOG(LogTemp, Log, TEXT("Switch on"));
 			
 		}
 		else if ((OtherActor != nullptr) && (OtherActor != this) && (OtherComp != nullptr) && (CurrentSwitchState == On) && (OtherActor == Ball))
 		{
 			MyMesh->SetMaterial(0, OffMaterial);
 			CurrentSwitchState = Off;
-			GEngine->AddOnScreenDebugMessage(-1, 1.5, FColor::Green, TEXT("Switch Off"));
+			UE_LOG(LogTemp, Log, TEXT("Switch off"));
 			
 		}
 		TogglePlatformMovement();
@@ -71,7 +71,7 @@ void AChangeMaterialController::OnOverlapBegin(UPrimitiveComponent* OverlappedCo
 		ToggleElevator();
 		CyclePlatformMovingAudio();
 		CanBeHit = false;
-		GEngine->AddOnScreenDebugMessage(-1, 1.5, FColor::Orange, TEXT("Must wait"));
+		UE_LOG(LogTemp, Log, TEXT("Cannot hit switch yet"));
 	}
 			
 }
@@ -97,12 +97,12 @@ void AChangeMaterialController::ToggleSpotlight()
 	{
 		if(CurrentSpotlightState == Off)
 		{
-			GEngine->AddOnScreenDebugMessage(-1, 1.5, FColor::White, TEXT("Light On"));
+			UE_LOG(LogTemp, Log, TEXT("Light on"));
 			CurrentSpotlightState = On;
 		}
 		else
 		{	
-			GEngine->AddOnScreenDebugMessage(-1, 1.5, FColor::White, TEXT("Light Off"));
+			UE_LOG(LogTemp, Log, TEXT("Light off"));
 			CurrentSpotlightState = Off;
 		}
 		AssociatedRectlight->RectLightComponent->ToggleVisibility();
