@@ -1,8 +1,10 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
-
+/*Switch.cpp
+ *Author: Kaylene Petrin
+ *Revision: 1
+ *Description: Abstract class that switches objects on/off.  Ue4 interfaces do not work well, so an
+ *abstract class was chosen
+ */
 #include "Switch.h"
-
 #include "Engine/Engine.h"
 
 // Sets default values
@@ -12,13 +14,5 @@ ASwitch::ASwitch()
 	PrimaryActorTick.bCanEverTick = true;
 
 }
-
-// Called when the game starts or when spawned
-void ASwitch::BeginPlay()
-{
-	Super::BeginPlay();
-	
-}
-
 
 

@@ -1,34 +1,17 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
-
+/*LoadLevelTriggerBox.cpp
+ *Author: Kaylene Petrin
+ *Revision: 1
+ *Description: Trigger box that loads the designated next level when overlapped by the referenced ActorToCheck.
+ */
 #include "LoadLevelTriggerBox.h"
-
 #include "Kismet/GameplayStatics.h"
 
-ALoadLevelTriggerBox::ALoadLevelTriggerBox()
-{
-    PrimaryActorTick.bCanEverTick = true;
-
-}
-
-
-void ALoadLevelTriggerBox::BeginPlay()
-{
-    Super::BeginPlay();
-
-}
-
-void ALoadLevelTriggerBox::Tick(float DeltaTime)
-{
-    Super::Tick(DeltaTime);
-
-}
-
-
+//Loads the level specified by LevelToLoad
 void ALoadLevelTriggerBox::LevelLoad() {
     UGameplayStatics::OpenLevel(this, LevelToLoad);
 }
 
+//Sets the delay time to load the level
 void ALoadLevelTriggerBox::SetTimeDelay(float TimeDelay)
 {
     if (TimeDelay >= 0)
@@ -36,11 +19,16 @@ void ALoadLevelTriggerBox::SetTimeDelay(float TimeDelay)
         LevelLoadTimeDelay = TimeDelay;
     }
 }
+
+//Gets the level load delay time
 float ALoadLevelTriggerBox::GetTimeDelay()
 {
     return LevelLoadTimeDelay;
 }
 
+/*When the ActorToCheck overlaps this trigger box, it sets IsCharacterInTrigger to true and loads the level
+*designated level. 
+*/
 void ALoadLevelTriggerBox::OverlapBeginAction()
 {
     IsCharacterInTrigger = true;

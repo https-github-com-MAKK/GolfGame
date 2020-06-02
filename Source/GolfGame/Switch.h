@@ -1,4 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 #include "CoreMinimal.h"
@@ -6,7 +5,7 @@
 #include "GolfGameEnums.h"
 #include "Switch.generated.h"
 
-UCLASS()
+UCLASS(Abstract)
 
 class GOLFGAME_API ASwitch : public AActor
 {
@@ -16,11 +15,6 @@ class GOLFGAME_API ASwitch : public AActor
 public:	
 	// Sets default values for this actor's properties
 	ASwitch();
-
-protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
-
 
 public:	
 

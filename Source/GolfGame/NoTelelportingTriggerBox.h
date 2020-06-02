@@ -16,12 +16,11 @@ class GOLFGAME_API ANoTelelportingTriggerBox : public AGolfGameTriggerBox
 {
 	GENERATED_BODY()
 private:
+	//Reference to the ball in the game
 	ABall* Ball;
 protected:
 	virtual void BeginPlay() override;
 public:
-
-	ANoTelelportingTriggerBox();
 	virtual void OverlapBeginAction() override;
 	virtual void OverlapEndAction() override;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)

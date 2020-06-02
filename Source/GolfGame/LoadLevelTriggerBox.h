@@ -14,12 +14,7 @@ class GOLFGAME_API ALoadLevelTriggerBox : public AGolfGameTriggerBox
 {
 	GENERATED_BODY()
 
-public:
-	ALoadLevelTriggerBox();
-	virtual void Tick(float DeltaTime) override;
-
 protected:
-	virtual void BeginPlay() override;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		bool IsNotBlueprint;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
@@ -38,6 +33,8 @@ public:
 	void SetTimeDelay(float TimeDelay);
 	float GetTimeDelay();
 	virtual void OverlapBeginAction() override;
+private:
 	virtual void OverlapEndAction() override;
+
 };
 

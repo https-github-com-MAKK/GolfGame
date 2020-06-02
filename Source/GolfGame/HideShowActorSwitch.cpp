@@ -34,18 +34,18 @@ void AHideShowActorSwitch::FlickerInAndOut()
 
 	bool NewBoolean;
 	int32 num = ActorsToShowHide.Num();
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("world : %f"), World->GetTimeSeconds()));
+	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("world : %f"), World->GetTimeSeconds()));
 
 	Time = World->GetTimeSeconds() - LastCalled;
 	//FlickerTime = World->GetTimeSeconds() - LastCalled;
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("currruntime %d"), CurrentRunTime));
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("flicker %d"), FlickerIndex));
+	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("currruntime %d"), CurrentRunTime));
+	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("flicker %d"), FlickerIndex));
 
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("time : %d"), Time));
+//	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("time : %d"), Time));
 
 	if (Time % CurrentRunTime==0 && World->GetTimeSeconds() != 0)
 	{
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("in if statement")));
+	//	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("in if statement")));
 		LastCalled = World->GetTimeSeconds();
 		IncrementFlickerIndex();
 	}

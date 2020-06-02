@@ -16,7 +16,9 @@ class GOLFGAME_API ASwitchTriggerBox : public AGolfGameTriggerBox
 	GENERATED_BODY()
 private:
 	void OverlapBeginActionHelper();
-
+	int CallCount;
+	bool HasPreviouslyBeenTriggeredBegin;
+	bool HasPreviouslyBeenTriggeredEnd;
 protected:
 	virtual void BeginPlay() override;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Switch)
@@ -36,14 +38,9 @@ protected:
 	UWorld* World;
 	FTimerHandle TimerHandleSwitchOn;
 	FTimerHandle TimerHandleSwitchOff;
-	int CallCount;
-	bool HasPreviouslyBeenTriggeredBegin;
-	bool HasPreviouslyBeenTriggeredEnd;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Switch)
 		bool DisableOverlapEnd;
 public:
-
-	ASwitchTriggerBox();
 	void SwitchOff();
 	void SwitchOn();
 	virtual void OverlapBeginAction() override;
