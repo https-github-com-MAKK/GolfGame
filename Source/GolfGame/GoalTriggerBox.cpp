@@ -1,17 +1,19 @@
+/*GoalTriggerBox.cpp
+ *Author: Kaylene Petrin
+ *Revision: 1
+ *Description: Goal trigger box that stops ball from being summoned or teleported
+ *to when overlapped, and allows ball to be summoned or teleported when overlap ends.
+ */
 
 #include "GoalTriggerBox.h"
 #include "DrawDebugHelpers.h"
 #include "Engine/Engine.h"
 
-AGoalTriggerBox::AGoalTriggerBox()
-{
 
-}
 void AGoalTriggerBox::BeginPlay()
 {
     Super::BeginPlay();
     Ball = dynamic_cast<ABall*>(ActorToCheck);
-
 }
 
 void AGoalTriggerBox::OverlapBeginAction()

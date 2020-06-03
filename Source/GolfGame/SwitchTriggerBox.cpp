@@ -7,27 +7,14 @@
 #include "SwitchTriggerBox.h"
 #include "Engine/Engine.h"
 
-
-void ASwitchTriggerBox::BeginPlay()
-{
-	Super::BeginPlay();
-	World = GetWorld();
-	CallCount = 0;
-}
-
 void ASwitchTriggerBox::SwitchOff()
 {
-
 	int32 size = Switches.Num();
 	for (int i = 0; i < size; i++)
 	{
 		Switches[i]->ActionOff();
 	}
-	if (CallCount == ReapeatNum) 
-	{
-		World->GetTimerManager().ClearTimer(TimerHandleSwitchOff);
-	}
-	CallCount++;
+	GetWorld()->GetTimerManager().ClearTimer(TimerHandleSwitchOff);
 }
 
 void ASwitchTriggerBox::SwitchOn()
@@ -37,41 +24,33 @@ void ASwitchTriggerBox::SwitchOn()
 	{
 		Switches[i]->ActionOn();
 	}
-	if (CallCount == ReapeatNum) 
-	{
-		World->GetTimerManager().ClearTimer(TimerHandleSwitchOn);
-	}
+	GetWorld()->GetTimerManager().ClearTimer(TimerHandleSwitchOn);
 }
 
 void ASwitchTriggerBox::OverlapBeginAction()
 {
-
 	if (DisableOverlapEnd && CanOnlyBeTriggeredOnce && !HasPreviouslyBeenTriggeredBegin)
 	{
 		HasPreviouslyBeenTriggeredBegin = true;
 		OverlapBeginActionHelper();
 		OverlapEndAction();
 	}
-	else if ((!DisableOverlapEnd && CanOnlyBeTriggeredOnce && !HasPreviouslyBeenTriggeredBegin) || (!CanOnlyBeTriggeredOnce)) 
+	else if ((!DisableOverlapEnd && CanOnlyBeTriggeredOnce && !HasPreviouslyBeenTriggeredBegin) || (!CanOnlyBeTriggeredOnce))
 	{
 		OverlapBeginActionHelper();
 	}
-
 }
+
 void ASwitchTriggerBox::OverlapBeginActionHelper()
 {
-	World->GetTimerManager().SetTimer(TimerHandleSwitchOn, this, &ASwitchTriggerBox::SwitchOn, OnEverySec, true, DelayTimeOn);
-	HasPreviouslyBeenTriggeredBegin = true;
+	GetWorld()->GetTimerManager().SetTimer(TimerHandleSwitchOn, this, &ASwitchTriggerBox::SwitchOn, 5, true, DelayTimeOn);
 }
 
 void ASwitchTriggerBox::OverlapEndAction()
 {
-
-	if ((CanOnlyBeTriggeredOnce && !HasPreviouslyBeenTriggeredEnd) || (!CanOnlyBeTriggeredOnce)) 
+	if ((CanOnlyBeTriggeredOnce && !HasPreviouslyBeenTriggeredEnd) || (!CanOnlyBeTriggeredOnce))
 	{
-		World->GetTimerManager().SetTimer(TimerHandleSwitchOff, this, &ASwitchTriggerBox::SwitchOff, OffEverySec, true, DelayTimeOff + DelayTimeOn);
+		GetWorld()->GetTimerManager().SetTimer(TimerHandleSwitchOff, this, &ASwitchTriggerBox::SwitchOff, 5, true, DelayTimeOff + DelayTimeOn);
 		HasPreviouslyBeenTriggeredEnd = true;
 	}
 }
-
-

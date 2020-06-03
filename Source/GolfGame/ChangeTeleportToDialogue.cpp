@@ -6,15 +6,9 @@
 
 void AChangeTeleportToDialogue::OverlapBeginAction()
 {
-    try
-    {
-		AGolfGameCharacter* Player = dynamic_cast<AGolfGameCharacter*>(ActorToCheck);
-        Player->NeedToTeleportBallCue = Dialogue;
-    }
-	catch(std::string Message)
-	{
-        UE_LOG(LogTemp, Warning, TEXT("Setting new cannot teleport to ball dialogue failed"));
-	}
+   
+	AGolfGameCharacter* Player = dynamic_cast<AGolfGameCharacter*>(ActorToCheck);
+    Player->NeedToTeleportBallCue = Dialogue;
     
 }
 

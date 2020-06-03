@@ -1,5 +1,7 @@
 #pragma once
 UENUM()
+
+//Enumerators for the Light status: On, Off, Flicker, Dim, or Do nothing
 enum class LightStatus: uint8
 {
 	LightsTurnOn    UMETA(DisplayName = "TurnOnLights"),
@@ -10,6 +12,7 @@ enum class LightStatus: uint8
 };
 
 UENUM()
+//Enumerators for the Actor status: On, Off, Flicker, or Do nothing
 enum class ActorHideShowStatus: uint8
 {
 	ActorsShow   UMETA(DisplayName = "ShowActors"),

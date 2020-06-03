@@ -23,6 +23,7 @@ void AChangeDialogueTriggerBox::OverlapBeginAction() {
 	if (Dialogue != nullptr && !DialoguePlayed && PlayerForAudio != nullptr)
 	{
 		UE_LOG(LogTemp, Log, TEXT("Played dialogue cue"));
+		DialoguePlayed = true;
 		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &AChangeDialogueTriggerBox::DialoguePlay, 10.0, true, TimeToDelayDialogue);
 	}
 
@@ -31,7 +32,6 @@ void AChangeDialogueTriggerBox::OverlapBeginAction() {
 void AChangeDialogueTriggerBox::DialoguePlay()
 {
 	PlayerForAudio->ChangeDialogueCue(Dialogue);
-	DialoguePlayed = true;
 	GetWorld()->GetTimerManager().ClearTimer(TimerHandle);
 }
 
