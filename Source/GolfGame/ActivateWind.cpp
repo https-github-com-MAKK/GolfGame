@@ -64,7 +64,6 @@ void AActivateWind::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* 
 		{
 			MyMesh->SetMaterial(0, OnMaterial);
 			CurrentSwitchState = On;
-			GEngine->AddOnScreenDebugMessage(-1, 1.5, FColor::Green, TEXT("Switch On"));
 			ToggleWind();
 
 		}
@@ -72,20 +71,17 @@ void AActivateWind::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* 
 		{
 			MyMesh->SetMaterial(0, OffMaterial);
 			CurrentSwitchState = Off;
-			GEngine->AddOnScreenDebugMessage(-1, 1.5, FColor::Green, TEXT("Switch Off"));
 
 		}
 		
 		ToggleSpotlight();
 		CanBeHit = false;
-		GEngine->AddOnScreenDebugMessage(-1, 1.5, FColor::Orange, TEXT("Must wait"));
 	}
 
 }
 
 void AActivateWind::ToggleWind()
 {
-	GEngine->AddOnScreenDebugMessage(-1, 1.5, FColor::Green, TEXT("WindActivated"));
 	if (AssociatedWindBox != nullptr)
 	{
 
@@ -102,12 +98,10 @@ void AActivateWind::ToggleSpotlight()
 	{
 		if (CurrentSpotlightState == Off)
 		{
-			GEngine->AddOnScreenDebugMessage(-1, 1.5, FColor::White, TEXT("Light On"));
 			CurrentSpotlightState = On;
 		}
 		else
 		{
-			GEngine->AddOnScreenDebugMessage(-1, 1.5, FColor::White, TEXT("Light Off"));
 			CurrentSpotlightState = Off;
 		}
 		AssociatedRectlight->RectLightComponent->ToggleVisibility();

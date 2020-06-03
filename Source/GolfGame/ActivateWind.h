@@ -59,10 +59,28 @@ public:
 
 private:
 
+	/*
+	 *Parameters:
+	 *None
+	 *Returns:
+	 *void
+	 */
 	void ToggleWind();
 
+	/*
+	 *Parameters:
+	 *None
+	 *Returns:
+	 *void
+	 */
 	void ToggleSpotlight();
 
+	/*
+	 *Parameters:
+	 *None
+	 *Returns:
+	 *void
+	 */
 	void SetCanBeHit();
 
 	enum SwitchState { On, Off };

@@ -52,7 +52,12 @@ public:
 	UPROPERTY(EditAnywhere, Category = Dialogue)
 		class AGolfGameCharacter* PlayerForAudio;
 
-	//function to play dialogue for player
+	/*function to play dialogue for player
+	 *Parameters:
+	 *None
+	 *Returns:
+	 *void
+	 */
 	void DialoguePlay();
 
 	

@@ -4,13 +4,14 @@
  */
 
 #include "ChangeTeleportToDialogue.h"
-#include "GolfGameCharacter.h"
+
 
 void AChangeTeleportToDialogue::OverlapBeginAction()
 {
-   
-	AGolfGameCharacter* Player = dynamic_cast<AGolfGameCharacter*>(ActorToCheck);
-    Player->NeedToTeleportBallCue = Dialogue;
+   if(Player != nullptr && Dialogue != nullptr)
+   {
+       Player->NeedToTeleportBallCue = Dialogue;
+   }
     
 }
 

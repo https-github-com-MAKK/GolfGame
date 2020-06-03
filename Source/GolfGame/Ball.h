@@ -54,10 +54,52 @@ public:
 		class UMaterial* BallMaterial;
 
 	UFUNCTION()
+
+		/*
+		 *Parameters:
+		 *None
+		 *Returns:
+		 *void
+		 */
 		bool GetCanBeTeleportedTo();
+
+		/*
+		 *Parameters:
+		 *None
+		 *Returns:
+		 *void
+		 */
 		void SetCanBeTeleportedTo(bool CanTeleportTo);
+
+		/*
+		 *Parameters:
+		 *None
+		 *Returns:
+		 *void
+		 */
 		bool GetHasBeenSummonedOnce();
+
+		/*
+		 *Parameters:
+		 *None
+		 *Returns:
+		 *void
+		 */
 		void SetHasBeenSummonedOnce(bool HasSummoned);
+
+		/*
+		 *Parameters:
+		 *None
+		 *Returns:
+		 *void
+		 */
 		bool GetCanBallBeSummoned();
+
+		/*
+		 *Parameters:
+		 *None
+		 *Returns:
+		 *void
+		 */
 		void SetCanBallBeSummoned(bool CanBeSummoned);
 };

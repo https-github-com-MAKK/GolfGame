@@ -74,21 +74,52 @@ public:
 private:
 
 	//Toggles a moving platform's movement to on or off
+	/*
+	*Parameters:
+	*None
+	*Returns:
+	*void
+	*/
 	void TogglePlatformMovement();
 
-	//Toggles visibility of selected light source
+	/*Toggles visibility of selected light source.
+	*Parameters:
+	*None
+	*Returns:
+	*void
+	*/
 	void ToggleSpotlight();
 
-	//Toggles a selected elevator to active or inactive
+	/*Toggles a selected elevator to active or inactive
+	*Parameters:
+	*None
+	*Returns:
+	*void
+	*/
 	void ToggleElevator();
 
-	//sets CanBeHit variable to true
+	/*sets CanBeHit variable to true
+	*Parameters:
+	*None
+	*Returns:
+	*void
+	*/
 	void SetCanBeHit();
 
-	//Intended to toggle audio component sound on or off, unfinished
+	/*Intended to toggle audio component sound on or off, unfinished
+	*Parameters:
+	*None
+	*Returns:
+	*void
+	*/
 	void CyclePlatformMovingAudio();
 
-	//enum for switches to internally represent whether they are in an on or off state
+	/*enum for switches to internally represent whether they are in an on or off state
+	*Parameters:
+	*None
+	*Returns:
+	*void
+	*/
 	enum SwitchState { On, Off };
 
 	//all associated actors are set to off at start

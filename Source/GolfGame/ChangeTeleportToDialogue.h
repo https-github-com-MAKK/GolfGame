@@ -3,6 +3,7 @@
 
 #include "CoreMinimal.h"
 #include "GolfGameTriggerBox.h"
+#include "GolfGameCharacter.h"
 #include "ChangeTeleportToDialogue.generated.h"
 
 UCLASS()
@@ -18,9 +19,22 @@ public:
 	UPROPERTY(EditAnywhere, Category = Dialogue)
 		class USoundBase* Dialogue;
 
-	//Loads new dialogue cue into player when overlap begins
+	UPROPERTY(EditAnywhere)
+		AGolfGameCharacter* Player;
+
+	/*Loads new dialogue cue into player when overlap begins
+	*Parameters:
+	*None
+	*Returns:
+	*void
+	*/
 	virtual void OverlapBeginAction() override;
 
-	//overlap ends
+	/*overlap ends
+	*Parameters:
+	*None
+	*Returns:
+	*void
+	*/
 	virtual void OverlapEndAction() override;
 };
