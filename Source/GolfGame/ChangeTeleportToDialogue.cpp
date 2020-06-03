@@ -1,8 +1,10 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+/*ChangeTeleportToDialogue.cpp
+ *Author: Andrew Sales
+ *Description: Loads in new dialogue cue for when the player cannot teleport to the ball.
+ */
 
 #include "ChangeTeleportToDialogue.h"
 #include "GolfGameCharacter.h"
-#include <string>
 
 void AChangeTeleportToDialogue::OverlapBeginAction()
 {

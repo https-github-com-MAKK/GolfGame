@@ -1,4 +1,8 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+/*PlatformGravityTriggerBox.cpp
+ *Author: Andrew Sales
+ *Description: Upon a specific actor overlapping the triggerbox, the world gravity is set to a specified new gravity.
+ *The original gravity is then reset upon leaving the trigger box.
+ */
 
 #include "PlatformGravityTriggerBox.h"
 #include "DrawDebugHelpers.h"

@@ -1,10 +1,12 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+/*ChangeDialogueTriggerBox.cpp
+ *Author: Andrew Sales
+ *Description: Loads a new Sound Base to the Player's audio component for dialogue and plays the cue.
+ */
 
 
 #include "ChangeDialogueTriggerBox.h"
 #include "DrawDebugHelpers.h"
 #include "Engine/Engine.h"
-#include "Kismet/GameplayStatics.h"
 
 AChangeDialogueTriggerBox::AChangeDialogueTriggerBox()
 {

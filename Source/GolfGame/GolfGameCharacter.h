@@ -36,30 +36,30 @@ public:
 	
 	UPROPERTY(EditAnywhere, Category = "Custom")
 		class USphereComponent* BallSummonLocation;
-	/*UPROPERTY(EditAnywhere, Category = "Custom")
-		float x;
-	UPROPERTY(EditAnywhere, Category = "Custom")
-		float y;
-	UPROPERTY(EditAnywhere, Category = "Custom")
-		float z;*/
+
 	UPROPERTY(EditAnywhere, Category = "Custom")
 		uint32 bMouseDown : 1;
 
 	UPROPERTY(EditAnywhere, Category = "Custom")
 		uint32 bMouseUp : 1;
 
+	//Reference to the in-game ball for picking up, throwing, dropping, summoning, and teleporting to
 	UPROPERTY(EditAnywhere, Category = Projectile)
 		class ABall* Ball;
 
+	//Audio component attached to the player to play dialogue cues
 	UPROPERTY(VisibleAnywhere)
 		class UAudioComponent* DialoguePlayer;
 
+	//Audio component attached to the player to play music cues
 	UPROPERTY(VisibleAnywhere)
 		class UAudioComponent* MusicPlayer;
 
+	//current sound base for music
 	UPROPERTY(EditAnywhere)
 		class USoundBase* CurrentMusicCue;
 
+	//current dialogue cue for when the ball cannot be summoned
 	UPROPERTY(EditAnywhere, Category = Sound)
 		class USoundBase* CannotSummonBallCue;
 
@@ -86,6 +86,7 @@ public:
 	UPROPERTY(EditAnywhere)
 		FVector CameraPosition;
 
+	//current sound cue for when the player cannot be teleported to
 	UPROPERTY(EditAnywhere, Category = Sound)
 		class USoundBase* NeedToTeleportBallCue;
 
@@ -124,36 +125,46 @@ protected:
 		FVector Location;
 		bool bMoved;
 	};
+	
 	//static void TouchUpdate(const ETouchIndex::Type FingerIndex, const FVector Location);
 	FTouchData	TouchItem;
 
-	
-
 	// APawn interface
 	void Tick(float DeltaTime) override;
+	
 	void SetupPlayerInputComponent(UInputComponent* PlayerInputComponent) override;
 
 	void Teleport();
+	
 	void SummonBall();
 
 public:
 	//Returns FirstPersonCameraComponent subobject
 	FORCEINLINE class UCameraComponent* GetFirstPersonCameraComponent() const { return FirstPersonCameraComponent; }
 
-	
+	//Plays current dialogue cue for the player in the audio component for dialogue
 	void PlayDialogueCue();
+
+	//Plays the current music cue for the player in the audio component for music
 	void PlayMusicCue();
+
+	//intended to adjust volume up when dialogue cue has ended, not used
 	void AdjustMusicVolumeUp();
+
+	//inteded to adjust volume down when dialogue cue starts, not used
 	void AdjustMusicVolumeDown();
 
+	//swaps out old dialogue cue for new cue when overlapping a dialogue change trigger box
 	UFUNCTION()
 		void ChangeDialogueCue(USoundBase* NewDialogue);
 
+	//swaps out old music cue for new cue when overlapping music cue change trigger box
 	UFUNCTION()
 		void ChangeMusicCue(USoundBase* NewMusic);
 
 private: 
-	
+
+	//current sound cue for dialogue
 	UPROPERTY()
 		class USoundBase* CurrentDialogueCue;
 

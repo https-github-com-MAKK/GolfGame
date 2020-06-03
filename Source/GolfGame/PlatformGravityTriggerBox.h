@@ -1,4 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
@@ -25,13 +24,19 @@ public:
 	// constructor sets default values for this actor's properties
 	APlatformGravityTriggerBox();
 
+	//new world gravity upon entering the trigger box
 	UPROPERTY(EditAnywhere)
 		float GravityInsideTriggerBox = -100.0;
+
+	//new world gravity set when specific actor enter trigger box
 	virtual void OverlapBeginAction() override;
+
+	//world gravity returned to original value upon leaving trigger box
 	virtual void OverlapEndAction() override;
 
 private:
 
+	//original world gravity stored before overlap
 	float OriginalWorldGravity;
 	
 };

@@ -1,4 +1,9 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+/*ChangeMaterialController.cpp
+ *Author: Andrew Sales
+ *Description: Class controls the functionality behind the in-game switches. Toggles movement of associated elevator or moving
+ *platform, switches material of the controller to represent whether it is on or off, and toggles visiblity of an associated
+ *light source. The switch can only be hit once per second by the ball as to not have false positive hits.
+ */
 
 
 #include "ChangeMaterialController.h"

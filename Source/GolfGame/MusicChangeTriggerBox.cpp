@@ -1,4 +1,7 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+/*MusicChangeTriggerBox.cpp
+ *Author: Andrew Sales
+ *Description: Changes current music cue in the player's audio component for music and player new music cue
+ */
 
 
 #include "MusicChangeTriggerBox.h"

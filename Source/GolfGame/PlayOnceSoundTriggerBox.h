@@ -1,4 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
@@ -15,18 +14,19 @@ class GOLFGAME_API APlayOnceSoundTriggerBox : public AGolfGameTriggerBox
 	GENERATED_BODY()
 
 public:
+
+	//Sound to be played one time
 	UPROPERTY(EditAnywhere, Category = Audio)
 		class USoundBase* Sound;
 
-	UPROPERTY(EditAnywhere, Category = Audio)
-		class AGolfGameCharacter* Player;
-
+	//sound cue is played for player when specific actor enters trigger box
 	UFUNCTION()
 		virtual void OverlapBeginAction() override;
-	virtual void OverlapEndAction() override;
+		virtual void OverlapEndAction() override;
 
 private:
 
+	//has the sound played once
 	bool HasSoundPlayed = false;
 	
 };

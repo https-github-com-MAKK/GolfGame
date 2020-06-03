@@ -1,3 +1,9 @@
+/*GolfGameCharacter.cpp
+ *Author: Katherine Bozhinov, Andrew Sales
+ *Description:
+ *Plays audio cues for music and dialogue.
+ */
+
 #include "GolfGameCharacter.h"
 #include "Animation/AnimInstance.h"
 #include "Camera/CameraComponent.h"

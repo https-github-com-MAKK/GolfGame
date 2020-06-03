@@ -1,4 +1,8 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+/*Platform_Assist_Lift.cpp
+ *Author: Andrew Sales
+ *Description: Class representing a continually moving actor in-game, positioned next to the first platform on the
+ *final level. Moves up and down to move player back to starting platform.
+ */
 
 
 #include "Platform_Assist_Lift.h"

@@ -1,4 +1,8 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+/*PlayOnceSoundTriggerBox.cpp
+ *Author: Andrew Sales
+ *Description: Played a specific audio cue at the located specific one time when entering trigger box.
+ *The sound cannot be played again.
+ */
 
 
 #include "PlayOnceSoundTriggerBox.h"
@@ -6,7 +10,7 @@
 
 void APlayOnceSoundTriggerBox::OverlapBeginAction()
 {
-	if (Sound != nullptr && Player != nullptr && !HasSoundPlayed)
+	if (Sound != nullptr && !HasSoundPlayed)
 	{
 		UGameplayStatics::PlaySoundAtLocation(this, Sound, GetWorld()->GetFirstPlayerController()->GetPawn()->GetActorLocation());
 		HasSoundPlayed = true;
