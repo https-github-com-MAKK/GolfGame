@@ -61,7 +61,7 @@ void ASwitchTriggerBox::OverlapBeginAction()
 void ASwitchTriggerBox::OverlapBeginActionHelper()
 {
 	World->GetTimerManager().SetTimer(TimerHandleSwitchOn, this, &ASwitchTriggerBox::SwitchOn, OnEverySec, true, DelayTimeOn);
-	HasPreviouslyBeenTriggeredBegin = true;
+	
 }
 
 void ASwitchTriggerBox::OverlapEndAction()
