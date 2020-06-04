@@ -1,8 +1,8 @@
 /*LoadLevelTriggerBox.cpp
  *Author: Kaylene Petrin
- *Revision: 1
+ *Revision: 1 (05/16/2020)
  *Description: Abstract trigger box that loads the designated next level
- *when overlapped by the referenced ActorToCheck.
+ *when overlapped by the referenced ActorToCheck (from super GolfGameTriggerBox).
  */
 
 #include "LoadLevelTriggerBox.h"

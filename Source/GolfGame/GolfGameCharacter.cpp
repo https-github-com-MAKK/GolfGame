@@ -1,8 +1,22 @@
 /*GolfGameCharacter.cpp
- *Author: Katherine Bozhinov, Andrew Sales
- *Description:
- *Plays audio cues for music and dialogue.
- */
+*Author: Kat Bozin
+*Revision: 1 (03/04/2020)
+*Revision: 2 (04/11/2020)
+*Rev. Author: Kaylene Petrin
+*Rev. Comments: Added Teleportation and Summoning methods
+*Revision: 3 (04/28/2020)
+*Rev. Author: Andrew Sales
+*Rev. Comments: Added audio/music methods
+*Revision: 4 (05/18/2020)
+*Rev. Author: Kaylene Petrin
+*Rev. Comments: Updated teleportation methods to check if can teleport/summon ball or not
+*and edited summon method to call grabber class to hold ball when summon is called
+*instead of ball appearing underneath player
+*Description: The character the user possess during the game.  The character can move, jump,
+*look around, summon and teleport the ball, pick it up, and contains audio components to play
+*sounds, music, and dialogue.
+*/
+
 
 #include "GolfGameCharacter.h"
 #include "Animation/AnimInstance.h"
@@ -121,7 +135,6 @@ void AGolfGameCharacter::GrabOrRelease()
 			break;
 		}
 	}
-
 }
 
 void AGolfGameCharacter::Sprint()
@@ -190,9 +203,8 @@ void AGolfGameCharacter::Teleport()
 
 void AGolfGameCharacter::SummonBall()
 {
-	
 	if (Ball != nullptr) {
-		GrabberClass->TeleportBall(Ball, BallSummonLocation->GetComponentLocation(), PhysicsHandle);
+		GrabberClass->SummonGrabBall(Ball, BallSummonLocation->GetComponentLocation(), PhysicsHandle);
 		Ball->SetHasBeenSummonedOnce(true);
 	}
 
@@ -203,8 +215,7 @@ void AGolfGameCharacter::SummonBall()
 			DialoguePlayer->SetSound(CannotSummonBallCue);
 			DialoguePlayer->Play();
 		}
-	}
-	
+	}	
 }
 
 void AGolfGameCharacter::PlayDialogueCue()

@@ -2,7 +2,6 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Engine/TriggerBox.h"
 #include "Ball.h"
 #include "GolfGameTriggerBox.h"
 #include "PlatformGravityTriggerBox.generated.h"
@@ -21,8 +20,6 @@ protected:
 	virtual void BeginPlay() override;
 
 public:
-	// constructor sets default values for this actor's properties
-	APlatformGravityTriggerBox();
 
 	//new world gravity upon entering the trigger box
 	UPROPERTY(EditAnywhere)
