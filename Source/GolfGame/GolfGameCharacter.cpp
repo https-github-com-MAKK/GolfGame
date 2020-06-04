@@ -121,7 +121,6 @@ void AGolfGameCharacter::GrabOrRelease()
 			break;
 		}
 	}
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("grab or release"));
 
 }
 
