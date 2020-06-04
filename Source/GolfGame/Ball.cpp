@@ -1,11 +1,17 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
-
+/*Ball.cpp
+ *Author: Andrew Sales
+ *Revision: 1 (04/26/2020)
+ *Revision: 2 (05/05/2020)
+ *Rev. Author: Kaylene Petrin
+ *Rev. Comments: Added getters and setters to the ball to see and set if the ball can
+ *currently be teleported or summoned
+ *Description: The main ball in the game that the player can pick up, throw, summon,
+ *and teleport to
+ */
 #include "Ball.h"
 #include "Components/SphereComponent.h"
 #include "ConstructorHelpers.h"
 
-// Sets default values
 ABall::ABall()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
@@ -40,7 +46,6 @@ ABall::ABall()
 
 }
 
-// Called when the game starts or when spawned
 void ABall::BeginPlay()
 {
 	Super::BeginPlay();
@@ -48,7 +53,6 @@ void ABall::BeginPlay()
 	
 }
 
-// Called every frame
 void ABall::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);

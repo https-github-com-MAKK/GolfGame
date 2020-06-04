@@ -1,7 +1,8 @@
 /*NoTeleportingTriggerBox.cpp
- *Author: Kaylene Petrin
+ *Author: Kaylene Petrin 
+ *Revision: 1 (05/15/2020)
  *Description: Trigger box that prevents the player from teleporting to the area this trigger box
- *covers when the ball is inside the trigger box. 
+ *covers when the ball is overlapping this trigger box 
  */
 
 #pragma once

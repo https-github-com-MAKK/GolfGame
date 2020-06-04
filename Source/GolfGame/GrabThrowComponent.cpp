@@ -1,5 +1,13 @@
+/*GolfGameCharacter.cpp
+*Author: Kat Bozin
+*Revision: 1 (03/04/2020)
+*Revision: 2 (05/18/2020)
+*Rev. Author: Kaylene Petrin
+*Rev. Comments: Updated the class to have a SummonGrabBall method, allowing the use to grab
+*the ball when it is summoned to the player
+*Description: Component that allows player to grab objects
+*/
 #include "GrabThrowComponent.h"
-
 #include "Ball.h"
 #include "PhysicsEngine/PhysicsHandleComponent.h"
 #include "Camera/CameraComponent.h"
@@ -63,7 +71,8 @@ bool UGrabThrowComponent::Grab(UObject* WorldContextObject, UPhysicsHandleCompon
 	}
 	return false;
 }
-void UGrabThrowComponent::TeleportBall(ABall* Ball, FVector TeleportLocation, UPhysicsHandleComponent* Ph)
+
+void UGrabThrowComponent::SummonGrabBall(ABall* Ball, FVector SummonLocation, UPhysicsHandleComponent* Ph)
 {
 
 	HitComponent = Ball->SphereVisual;
@@ -80,7 +89,7 @@ void UGrabThrowComponent::TeleportBall(ABall* Ball, FVector TeleportLocation, UP
 		{
 			UGameplayStatics::PlaySoundAtLocation(this, GrabSound, GetOwner()->GetActorLocation());
 		}
-		Ball->SetActorLocation(TeleportLocation);
+		Ball->SetActorLocation(SummonLocation);
 		FHitResult Hit;
 		Ph->GrabComponentAtLocationWithRotation(HitComponent, Hit.BoneName, HitComponent->GetCenterOfMass(),HitComponent->GetComponentRotation());
 		UE_LOG(LogTemp, Log, TEXT("Updating"));

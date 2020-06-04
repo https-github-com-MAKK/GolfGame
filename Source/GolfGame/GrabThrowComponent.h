@@ -7,7 +7,8 @@
 
 class ABall;
 class UCameraComponent;
-UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
+
+UCLASS(ClassGroup=(Custom), meta=(BlueprintSpawnableComponent))
 class GOLFGAME_API UGrabThrowComponent final : public UActorComponent
 {
 
@@ -15,70 +16,72 @@ class GOLFGAME_API UGrabThrowComponent final : public UActorComponent
 
 
 private:
-	// Physics handle destination > Visible
+	/**	*\brief Physics handle destination.*/
 	UPROPERTY(EditAnywhere)
 		FVector HandleLocation;
 
-	// Type of object that can be picked up
+	/**\brief Type of object that can be picked up.*/
 	UPROPERTY(EditAnywhere)
 		TArray<TEnumAsByte<EObjectTypeQuery>> PhysicsObjectType;
 
-	// Actors to ignore
+	/**\brief A list of actors to ignore when attempting to grab objects.*/
 	UPROPERTY(EditAnywhere)
 		TArray<AActor*> ActorsToIgnore;
 
-	// Cached reference to the hit component
+	/**\brief Cached reference to the hit component.*/
 	UPROPERTY(EditAnywhere)
 		UPrimitiveComponent* HitComponent;
 
-	// Grab Sound
+	/**\brief Sound for when the object is grabbed.*/
 	UPROPERTY(EditAnywhere)
 		class USoundBase* GrabSound;
 
-	// Grab Sound
+	/**\brief Sound for when the object is thrown.*/
 	UPROPERTY(EditAnywhere)
 		class USoundBase* ThrowSound;
 
-	// Grab Sound
+	/**\brief Sound for when the object is released.*/
 	UPROPERTY(EditAnywhere)
 		class USoundBase* ReleaseSound;
 
 private:
-	// Check if object being held > Visible
+	/**\brief Checks if object being held.*/
 	UPROPERTY(EditAnywhere)
 		bool bObjectHeld;
 
-	// Check if physics handle active > Visible
+	/**\brief Check if physics handle active.*/
 	UPROPERTY(EditAnywhere)
 		bool bPhysicsHandleActive;
 
 private:
-	// Min distance to allow pickup
+	/**\brief Min distance to allow pickup.*/
 	UPROPERTY(EditAnywhere)
 		float MinGrabDist = 300.0f;
 
-	// Max distance to allow pickup
+	/**\brief Max distance to allow pickup.*/
 	UPROPERTY(EditAnywhere)
 		float MaxGrabDist = 1500.0f;
 
-	// Distance between player and pickup > Visible
+	/**\brief Distance between player and pickup.*/
 	UPROPERTY(EditAnywhere)
 		float PlayerObjectDist = 1.0f;
 
-	// Throwing force
+	/**\brief The amount of force used to throw the object.*/
 	UPROPERTY(EditAnywhere)
 		float ThrowingForce = 1500.0f;
 
-	// Snap distance
+
 	UPROPERTY(EditAnywhere)
 		float SnapDistance = 200.0f;
 public:
-	// Sets default values for this component's properties
+	/**\brief Sets default values for this component's properties*/
 	UGrabThrowComponent();
 
 protected:
+
 	// Called when the game starts
 	virtual void BeginPlay() override;
+
 
 public:
 	// Called every frame
@@ -87,8 +90,15 @@ public:
 	bool Grab(UObject* WorldContextObject, class UPhysicsHandleComponent* Ph, UCameraComponent* FPCameraComponent);
 	bool Throw(class UPhysicsHandleComponent* Ph, UCameraComponent* FPCameraComponent);
 	bool Release(class UPhysicsHandleComponent* Ph, bool bThrow);
-
 	void TraceHandleLocation(class UPhysicsHandleComponent* Ph, UCameraComponent* FPCameraComponent);
-	void TeleportBall (ABall* Ball, FVector TeleportLocation, UPhysicsHandleComponent* Ph);
+
+	/**\ Summons the ball to the player and sets the ball to grabbed by the player.
+	 *\param Ball the in game ball that the player references.
+	 *\param SummonLocation the location that the ball will be summoned to respective to the player
+	 *and their grab position.
+	 *\param Ph the players physics handle that aids in holding and moving the ball.
+	 */
+	
+	void SummonGrabBall (ABall* Ball, FVector SummonLocation, UPhysicsHandleComponent* Ph);
 	FORCEINLINE bool GetIsObjectHeld() const { return bObjectHeld; }
 };

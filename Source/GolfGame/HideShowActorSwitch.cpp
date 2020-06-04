@@ -1,15 +1,17 @@
 /*HideShowActorSwitch.cpp
  *Author: Kaylene Petrin
- *Revision: 1
- *Description: An actor switch that can hide, show, or flicker actors listed
- *in the array when switched on or off.
+ *Revision: 1 (05/15/2020)
+ *Revision: 2 (05/18/2020)
+ *Rev. Author: Kaylene Petrin
+ *Rev. Comments: Pushed code to super class Switch
+ *Description: An actor switch that contains an array of actors and preforms an action
+ *when turned off or on. The actions that can be preformed include: hide, show, flicker actors,
+ *or do nothing. When turned off or on, the array is iterated over and the defined "On" or "Off"
+ *action is preformed on all actors in the array.
  */
 #include "HideShowActorSwitch.h"
 #include "GolfGameEnums.h"
 #include "Engine/Engine.h"
-
-
-
 
 void AHideShowActorSwitch::BeginPlay()
 {
@@ -21,7 +23,6 @@ void AHideShowActorSwitch::BeginPlay()
 
 void AHideShowActorSwitch::FlickerInAndOut()
 {
-	
 	Timer = GetWorld()->GetTimeSeconds() - LastCalled;
 	if (FirstTimeFlickerCalled)
 	{

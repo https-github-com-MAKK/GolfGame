@@ -3,6 +3,10 @@
 #include "GolfGameTriggerBox.h"
 #include "LoadLevelTriggerBox.generated.h"
 
+/**\brief Trigger box that loads the next level when overlapped.
+ *\details Abstract trigger box that loads the designated next level
+ *when overlapped by the referenced ActorToCheck (from super GolfGameTriggerBox).
+ */
 
 UCLASS(Abstract)
 class GOLFGAME_API ALoadLevelTriggerBox : public AGolfGameTriggerBox
@@ -12,40 +16,31 @@ class GOLFGAME_API ALoadLevelTriggerBox : public AGolfGameTriggerBox
 
 protected:
 
-	//Determines if end credits should play or the loading screen
+	/**\brief Determines if end credits should play or the loading screen.*/
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		bool RollCredits;
 
-	//The amount of time to wait for the next level to load
+	/**\brief The amount of time to wait for the next level to load.*/
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		float LevelLoadTimeDelay;
 	
-	//The name of the next level to load
+	/**\brief The name of the next level to load.*/
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		FName LevelToLoad;
 
-	//Indicates whether the ActorToCheck is in the trigger box or not
+	/**\brief Indicates whether the ActorToCheck is in the trigger box or not.*/
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 		bool IsCharacterInTrigger;
 	
 public:
 
-	/*Loads the level specified by LevelToLoad
-	 *Parameters:
-	 *None
-	 *Returns:
-	 *void
-	 */
+	/**\brief Loads the level specified by LevelToLoad.*/
 
 	UFUNCTION(BlueprintCallable, Category = LevelChange)
 		void LevelLoad();
 	
-	/*Sets IsCharacterInTriggerBox to true once the ActorToCheck overlaps this
-	 *trigger box
-	 *Parameters:
-	 *None
-	 *Returns:
-	 *void
+	/**\brief Sets IsCharacterInTriggerBox to true once the ActorToCheck overlaps this
+	 *trigger box.
 	 */
 	
 	UFUNCTION(BlueprintCallable, Category = LevelChange)
@@ -53,11 +48,7 @@ public:
 	
 private:
 
-	/*Inherited method that is not implemented
-	 *Parameters:
-	 *None
-	 *Returns:
-	 *void
+	/**\brief Inherited method that is not implemented
 	 */
 	
 	virtual void OverlapEndAction() override;

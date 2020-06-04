@@ -5,6 +5,8 @@
 #include "GolfGameEnums.h"
 #include "Switch.generated.h"
 
+/**\brief Abstract class that switches actors on / off.
+*\details Ue4 interfaces do not work well, so an abstract class was used*/
 UCLASS(Abstract)
 
 class GOLFGAME_API ASwitch : public AActor
@@ -15,74 +17,48 @@ class GOLFGAME_API ASwitch : public AActor
 public:	
 
 
-	/*Gets the method to call when this switch is switched on or off.
-	 *The method to call is determined by the Status UEnum.
-	 *Parameters:
-	 *uint8 Status the GolfGameEnum that determines what method to call
-	 *Returns:
-	 *void
+	/**\brief Gets the method to call when this switch is switched on or off.
+	 *The method to call is determined by the Status.
+	 *\param Status the GolfGameEnum that determines what method to call
 	 */
 	
 	virtual void GetMethodToCall(uint8 Status) PURE_VIRTUAL(ASwitch::GetMethodToCall, );
 	
-	/*The action that will be preformed when this switch is switched on,
-	 *determined by the "On" variable.
-	 *Parameters:
-	 *None
-	 *Returns:
-	 *void
-	 */
+	/**\brief The action that will be preformed when this switch is switched on,
+	*determined by the "On" variable. */
 
 	virtual void ActionOn() PURE_VIRTUAL(ASwitch::ActionOn, );
 
-	/*The action that will be preformed when this switch is switched off,
+	/**\brief The action that will be preformed when this switch is switched off,
 	 *determined by the "Off" variable.
-	 *Parameters:
-	 *None
-	 *Returns:
-	 *void
 	 */
 	
 	 virtual void ActionOff() PURE_VIRTUAL(ASwitch::ActionOff, );
 
-	/*Returns the "Off" variable
-	 *Parameters:
-	 *None
-	 *Returns:
-	 *uint8 value of the "Off" variable
-	 */
+	 /**\brief Returns the "Off" variable.
+	  *\returns uint8 value of the "Off" variable.
+	  */
 
 	virtual uint8 GetActionOff() PURE_VIRTUAL(ASwitch::GetActionOff, return 0;);
 
-	/*Returns the "On" variable
-	 *Parameters:
-	 *None
-	 *Returns:
-	 *uint8 value of the "On" variable
+	/**\brief Returns the "On" variable.
+	 *\returns uint8 value of the "On" variable.
 	 */
 
 	virtual uint8 GetActionOn() PURE_VIRTUAL(ASwitch::GetActionOn, return 0;);
 
-	/*Sets the "On" variable
-	 *Parameters:
-	 *uint8 Status the GolfGameEnum that will be the new value
-	 *of the "On" variable
-	 *Returns:
-	 *void
+	/**\brief Sets the "On" variable.
+	 *\param Status the GolfGameEnum that will be the new value
+	 *of the "On" variable.
 	 */
 
 	virtual void SetActionOn(uint8 Status) PURE_VIRTUAL(ASwitch::SetActionOn, );
 
-	/*Sets the "Off" variable
-	 *Parameters:
-	 *uint8 Status the GolfGameEnum that will be the new value
-	 *of the "Off" variable
-	 *Returns:
-	 *void
+	/**\brief Sets the "Off" variable.
+	 *\param Status the GolfGameEnum that will be the new value
+	 *of the "Off" variable.
 	 */
 	
 	virtual void SetActionOff(uint8 Status) PURE_VIRTUAL(ASwitch::SetActionOff, );
-
-
 
 };

@@ -1,6 +1,6 @@
 /*GolfGameTriggerBox.cpp
  *Author: Kaylene Petrin
- *Revision: 1
+ *Revision: 1 (05/15/2020)
  *Description: Abstract trigger box that calls a method when a specific actor
  *begins or stops overlapping this trigger box
  */
@@ -14,18 +14,6 @@ AGolfGameTriggerBox::AGolfGameTriggerBox()
     OnActorBeginOverlap.AddDynamic(this, &AGolfGameTriggerBox::OnOverlapBegin);
     OnActorEndOverlap.AddDynamic(this, &AGolfGameTriggerBox::OnOverlapEnd);
 }
-
-void AGolfGameTriggerBox::BeginPlay()
-{
-    Super::BeginPlay();
-	/*      debug box for in-game testing
-    if (ShowDrawDebugBox == true)
-    {
-        DrawDebugBox(GetWorld(), GetActorLocation(), GetComponentsBoundingBox().GetExtent(), FColor::Purple, true, -1, 0, 5);
-    }
-   */
-}
-
 
 void AGolfGameTriggerBox::OnOverlapBegin(class AActor* OverlappedActor, class AActor* OtherActor)
 {

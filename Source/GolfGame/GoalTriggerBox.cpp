@@ -1,8 +1,12 @@
 /*GoalTriggerBox.cpp
  *Author: Kaylene Petrin
- *Revision: 1
- *Description: Goal trigger box that stops ball from being summoned or teleported
- *to when overlapped, and allows ball to be summoned or teleported when overlap ends.
+ *Revision: 1 (05/05/2020)
+ *Revision: 2 (05/15/2020)
+ *Rev. Author: Kaylene Pertin
+ *Rev. Comments: Refactored pushed some code up to super class: GolfGameTriggerBox 
+ *Description: Goal trigger box that stops the ball from being summoned or teleported
+ *to when overlapped, and allows the ball to be summoned or teleported to when the ball
+ *stops overlapping this trigger box.
  */
 
 #include "GoalTriggerBox.h"

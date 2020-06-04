@@ -19,7 +19,7 @@ class AGolfGameCharacter final : public ACharacter
 
 public:
 
-	// Sets default values for this character's properties
+	/**\brief Sets default values for this character's properties*/
 	AGolfGameCharacter();
 	
 	/** First person camera */
@@ -43,37 +43,37 @@ public:
 	UPROPERTY(EditAnywhere, Category = "Custom")
 		uint32 bMouseUp : 1;
 
-	//Reference to the in-game ball for picking up, throwing, dropping, summoning, and teleporting to
+	/**\brief Reference to the in-game ball for picking up, throwing, dropping, summoning, and teleporting to.*/
 	UPROPERTY(EditAnywhere, Category = Projectile)
 		class ABall* Ball;
 
-	//Audio component attached to the player to play dialogue cues
+	/**\brief Audio component attached to the player to play dialogue cues.*/
 	UPROPERTY(VisibleAnywhere)
 		class UAudioComponent* DialoguePlayer;
 
-	//Audio component attached to the player to play music cues
+	/**\brief Audio component attached to the player to play music cues.*/
 	UPROPERTY(VisibleAnywhere)
 		class UAudioComponent* MusicPlayer;
 
-	//current sound base for music
+	/**\brief Current sound base for music.*/
 	UPROPERTY(EditAnywhere)
 		class USoundBase* CurrentMusicCue;
 
-	//current dialogue cue for when the ball cannot be summoned
+	/**\brief Current dialogue cue for when the ball cannot be summoned.*/
 	UPROPERTY(EditAnywhere, Category = Sound)
 		class USoundBase* CannotSummonBallCue;
 
 
 protected:
-	// Called when the game starts or when spawned
+	/**\brief Called when the game starts or when spawned*/
 	void BeginPlay() override;
 
 public:	
-	/** Base turn rate, in deg/sec. Other scaling may affect final turn rate. */
+	/**\brief Base turn rate, in deg/sec. Other scaling may affect final turn rate. */
 	UPROPERTY(EditAnywhere)
 		float BaseTurnRate;
 
-	/** Base look up/down rate, in deg/sec. Other scaling may affect final rate. */
+	/**\brief Base look up/down rate, in deg/sec. Other scaling may affect final rate. */
 	UPROPERTY(EditAnywhere)
 		float BaseLookUpRate;
 
@@ -92,9 +92,11 @@ public:
 
 
 protected:
-	/** Handles moving forward/backward */
+
+
 	void MoveForward(float Value);
-	/** Handles movement, left and right */
+
+
 	void MoveRight(float Value);
 
 	void GrabOrRelease();
@@ -105,15 +107,13 @@ protected:
 
 	void Sprint();
 
-	/**
-	 * Called via input to turn at a given rate.
-	 * @param Rate	This is a normalized rate, i.e. 1.0 means 100% of desired turn rate
+	/**\brief Called via input to turn at a given rate.
+	 * \param Rate This is a normalized rate, i.e. 1.0 means 100% of desired turn rate
 	 */
 	void TurnAtRate(float Rate);
 
-	/**
-	 * Called via input to turn look up/down at a given rate.
-	 * @param Rate	This is a normalized rate, i.e. 1.0 means 100% of desired turn rate
+	/**\brief Called via input to turn look up/down at a given rate.
+	 * \param Rate This is a normalized rate, i.e. 1.0 means 100% of desired turn rate
 	 */
 	void LookUpAtRate(float Rate);
 
@@ -134,37 +134,44 @@ protected:
 	
 	void SetupPlayerInputComponent(UInputComponent* PlayerInputComponent) override;
 
+	/**\brief Attempts to set the player's location to the ball's location.
+	 */
+	
 	void Teleport();
+
+	/**\brief Attempts to set the ball's location to the player's location and has the player hold the ball
+	 *if successful.
+	 */
 	
 	void SummonBall();
 
 public:
-	//Returns FirstPersonCameraComponent subobject
+	/**\brief Returns FirstPersonCameraComponent subobject*/
 	FORCEINLINE class UCameraComponent* GetFirstPersonCameraComponent() const { return FirstPersonCameraComponent; }
 
-	//Plays current dialogue cue for the player in the audio component for dialogue
+	/**\brief current dialogue cue for the player in the audio component for dialogue*/
 	void PlayDialogueCue();
 
-	//Plays the current music cue for the player in the audio component for music
+	/**\brief Plays the current music cue for the player in the audio component for music.*/
 	void PlayMusicCue();
 
-	//intended to adjust volume up when dialogue cue has ended, not used
+	/**\brief Adjusts volume up when dialogue cue ends, not used.*/
 	void AdjustMusicVolumeUp();
 
-	//inteded to adjust volume down when dialogue cue starts, not used
+	/**\brief Adjusts volume down when dialogue cue starts, not used.*/
 	void AdjustMusicVolumeDown();
 
-	//swaps out old dialogue cue for new cue when overlapping a dialogue change trigger box
+	//**\brief Swaps out old dialogue cue for new cue when overlapping a dialogue change trigger box.*/
 	UFUNCTION()
 		void ChangeDialogueCue(USoundBase* NewDialogue);
 
-	//swaps out old music cue for new cue when overlapping music cue change trigger box
+	/**\brief Swaps out old music cue for new cue when overlapping music cue change trigger box.*/
 	UFUNCTION()
 		void ChangeMusicCue(USoundBase* NewMusic);
 
 private: 
 
-	//current sound cue for dialogue
+	/**\brief Current sound cue for dialogue.*/
 	UPROPERTY()
 		class USoundBase* CurrentDialogueCue;
 

@@ -1,5 +1,3 @@
-
-
 #pragma once
 #include "CoreMinimal.h"
 #include "Engine/TriggerBox.h"
@@ -7,16 +5,10 @@
 #include "Sound/SoundBase.h"
 #include "GolfGameTriggerBox.h"
 #include "ChangeDialogueTriggerBox.generated.h"
-
-//Enum visible for use in UE4 editor, allows user to select whether the new dialogue cue is loaded and played
-//but the ball or by the player.
-UENUM()
-enum class ETriggeringActor
-{
-	TriggeredByBall UMETA(DisplayName = "Ball"),
-	TriggeredByPlayer UMETA(DisplayName = "Player")
-};
-
+/**
+*\file will this work
+*\brief this is the ball class
+*/
 UCLASS()
 class GOLFGAME_API AChangeDialogueTriggerBox : public AGolfGameTriggerBox
 {
@@ -52,12 +44,7 @@ public:
 	UPROPERTY(EditAnywhere, Category = Dialogue)
 		class AGolfGameCharacter* PlayerForAudio;
 
-	/*function to play dialogue for player
-	 *Parameters:
-	 *None
-	 *Returns:
-	 *void
-	 */
+	//function to play dialogue for player
 	void DialoguePlay();
 
 	
