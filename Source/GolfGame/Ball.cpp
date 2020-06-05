@@ -19,8 +19,6 @@ ABall::ABall()
 
 	SphereVisual = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Visual Mesh"));
 	RootComponent = SphereVisual;
-
-	SphereComponent = CreateDefaultSubobject<USphereComponent>(TEXT("Sphere Visual"));
 	
     static ConstructorHelpers::FObjectFinder<UStaticMesh> SphereVisualAsset(TEXT("/Game/StarterContent/Shapes/Shape_Sphere.Shape_Sphere"));
     if (SphereVisualAsset.Succeeded())
