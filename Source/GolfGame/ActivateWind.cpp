@@ -69,7 +69,7 @@ void AActivateWind::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* 
 		{
 			MyMesh->SetMaterial(0, OffMaterial);
 			CurrentSwitchState = Off;
-
+			ToggleWindOff();
 		}
 		
 		ToggleSpotlight();
@@ -77,15 +77,21 @@ void AActivateWind::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* 
 	}
 
 }
+void AActivateWind::ToggleWindOff() 
+{
+	if (AssociatedWindBox != nullptr)
+	{
+		AssociatedWindBox->IsUsable = false;
+	}
+}
+
 
 void AActivateWind::ToggleWind()
 {
 	if (AssociatedWindBox != nullptr)
 	{
 		AssociatedWindBox->IsUsable = true;
-	}
-
-		
+	} 
 }
 
 void AActivateWind::ToggleSpotlight()
