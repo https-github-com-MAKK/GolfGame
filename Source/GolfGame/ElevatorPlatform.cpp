@@ -10,6 +10,7 @@ AElevatorPlatform::AElevatorPlatform()
 	ElevatorActive = false;
 	MoveUp = false;
 	MoveDown = false;
+	ReachedTarget = false;
 	TargetZ = 700.0f;
 	Speed = 0.5f;
 
@@ -37,9 +38,10 @@ void AElevatorPlatform::Tick(float DeltaTime)
 		if (UpLocation.Z > TargetZ - Speed)
 		{
 			MoveUp = false;
+			ReachedTarget = true;
 		}
 	}
-	else if (MoveDown) {
+	else if (!ReachedTarget && MoveDown) {
 		FVector DownLocation = GetActorLocation();
 		FVector TriggerDownLocation = Trigger->GetActorLocation();
 		DownLocation.Z -= Speed;
@@ -50,6 +52,9 @@ void AElevatorPlatform::Tick(float DeltaTime)
 		{
 			MoveDown = false;
 		}
+	}
+	else if (ReachedTarget) {
+		PrimaryActorTick.bCanEverTick = false;
 	}
 
 }

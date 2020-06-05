@@ -5,6 +5,7 @@
 #include "DrawDebugHelpers.h"
 #include "Engine/Engine.h"
 #include "Engine/World.h"
+#include "Sound/SoundCue.h"
 #include <Ball.h>
 #include "GameFramework/WorldSettings.h"
 #include "GameFramework/Pawn.h"
@@ -16,10 +17,16 @@ AWindTriggerBox::AWindTriggerBox()
 {
 	OnActorBeginOverlap.AddDynamic(this, &AWindTriggerBox::OnOverlapBegin);
 	OnActorEndOverlap.AddDynamic(this, &AWindTriggerBox::OnOverlapEnd);
+
+	//WindCueComponent->CreateDefaultSubobject<UAudioComponent>(TEXT("Wind Cue Component"));
+	//WindCueComponent->bAutoActivate = false;
+	//WindCueComponent->SetRelativeLocation(FVector(0.0f, 0.0f, 0.0f));
+;
 }
 
 void AWindTriggerBox::BeginPlay() 
 {
+	//if (WindCue!=nullptr) { WindCueComponent->SetSound(WindCue); }
 	IsUsable = false;
 	Super::BeginPlay();
 
@@ -32,15 +39,13 @@ void AWindTriggerBox::OnOverlapBegin(class AActor* OverlappedActor,  class AActo
 	 if (OtherActor && OtherActor != this && OtherActor == Ball && !WindOn && ((IsTriggered && IsUsable) || (!IsTriggered && !IsUsable)))
 	 {
 		 AddForce(OverlappedActor, OtherActor);
-		 
 	 }
 
 }
 
 void AWindTriggerBox::AddForce( class AActor* OverlappedActor, class AActor* OtherActor)
 {
-	
-
+	//if (WindCueComponent!=nullptr) { WindCueComponent->Play(); }
 	WindOn = true;
 	meshRootComp = Cast<UStaticMeshComponent>(OtherActor->GetRootComponent());
 	UE_LOG(LogTemp, Log, TEXT("Force added against actor"));

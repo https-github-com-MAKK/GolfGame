@@ -5,6 +5,7 @@
 #include "TimerManager.h"
 #include "CoreMinimal.h"
 #include "PlatformGravityTriggerBox.h"
+#include "Sound/SoundCue.h"
 #include "WindTriggerBox.generated.h"
 
 
@@ -45,6 +46,12 @@ public:
 
 	UPROPERTY(EditAnywhere)
 		int force = 1000;
+
+	UPROPERTY(EditAnywhere)
+		class USoundCue* WindCue;
+
+	UPROPERTY(EditAnywhere)
+		class UAudioComponent* WindCueComponent;
 
 	UPROPERTY(EditAnywhere)
 		bool IsTriggered = false;

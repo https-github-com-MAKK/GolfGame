@@ -34,8 +34,6 @@ public:
 	UPROPERTY(EditAnywhere)
 		float TargetZ;
 
-	bool ElevatorActive;
-	bool MoveUp;
-	bool MoveDown;
+	bool ElevatorActive, MoveUp, MoveDown, ReachedTarget;
 	float OriginalZ;
 };
