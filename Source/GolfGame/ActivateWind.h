@@ -16,7 +16,6 @@ class GOLFGAME_API AActivateWind : public AActor
 {
 	GENERATED_BODY()
 
-
 public:
 	// Sets default values for this actor's properties
 	AActivateWind();
@@ -31,6 +30,9 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	UPROPERTY(EditAnywhere)
+		bool ToggleTwoWindTriggerBoxes;
+	
 	UPROPERTY(VisibleAnywhere)
 		class UStaticMeshComponent* MyMesh;
 
@@ -44,13 +46,15 @@ public:
 		class UBoxComponent* MyBoxComponent;
 
 	UPROPERTY(EditAnywhere)
-		bool OnAtStart=true;
+		bool OnAtStart = true;
 
 	UFUNCTION()
 		void OnOverlapBegin(class UPrimitiveComponent* OverlappedComp, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
 
 	UPROPERTY(EditAnywhere)
 		class AWindTriggerBox* AssociatedWindBox;
+
+	
 
 	UPROPERTY(EditAnywhere)
 		class ABall* Ball;
@@ -62,28 +66,10 @@ public:
 
 private:
 
-	/*
-	 *Parameters:
-	 *None
-	 *Returns:
-	 *void
-	 */
 	void ToggleWind();
 
-	/*
-	 *Parameters:
-	 *None
-	 *Returns:
-	 *void
-	 */
 	void ToggleSpotlight();
 
-	/*
-	 *Parameters:
-	 *None
-	 *Returns:
-	 *void
-	 */
 	void SetCanBeHit();
 
 	enum SwitchState { On, Off };
