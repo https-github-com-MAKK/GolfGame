@@ -15,11 +15,8 @@ class GOLFGAME_API ABall : public AActor
 	
 public:
 	
-	/**\brief Sets default values for this actor's properties
-	 *\param something
-	 *None
-	 *Returns:
-	 *void
+	/**\brief Adds static mesh component for the visual aspect, audio component for the crackling sound,
+	 * and a particle system component to the ball actor.
 	 */
 	ABall();
 
@@ -44,34 +41,29 @@ protected:
 	/**\brief Called when the game starts or when spawned, sets CanTeleportToInBeginning.
 	 *to false.
 	 */
-	
+
+	/**\brief Sets whether the ball can be teleported at the start of the a level. */
 	virtual void BeginPlay() override;
 	
 public:	
-	// Called every frame
+	/**\brief Called every frame*/ 
 	virtual void Tick(float DeltaTime) override;
 
-	
-	UPROPERTY()
-		USphereComponent* SphereComponent;
-	
+	/**\brief Visual element of the ball actor, set in UE4 editor. */
 	UPROPERTY(VisibleAnywhere)
 		UStaticMeshComponent* SphereVisual;
 	
-	//Visual sparkles the ball emits
+	/**\brief Visual sparks the ball emits.*/
 	UPROPERTY()
 		UParticleSystemComponent* SparksParticleSystem;
 	
-	//Crackling sound the ball makes
+	/**\brief Component for playing the crackling sound the ball makes.*/
 	UPROPERTY(VisibleAnywhere, Category = Sound)
 		class UAudioComponent* CrackleSoundPlayer;
 
-	
+	/**\brief Crackling sound the ball makes. Set in UE4 editor.*/
 	UPROPERTY(EditAnywhere, Category = Sound)
 		class USoundCue* CrackleSound;
-
-	UPROPERTY(EditAnywhere)
-		class UMaterial* BallMaterial;
 
 	UFUNCTION()
 		/**\brief Returns if the Ball can currently be teleported to

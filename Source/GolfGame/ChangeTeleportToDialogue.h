@@ -8,17 +8,19 @@
 UCLASS()
 class GOLFGAME_API AChangeTeleportToDialogue : public AGolfGameTriggerBox
 {
+	/**\brief Macro that sets up the class to support the infrastructure required by the engine*/
 	GENERATED_BODY()
 
 public:
 
-	//New dialogue cue to be loaded into the player's audio component for dialogue
+	//
+	/**\brief New dialogue cue to be loaded into the player's audio component for dialogue.*/
 	UPROPERTY(EditAnywhere, Category = Dialogue)
 		class USoundBase* Dialogue;
 
-	//Loads new dialogue cue into player when overlap begins
+	/**\brief Loads new dialogue cue into player when overlap begins.*/
 	virtual void OverlapBeginAction() override;
 
-	//overlap ends
+	/**\brief Overlap ends. */
 	virtual void OverlapEndAction() override;
 };

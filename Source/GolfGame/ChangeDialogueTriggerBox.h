@@ -6,51 +6,61 @@
 #include "GolfGameTriggerBox.h"
 #include "ChangeDialogueTriggerBox.generated.h"
 /**
-*\file will this work
-*\brief this is the ball class
+*\brief When the player begins overlapping the ChangeDialogueTriggerBox, a new
+*Sound Base is loaded into the audio component in the GolfGameCharacter and played.
+*A delay can be set from the UE4 editor to postpone the playing of the new dialogue
+*for a set number of seconds. The Sound Base will only be played once, then the
+*DialoguePlayed boolean is set to true.
 */
 UCLASS()
 class GOLFGAME_API AChangeDialogueTriggerBox : public AGolfGameTriggerBox
 {
+	/**\Macro that sets up the class to support the infrastructure required by the engine.*/
 	GENERATED_BODY()
 
 protected:
 
-	// Called when the game starts or when spawned
+	/**\brief Called when the game starts or when spawned.*/
 	virtual void BeginPlay() override;
 
-	//Loads and plays dialogue when overlap begins
+	/**\brief Loads and plays dialogue when overlap begins*/
 	virtual void OverlapBeginAction() override;
 
-	//Overlap ends
+	/**\brief Overlap ends. Timer is cleared.*/
 	virtual void OverlapEndAction() override;
 
-	//Timer for delaying the loading and playing of a new dialogue cue
+	/**\brief Timer for delaying the loading and playing of a new dialogue cue.*/
 	FTimerHandle TimerHandle;
 
-	//Amount of time in seconds for the dialogue to be delayed before loading and playing
+	/**\brief Amount of time in seconds for the dialogue to be delayed before loading and playing.
+	 * Amount of time is specified in the UE4 editor.
+	 */
 	UPROPERTY(EditAnywhere, Category = Dialogue)
 		float TimeToDelayDialogue;
 
 public:
 
+	/**\brief Sets DialoguePlayed to false.*/
 	AChangeDialogueTriggerBox();
 
-	//new dialogue cue to be loaded to player and played
+	//
+	/**\brief New Sound Base to be loaded to player and player's audio component for dialogue. Sound Base
+	 * is selected in the UE4 editor.
+	 */
 	UPROPERTY(EditAnywhere, Category = Dialogue)
 		class USoundBase* Dialogue;
 
-	//player selected for which to play the dialogue cue for
+	/**\brief Player selected for which to play the Sound Base for. Player is selected in the UE4 editor.*/
 	UPROPERTY(EditAnywhere, Category = Dialogue)
 		class AGolfGameCharacter* PlayerForAudio;
 
-	//function to play dialogue for player
+	/**\brief Play dialogue for player.*/
 	void DialoguePlay();
 
 	
 private:
 
-	//set to true when the dialogue is played, only plays once
+	/**\brief Set to true when the dialogue is played, only plays once.*/
 	bool DialoguePlayed;
 
 };

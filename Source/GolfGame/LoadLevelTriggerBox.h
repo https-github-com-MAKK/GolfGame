@@ -11,7 +11,7 @@
 UCLASS(Abstract)
 class GOLFGAME_API ALoadLevelTriggerBox : public AGolfGameTriggerBox
 {
-	//Macro that sets up the class to support the infrastructure required by the engine
+	/**\brief Macro that sets up the class to support the infrastructure required by the engine*/
 	GENERATED_BODY()
 
 protected:

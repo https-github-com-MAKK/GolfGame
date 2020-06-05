@@ -1,9 +1,5 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 
 #include "ActivateWind.h"
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #include "WindTriggerBox.h"
 #include "DrawDebugHelpers.h"
 #include "Components/BoxComponent.h"
@@ -26,11 +22,14 @@ AActivateWind::AActivateWind()
 	OnMaterial = CreateDefaultSubobject<UMaterial>(TEXT("OnMaterial"));
 	OffMaterial = CreateDefaultSubobject<UMaterial>(TEXT("OffMaterial"));
 
-	if (!OnAtStart) {
+	if (!OnAtStart) 
+	{
 		CurrentSwitchState = Off;
 	}
 
 	MyBoxComponent->OnComponentBeginOverlap.AddDynamic(this, &AActivateWind::OnOverlapBegin);
+
+	ToggleTwoWindTriggerBoxes = false;
 
 }
 
@@ -42,11 +41,6 @@ void AActivateWind::BeginPlay()
 	//DrawDebugBox(GetWorld(), GetActorLocation(), FVector(100, 100, 100), FColor::Green, true, -1, 0, 10);
 
 	MyMesh->SetMaterial(0, OffMaterial);
-
-	if (AssociatedWindBox == nullptr)
-	{
-		GEngine->AddOnScreenDebugMessage(-1, 1.5, FColor::Green, TEXT("Platform/wind switch not setup"));
-	}
 
 	CanBeHit = true;
 	GetWorldTimerManager().SetTimer(MemberTimerHandle, this, &AActivateWind::SetCanBeHit, 1.0f, true, 5.0f);
@@ -88,9 +82,7 @@ void AActivateWind::ToggleWind()
 {
 	if (AssociatedWindBox != nullptr)
 	{
-
 		AssociatedWindBox->IsUsable = true;
-
 	}
 
 		
