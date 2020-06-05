@@ -189,6 +189,7 @@ void AGolfGameCharacter::Teleport()
 	if (Ball != nullptr && Ball->GetCanBeTeleportedTo() && Ball->GetHasBeenSummonedOnce()) {
 		FVector ballLocation = Ball->GetActorLocation();
 		SetActorLocation(ballLocation, false);
+		UGameplayStatics::PlaySoundAtLocation(this, TeleportSound, GetOwner()->GetActorLocation());
 	}
 	else
 	{
@@ -206,6 +207,7 @@ void AGolfGameCharacter::SummonBall()
 	if (Ball != nullptr) {
 		GrabberClass->SummonGrabBall(Ball, BallSummonLocation->GetComponentLocation(), PhysicsHandle);
 		Ball->SetHasBeenSummonedOnce(true);
+		UGameplayStatics::PlaySoundAtLocation(this, SummonSound, GetOwner()->GetActorLocation());
 	}
 
 	if(!Ball->GetCanBallBeSummoned())

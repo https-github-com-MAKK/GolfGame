@@ -86,9 +86,17 @@ public:
 	UPROPERTY(EditAnywhere)
 		FVector CameraPosition;
 
-	//current sound cue for when the player cannot be teleported to
+	/**\brief Current sound cue for when the player cannot be teleported to the ball. Selected in UE4 editor.*/
 	UPROPERTY(EditAnywhere, Category = Sound)
 		class USoundBase* NeedToTeleportBallCue;
+
+	/**\brief Current sound cue for when the player is teleported to the ball. Selected in UE4 editor.*/
+	UPROPERTY(EditAnywhere)
+		class USoundBase* TeleportSound;
+
+	/**\brief Current sound cue for when the player summons the ball. Selected in UE4 editor.*/
+	UPROPERTY(EditAnywhere)
+		class USoundBase* SummonSound;
 
 
 protected:
