@@ -26,6 +26,10 @@ AActivateWind::AActivateWind()
 	OnMaterial = CreateDefaultSubobject<UMaterial>(TEXT("OnMaterial"));
 	OffMaterial = CreateDefaultSubobject<UMaterial>(TEXT("OffMaterial"));
 
+	if (!OnAtStart) {
+		CurrentSwitchState = Off;
+	}
+
 	MyBoxComponent->OnComponentBeginOverlap.AddDynamic(this, &AActivateWind::OnOverlapBegin);
 
 }
