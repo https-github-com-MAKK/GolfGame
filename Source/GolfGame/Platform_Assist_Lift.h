@@ -13,17 +13,11 @@ class GOLFGAME_API APlatform_Assist_Lift : public AActor
 	/**\brief Macro that sets up the class to support the infrastructure required by the engine.*/
 	GENERATED_BODY()
 	
-public:	
+public:
+	
 	/**\brief  Sets default values for this actor's properties.*/
 	APlatform_Assist_Lift();
 
-protected:
-	
-	/**\brief  Called when the game starts or when spawned.*/
-	virtual void BeginPlay() override;
-
-public:	
-	
 	/**\brief  Called every frame and changes the location of the lift based on delta time.*/
 	virtual void Tick(float DeltaTime) override;
 
@@ -32,8 +26,13 @@ public:
 		UStaticMeshComponent* VisualMesh;
 
 	//
-	/**\brief Factor for which the platform will move up and down.*/
+	/**\brief Factor for which the platform will move in a given direction.*/
 	UPROPERTY(EditAnywhere)
 		float ScaleFactor = 50.0;
+
+protected:
+	
+	/**\brief  Called when the game starts or when spawned.*/
+	virtual void BeginPlay() override;
 
 };
