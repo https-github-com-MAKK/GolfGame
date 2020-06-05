@@ -11,6 +11,11 @@
 #include "Components/AudioComponent.h"
 #include "ChangeMaterialController.generated.h"
 
+/**\brief Class controls the functionality behind the in-game switches. Toggles movement of associated elevator or moving
+ *platform, switches material of the controller to represent whether it is on or off, and toggles visiblity of an associated
+ *light source. The switch can only be hit once per second by the ball as to not have false positive hits.
+ * 
+ */
 
 UCLASS()
 class GOLFGAME_API AChangeMaterialController : public AActor

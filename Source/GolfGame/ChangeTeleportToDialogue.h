@@ -5,6 +5,8 @@
 #include "GolfGameTriggerBox.h"
 #include "ChangeTeleportToDialogue.generated.h"
 
+/**\brief Loads in new dialogue cue for when the player cannot teleport to the ball.*/
+
 UCLASS()
 class GOLFGAME_API AChangeTeleportToDialogue : public AGolfGameTriggerBox
 {

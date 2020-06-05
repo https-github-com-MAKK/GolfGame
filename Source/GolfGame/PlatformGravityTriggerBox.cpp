@@ -14,15 +14,18 @@
 void APlatformGravityTriggerBox::BeginPlay()
 {
 	Super::BeginPlay();
-	 OriginalWorldGravity = GetWorldSettings()->GetGravityZ();
+	OriginalWorldGravity = GetWorldSettings()->GetGravityZ();
+    GravityInsideTriggerBox = -100.0;
 }
 
-void APlatformGravityTriggerBox::OverlapBeginAction() {
+void APlatformGravityTriggerBox::OverlapBeginAction()
+{
     GetWorldSettings()->bGlobalGravitySet = true;
     GetWorldSettings()->GlobalGravityZ = GravityInsideTriggerBox; 
 }
 
-void APlatformGravityTriggerBox::OverlapEndAction() {
+void APlatformGravityTriggerBox::OverlapEndAction()
+{
     GetWorldSettings()->bGlobalGravitySet = false;
     GetWorldSettings()->GlobalGravityZ = OriginalWorldGravity;
 }

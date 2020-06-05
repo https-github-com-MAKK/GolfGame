@@ -7,14 +7,20 @@
 #include "Kismet/GameplayStatics.h"
 #include "Components/AudioComponent.h"
 #include "Sound/SoundBase.h"
-#include "Components/ShapeComponent.h"
 #include "GolfGameCharacter.generated.h"
 
+/**\brief GolfGameCharacter houses all functionality for a user to operate a player in-game.
+ *\detail GolfGameCharacter encapsulates a camera component for the player to view the game
+ * from, a GrabThrow component to interact with the ball (pick up, drop, and throw), audio
+ * components for playing in-game music and dialogue cues, the ability to summon the ball
+ * and teleport to it, as well as necessary components for in-game operations.
+ */
 
 class UInputComponent;
 UCLASS(config=Game)
 class AGolfGameCharacter final : public ACharacter
 {
+	/**\brief Macro that sets up the class to support the infrastructure required by the engine.*/
 	GENERATED_BODY()
 
 public:
@@ -22,15 +28,15 @@ public:
 	/**\brief Sets default values for this character's properties*/
 	AGolfGameCharacter();
 	
-	/** First person camera */
+	/**\brief First person camera */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 		class UCameraComponent* FirstPersonCameraComponent;
 
-	//Grabber class
+	/**\brief Grabber class*/
 	UPROPERTY(EditAnywhere, Category = "Custom")
 		class UGrabThrowComponent* GrabberClass;
 
-	//PhysicsHandle class
+	/**\brief PhysicsHandle class*/
 	UPROPERTY(EditAnywhere, Category = "Custom")
 		class UPhysicsHandleComponent* PhysicsHandle;
 	
@@ -104,7 +110,6 @@ protected:
 
 	void MoveForward(float Value);
 
-
 	void MoveRight(float Value);
 
 	void GrabOrRelease();
@@ -144,13 +149,11 @@ protected:
 
 	/**\brief Attempts to set the player's location to the ball's location.
 	 */
-	
 	void Teleport();
 
 	/**\brief Attempts to set the ball's location to the player's location and has the player hold the ball
 	 *if successful.
 	 */
-	
 	void SummonBall();
 
 public:

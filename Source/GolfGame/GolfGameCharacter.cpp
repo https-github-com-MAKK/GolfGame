@@ -15,6 +15,9 @@
 *Description: The character the user possess during the game.  The character can move, jump,
 *look around, summon and teleport the ball, pick it up, and contains audio components to play
 *sounds, music, and dialogue.
+*Revision 5: (6/5/2020)
+*Rev. Author: Andrew Sales
+*Rev. Comments: Added Sound Cues that fire when ball is summoned or teleported to.
 */
 
 
@@ -25,9 +28,7 @@
 #include "Components/InputComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Kismet/GameplayStatics.h"
-#include "GameFramework/InputSettings.h"
 #include "Ball.h"
-#include "Kismet/GameplayStatics.h"
 #include "Engine/Engine.h"
 
 // Sets default values
