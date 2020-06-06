@@ -12,8 +12,8 @@
 
 void AChangeTeleportToDialogue::OverlapBeginAction()
 {
-	AGolfGameCharacter* Player = dynamic_cast<AGolfGameCharacter*>(ActorToCheck);
-    if (Player != NULL) {
+    if (Player) 
+    {
         Player->NeedToTeleportBallCue = Dialogue;
     }   
 }
