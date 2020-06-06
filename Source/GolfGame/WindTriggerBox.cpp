@@ -9,19 +9,14 @@
 #include <Ball.h>
 #include "GameFramework/WorldSettings.h"
 #include "GameFramework/Pawn.h"
-
-
+#include "Components/BoxComponent.h"
+#include "Sound/AmbientSound.h"
 
 
 AWindTriggerBox::AWindTriggerBox()
 {
 	OnActorBeginOverlap.AddDynamic(this, &AWindTriggerBox::OnOverlapBegin);
 	OnActorEndOverlap.AddDynamic(this, &AWindTriggerBox::OnOverlapEnd);
-
-	//WindCueComponent->CreateDefaultSubobject<UAudioComponent>(TEXT("Wind Cue Component"));
-	//WindCueComponent->bAutoActivate = false;
-	//WindCueComponent->SetRelativeLocation(FVector(0.0f, 0.0f, 0.0f));
-;
 }
 
 void AWindTriggerBox::BeginPlay() 

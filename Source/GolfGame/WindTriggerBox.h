@@ -48,12 +48,6 @@ public:
 		int force = 1000;
 
 	UPROPERTY(EditAnywhere)
-		class USoundCue* WindCue;
-
-	UPROPERTY(EditAnywhere)
-		class UAudioComponent* WindCueComponent;
-
-	UPROPERTY(EditAnywhere)
 		bool IsTriggered = false;
 
 	UPROPERTY(BlueprintReadWrite)

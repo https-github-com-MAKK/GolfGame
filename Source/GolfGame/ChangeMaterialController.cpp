@@ -29,7 +29,7 @@ AChangeMaterialController::AChangeMaterialController()
 	OnMaterial = CreateDefaultSubobject<UMaterial>(TEXT("OnMaterial"));
 	OffMaterial = CreateDefaultSubobject<UMaterial>(TEXT("OffMaterial"));
 
-	MyBoxComponent->OnComponentBeginOverlap.AddDynamic(this, &AChangeMaterialController::OnOverlapBegin);
+	MyBoxComponent->OnComponentBeginOverlap.AddDynamic(this, &AChangeMaterialController::OnOverlapBegin);	
 
 }
 
@@ -43,7 +43,7 @@ void AChangeMaterialController::BeginPlay()
 	MyMesh->SetMaterial(0, OffMaterial);
 	CanBeHit = true;
 	GetWorldTimerManager().SetTimer(MemberTimerHandle, this, &AChangeMaterialController::SetCanBeHit, 1.0f, true, 5.0f);
-
+	
 }
 
 // Called every frame
@@ -81,9 +81,11 @@ void AChangeMaterialController::OnOverlapBegin(UPrimitiveComponent* OverlappedCo
 			
 }
 
+
+
 void AChangeMaterialController::TogglePlatformMovement()
 {
-	if(AssociatedPlatform != nullptr)
+	if(AssociatedPlatform)
 	{
 		if(AssociatedPlatform->IsPlatFormMoving)
 		{
@@ -98,7 +100,7 @@ void AChangeMaterialController::TogglePlatformMovement()
 
 void AChangeMaterialController::ToggleSpotlight()
 {
-	if(AssociatedRectlight != nullptr)
+	if(AssociatedRectlight)
 	{
 		if(CurrentSpotlightState == Off)
 		{
@@ -116,7 +118,7 @@ void AChangeMaterialController::ToggleSpotlight()
 
 void AChangeMaterialController::ToggleElevator()
 {
-	if (AssociatedElevator != nullptr)
+	if (AssociatedElevator)
 	{
 		if (AssociatedElevator->ElevatorActive)
 		{

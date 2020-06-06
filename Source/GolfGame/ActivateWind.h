@@ -8,6 +8,8 @@
 #include "Ball.h"
 #include "Engine/RectLight.h"
 #include "Components/RectLightComponent.h"
+#include "GolfGameEnums.h"
+#include "Sound/AmbientSound.h"
 #include "ActivateWind.generated.h"
 
 
@@ -54,16 +56,22 @@ public:
 	UPROPERTY(EditAnywhere)
 		class AWindTriggerBox* AssociatedWindBox;
 
-	
-
 	UPROPERTY(EditAnywhere)
 		class ABall* Ball;
 
 	UPROPERTY(EditAnywhere)
 		class ARectLight* AssociatedRectlight;
 
+	UPROPERTY(EditAnywhere)
+		class AAmbientSound* WindSoundLeft;
+
+	UPROPERTY(EditAnywhere)
+		class AAmbientSound* WindSoundRight;
+
 	FTimerHandle MemberTimerHandle;
 
+
+	
 private:
 
 	void ToggleWind();
@@ -74,10 +82,16 @@ private:
 
 	void SetCanBeHit();
 
+	void ToggleWindSound();
+
 	enum SwitchState { On, Off };
 	SwitchState CurrentSwitchState = Off;
 	SwitchState CurrentSpotlightState = Off;
 
 	bool CanBeHit;
+
+	SwitchState CurrentWindSoundLeft = On;
+
+	SwitchState CurrentWindSoundRight = Off;
 
 };

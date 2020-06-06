@@ -45,6 +45,12 @@ void AActivateWind::BeginPlay()
 	CanBeHit = true;
 	GetWorldTimerManager().SetTimer(MemberTimerHandle, this, &AActivateWind::SetCanBeHit, 1.0f, true, 5.0f);
 
+	if (WindSoundLeft && WindSoundRight)
+	{
+		WindSoundRight->Stop();
+		WindSoundLeft->Play();
+	}
+
 }
 
 // Called every frame
@@ -113,6 +119,32 @@ void AActivateWind::ToggleSpotlight()
 void AActivateWind::SetCanBeHit()
 {
 	CanBeHit = true;
+}
+
+void AActivateWind::ToggleWindSound()
+{
+	if (WindSoundLeft && WindSoundRight)
+	{
+		const float FadeDuration = 1.5f;
+		const float VolumeOn = 1.0f;
+		const float VolumeOff = 0.0f;
+
+		if (CurrentWindSoundRight == Off && CurrentWindSoundLeft == On)
+		{
+
+			CurrentWindSoundRight = On;
+			CurrentWindSoundLeft = Off;
+			WindSoundRight->FadeIn(FadeDuration, VolumeOn);
+			WindSoundLeft->FadeOut(FadeDuration, VolumeOff);
+		}
+		else
+		{
+			CurrentWindSoundRight = Off;
+			CurrentWindSoundLeft = On;
+			WindSoundRight->FadeOut(FadeDuration, VolumeOff);
+			WindSoundLeft->FadeIn(FadeDuration, VolumeOn);
+		}
+	}
 }
 
 

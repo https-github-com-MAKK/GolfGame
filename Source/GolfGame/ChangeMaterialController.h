@@ -125,6 +125,8 @@ private:
 	/**\brief Current state of the audio component.*/
 	SwitchState CurrentMovingAudio = Off;
 
+	
+
 	//
 	/**\brief Whether the switch can currently be hit by the ball to toggle associated actors.*/
 	bool CanBeHit;
