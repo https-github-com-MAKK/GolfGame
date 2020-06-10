@@ -130,4 +130,10 @@ private:
 	/**\brief Current state of the light, on or off*/
 	SwitchState CurrentSpotlightState = Off;
 
+	/**\brief Current state of the fan in the left room, on or off*/
+	SwitchState CurrentWindSoundRight = Off;
+
+	/**\brief Current state of the fan in the right room, on or off*/
+	SwitchState CurrentWindSoundLeft = On;
+
 };
