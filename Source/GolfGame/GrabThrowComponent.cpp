@@ -1,5 +1,5 @@
 /*GolfGameCharacter.cpp
-*Author: Kat Bozin
+*Author: Katherine Bozin
 *Revision: 1 (03/04/2020)
 *Revision: 2 (05/18/2020)
 *Rev. Author: Kaylene Petrin
@@ -120,7 +120,7 @@ bool UGrabThrowComponent::Release(UPhysicsHandleComponent* Ph, const bool bThrow
 		bPhysicsHandleActive = false;
 		bObjectHeld = false;
 		Ph->ReleaseComponent();
-		if (!bThrow && ReleaseSound != nullptr)
+		if (bThrow && ReleaseSound != nullptr)
 		{
 			UGameplayStatics::PlaySoundAtLocation(this, ReleaseSound, GetOwner()->GetActorLocation());
 		}

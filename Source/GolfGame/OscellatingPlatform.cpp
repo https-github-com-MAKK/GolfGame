@@ -1,3 +1,8 @@
+/*OscellatingPlatform.cpp
+ *Author: Katherine Bozin
+ *Description: Platform that moves back and forth on the x, y, or z axis.
+ */
+
 #include "OscellatingPlatform.h"
 #include "Components/StaticMeshComponent.h"
 

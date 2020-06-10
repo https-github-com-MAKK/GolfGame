@@ -40,14 +40,9 @@ public:
 	UPROPERTY(EditAnywhere, Category = "Custom")
 		class UPhysicsHandleComponent* PhysicsHandle;
 	
+	/**\brief The location to which the ball should be summoned. */
 	UPROPERTY(EditAnywhere, Category = "Custom")
 		class USphereComponent* BallSummonLocation;
-
-	UPROPERTY(EditAnywhere, Category = "Custom")
-		uint32 bMouseDown : 1;
-
-	UPROPERTY(EditAnywhere, Category = "Custom")
-		uint32 bMouseUp : 1;
 
 	/**\brief Reference to the in-game ball for picking up, throwing, dropping, summoning, and teleporting to.*/
 	UPROPERTY(EditAnywhere, Category = Projectile)
@@ -83,12 +78,15 @@ public:
 	UPROPERTY(EditAnywhere)
 		float BaseLookUpRate;
 
+	/**\brief The regular walking speed of the character. */
 	UPROPERTY(EditAnywhere)
 		float BaseSpeed;
 
+	/**\brief The running speed of the character. */
 	UPROPERTY(EditAnywhere)
 		float RunningSpeed;
 
+	/**\brief The position of the camera relative to the golf game character. */
 	UPROPERTY(EditAnywhere)
 		FVector CameraPosition;
 
@@ -106,18 +104,26 @@ public:
 
 
 protected:
-
-
+	/**\ Moves the character forward or backward. 
+	*\param Value The value used for determining the rate at which the character moves.
+	*/
 	void MoveForward(float Value);
 
+	/**\brief Moves the character to the left or the right. 
+	*\param Value The value used for determining the rate at which the character moves.
+	*/
 	void MoveRight(float Value);
 
+	/**\brief Based on whether the character is currently holding an object, this method tries to either pick up an object in front of the character or drop the one currently being held.*/
 	void GrabOrRelease();
 
+	/**\brief If the character is holding an object, this method tries to throw the object in the direction the character is facing. */
 	void MouseDown();
 
+	/**\brief Toggles the character's movement speed to the base walking speed. */
 	void Walk();
 
+	/**\brief Toggles the character's moving speed to the running speed. */
 	void Sprint();
 
 	/**\brief Called via input to turn at a given rate.
@@ -143,17 +149,18 @@ protected:
 	FTouchData	TouchItem;
 
 	// APawn interface
+	/**\ Called every frame.
+	 *\param DeltaTime The elapsed time since the last tick.*/
 	void Tick(float DeltaTime) override;
 	
+	/**\ Sets up the inputs usable by the character.
+	*\param PlayerInputComponent The component belonging to the player character that allows the use of inputs.*/
 	void SetupPlayerInputComponent(UInputComponent* PlayerInputComponent) override;
 
-	/**\brief Attempts to set the player's location to the ball's location.
-	 */
+	/**\brief Attempts to set the player's location to the ball's location.*/
 	void Teleport();
 
-	/**\brief Attempts to set the ball's location to the player's location and has the player hold the ball
-	 *if successful.
-	 */
+	/**\brief Attempts to set the ball's location to the player's location and has the player hold the ball if successful.*/
 	void SummonBall();
 
 public:

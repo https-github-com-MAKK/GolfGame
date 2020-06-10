@@ -1,4 +1,8 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+/*ElevatorPlatform.cpp
+ *Author: Katherine Bozin
+ *Description: Communicates with a trigger box that checks for the presence of the player character and moves up when the character enters the box. 
+ *If the character exits the box before it reaches the target height, it moves back down to its original position. 
+ */
 
 #include "ElevatorPlatform.h"
 

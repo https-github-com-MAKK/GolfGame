@@ -5,13 +5,15 @@
 #include "GameFramework/Actor.h"
 #include "GrabThrowComponent.generated.h"
 
+/**	*\brief This class is a component of the player character that allows the character to pick up, drop, and throw objects.*/
+
 class ABall;
 class UCameraComponent;
 
 UCLASS(ClassGroup=(Custom), meta=(BlueprintSpawnableComponent))
 class GOLFGAME_API UGrabThrowComponent final : public UActorComponent
 {
-
+	/**\Macro that sets up the class to support the infrastructure required by the engine.*/
 	GENERATED_BODY()
 
 
@@ -45,11 +47,11 @@ private:
 		class USoundBase* ReleaseSound;
 
 private:
-	/**\brief Checks if object being held.*/
+	/**\brief Checks if object is being held.*/
 	UPROPERTY(EditAnywhere)
 		bool bObjectHeld;
 
-	/**\brief Check if physics handle active.*/
+	/**\brief Check if physics handle is active.*/
 	UPROPERTY(EditAnywhere)
 		bool bPhysicsHandleActive;
 
@@ -70,7 +72,7 @@ private:
 	UPROPERTY(EditAnywhere)
 		float ThrowingForce = 1500.0f;
 
-
+	/**	*\brief The distance from the character that an object will snap to when grabbed or summoned.*/
 	UPROPERTY(EditAnywhere)
 		float SnapDistance = 200.0f;
 public:
@@ -80,16 +82,38 @@ public:
 protected:
 
 	// Called when the game starts
+	/**\brief Called when the game starts or when spawned.*/
 	virtual void BeginPlay() override;
 
 
 public:
 	// Called every frame
+	/**\brief Called every frame.*/
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
+	/**\ Attempts to grab an object of the appropriate type and within the appropriate distance in front of the player character.
+	 *\param WorldContextObject A reference to the player character.
+	 *\param Ph A reference to the player character's physics handle.
+	 *\param FPCameraComponent A reference to the player character's camera component.
+	*/
 	bool Grab(UObject* WorldContextObject, class UPhysicsHandleComponent* Ph, UCameraComponent* FPCameraComponent);
+
+	/**\ Attempts to throw an object held by the player character.
+	 *\param Ph A reference to the player character's physics handle.
+	 *\param FPCameraComponent A reference to the player character's camera component.
+	*/
 	bool Throw(class UPhysicsHandleComponent* Ph, UCameraComponent* FPCameraComponent);
+
+	/**\ Attempts to relseae an object held by the player character.
+	 *\param Ph A reference to the player character's physics handle
+	 *\param bThrow a boolean signifying whether a throw has been performed
+	*/
 	bool Release(class UPhysicsHandleComponent* Ph, bool bThrow);
+
+	/**\ Traces the location of the physics handle related to the position of the player character's camera.
+	 *\param Ph A reference to the player character's physics handle.
+	 *\param FPCameraComponent A reference to the player character's camera component.
+	*/
 	void TraceHandleLocation(class UPhysicsHandleComponent* Ph, UCameraComponent* FPCameraComponent);
 
 	/**\ Summons the ball to the player and sets the ball to grabbed by the player.
@@ -98,7 +122,6 @@ public:
 	 *and their grab position.
 	 *\param Ph the players physics handle that aids in holding and moving the ball.
 	 */
-	
 	void SummonGrabBall (ABall* Ball, FVector SummonLocation, UPhysicsHandleComponent* Ph);
 	FORCEINLINE bool GetIsObjectHeld() const { return bObjectHeld; }
 };

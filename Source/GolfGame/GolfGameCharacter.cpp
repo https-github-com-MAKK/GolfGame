@@ -1,5 +1,5 @@
 /*GolfGameCharacter.cpp
-*Author: Kat Bozin
+*Author: Katherine Bozin
 *Revision: 1 (03/04/2020)
 *Revision: 2 (04/11/2020)
 *Rev. Author: Kaylene Petrin
