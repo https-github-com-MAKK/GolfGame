@@ -80,7 +80,7 @@ void AActivateWind::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* 
 			CurrentSwitchState = Off;
 			ToggleWindOff();
 		}
-		
+		ToggleWindSound();
 		ToggleSpotlight();
 		CanBeHit = false;
 	}
@@ -126,28 +126,29 @@ void AActivateWind::SetCanBeHit()
 
 void AActivateWind::ToggleWindSound()
 {
-	if (WindSoundLeft && WindSoundRight)
+	if(WindSoundLeft && WindSoundRight)
 	{
-		const float FadeDuration = 1.5f;
+		const float FadeInDuration = 1.5f;
+		const float FadeOutDuration = 0.5f;
 		const float VolumeOn = 1.0f;
 		const float VolumeOff = 0.0f;
 
 		if (CurrentWindSoundRight == Off && CurrentWindSoundLeft == On)
 		{
-
 			CurrentWindSoundRight = On;
 			CurrentWindSoundLeft = Off;
-			WindSoundRight->FadeIn(FadeDuration, VolumeOn);
-			WindSoundLeft->FadeOut(FadeDuration, VolumeOff);
+			WindSoundRight->FadeIn(FadeInDuration, VolumeOn);
+			WindSoundLeft->FadeOut(FadeOutDuration, VolumeOff);
 		}
 		else
 		{
 			CurrentWindSoundRight = Off;
 			CurrentWindSoundLeft = On;
-			WindSoundRight->FadeOut(FadeDuration, VolumeOff);
-			WindSoundLeft->FadeIn(FadeDuration, VolumeOn);
+			WindSoundRight->FadeOut(FadeOutDuration, VolumeOff);
+			WindSoundLeft->FadeIn(FadeInDuration, VolumeOn);
 		}
 	}
+
 }
 
 

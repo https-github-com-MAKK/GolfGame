@@ -7,7 +7,7 @@ AOscellatingPlatform::AOscellatingPlatform()
 
 	PauseTime = 120;
 	PathHeight = 150.0f;
-	Speed = 0.5f;
+	Speed = 0.1f;
 	Direction = 1;
 	Axis = "X";
 	
