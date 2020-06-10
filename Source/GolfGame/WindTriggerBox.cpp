@@ -1,5 +1,9 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
+/*WindTriggerBox.ccp
+ *Author: Max Iniguex
+ *Revision: 1 (04/20/2020)
+ *Description: A trigger box that once the ball enteres the overlap area, a force is added directly to the ball every .1 seconds
+ *resulting in a wind like mechanic
+ */
 #include "WindTriggerBox.h"
 #include "PlatformGravityTriggerBox.h"
 #include "DrawDebugHelpers.h"

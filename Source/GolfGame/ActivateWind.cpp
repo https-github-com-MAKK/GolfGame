@@ -1,4 +1,9 @@
-
+/*ActivateWind.cpp
+ *Author: Max Iniguez
+ *Revision: 1 (05/25/2020)
+ *Description: This trigger is used to turn on and off the boolean in the wind trigger box that turns on and off 
+ *the wind mechanic
+ */
 #include "ActivateWind.h"
 #include "WindTriggerBox.h"
 #include "DrawDebugHelpers.h"
@@ -37,8 +42,6 @@ AActivateWind::AActivateWind()
 void AActivateWind::BeginPlay()
 {
 	Super::BeginPlay();
-
-	//DrawDebugBox(GetWorld(), GetActorLocation(), FVector(100, 100, 100), FColor::Green, true, -1, 0, 10);
 
 	MyMesh->SetMaterial(0, OffMaterial);
 
